@@ -1,0 +1,58 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+
+    background-color: $primary-white-color;
+    color: $primary-black-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+
+.container {
+    width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+
+
+    @media screen and (min-width:480px) {
+        width: 480px;
+
+    }
+
+    @media screen and (min-width:768px) {
+        width: 768px;
+        padding-left: 32px;
+        padding-right: 32px;
+
+    }
+
+    @media screen and (min-width:1280px) {
+        width: 1280px;
+        padding-left: 15px;
+        padding-right: 15px;
+
+    }
+}
+
+.dark-theme {
+    background-color: $primary-black-color;
+    color: $primary-white-color;
+}

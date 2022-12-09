@@ -1,2 +1,10 @@
-@import './common';
-@import './example';
+@import './base/common';
+@import './base/fonts';
+@import './base/variables';
+@import './base/placeholders';
+@import './base/base';
+@import './components/mobile-menu';
+@import './components/button';
+@import './layout/header';
+@import './layout/hero';
+@import './layout/footer';

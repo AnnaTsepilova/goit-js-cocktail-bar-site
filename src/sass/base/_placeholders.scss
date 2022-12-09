@@ -1,0 +1,45 @@
+%link {
+    text-decoration: none;
+}
+
+%list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+%visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+%section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+%section-title {
+    margin-top: 0;
+    margin-bottom: 60px;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.91;
+    color: $primary-black-color;
+
+    @media screen and (min-width: 768px) {
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 1.31;
+    }
+
+    @media screen and (min-width: 1280px) {
+        font-size: 48px;
+        line-height: 1.5;
+    }
+}
