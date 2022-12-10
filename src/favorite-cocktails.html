@@ -1,23 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Favorite cocktails</title>
 
     <link rel="stylesheet" href="./sass/index.scss" />
-    
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- ❗️❗️❗️ Add partials like so for every page -->
     <include src="./partials/header.html"></include>
 
     <main>
-        
-        <include src="./partials/search-set.html"></include>
-
+      <section class="favorite-cocktails">
+        <div class="container">
+          <h2 class="title-favoriteCoctails">Favorite coctails</h2>
+          <ul class="list-favorit">
+            <li class="list-favorit__item">
+              <img class="list-favorit_img" src="/src/image/plugs/affair.jpg" alt="" />
+              <p class="list-favorit_coctail">Negrony</p>
+              <div class="list-favorit_btn">
+                <button class="btn-learn_more">Learn more</button
+                ><button class="btn-add_and_remove">Add to</button>
+              </div>
+            </li>
+            <li class="list-favorit__item">
+              <img class="list-favorit_img" src="/src/image/plugs/ace.jpg" alt="" />
+              <p class="list-favorit_coctail">Negrony</p>
+              <div class="list-favorit_btn">
+                <button class="btn-learn_more">Learn more</button
+                ><button class="btn-add_and_remove">Add to</button>
+              </div>
+            </li>
+            <li class="list-favorit__item">
+              <img class="list-favorit_img" src="/src/image/plugs/ace.jpg" alt="" />
+              <p class="list-favorit_coctail">Negrony</p>
+              <div class="list-favorit_btn">
+                <button class="btn-learn_more">Learn more</button
+                ><button class="btn-add_and_remove">Add to</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
     </main>
 
     <include src="./partials/footer.html"></include>
@@ -26,5 +52,5 @@
     <include src="./partials/modal-window-ingredients.html"></include>
 
     <script type="module" src="./index.js"></script>
-</body>
+  </body>
 </html>
