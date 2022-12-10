@@ -1,0 +1,91 @@
+.hero__section{
+    @extend %section;
+    padding-bottom: 40px;
+    position: relative;
+
+}
+// .hero__container{
+
+// }
+.hero__box{
+
+    @media screen and (min-width: 768px) {
+            // display: flex;
+            width:336px;
+            // flex-wrap: wrap;
+}
+}
+.hero__caption{
+    @extend %section-title;
+    color:$accent-color;
+    @media screen and (min-width: 768px) {
+        font-weight: 600;
+        font-size: 26px;
+        line-height: 1.62;
+        margin-bottom: 40px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        font-size: 48px;
+        line-height: 1.5;
+    }
+}
+.hero__desc{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 2;
+    letter-spacing: 0.02em;
+    color: $black-color;
+    margin-bottom: 20px;
+    @media screen and (min-width: 768px) {
+
+            margin-bottom: 40px;
+        }
+
+}
+
+.search__list{
+    @extend %list;
+    height: 75px;
+}
+.search__input{
+    width: 93px;
+    height: 34px;
+    border: 1px solid $accent-color;
+    border-radius: 4px;
+    color:$accent-color;
+    padding: 6px 10px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.35;
+    &:hover,
+    &:focus{
+        background-color: $accent-color;
+        color: $white-color;
+        outline: none;
+    }
+}
+.hero__picture{
+
+    margin-bottom: 60px;
+    @media screen and (min-width: 768px) {
+        position: absolute;
+        width: 336px;
+        height:294px;
+        top:0;
+        // bottom: 0;
+        right:32px;
+    }
+}
+
+.search__box{
+    display: flex;
+    justify-content: center;
+    @media screen and (min-width: 768px) {
+            display: none;
+        }
+}
