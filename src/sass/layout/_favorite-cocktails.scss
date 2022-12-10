@@ -1,0 +1,17 @@
+.title-favoriteCoctails {
+  @extend %section-title;
+  @media screen and (max-width: 767px) {
+    max-width: 280px;
+    height: 280px;
+    background: red;
+  }
+}
+
+.list-favorit {
+  @extend %list;
+  list-style: none;
+}
+
+.list-favorit__item {
+  text-align: center;
+}
