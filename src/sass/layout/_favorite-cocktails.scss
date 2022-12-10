@@ -7,7 +7,7 @@
   text-align: center;
 }
 
-.list-favorit {
+.list-favorite {
   @extend %list;
   @media screen and (min-width: 768px) {
     display: flex;
@@ -16,7 +16,7 @@
   }
 }
 
-.list-favorit__item {
+.list-favorite__item {
   text-align: center;
   max-width: 280px;
   // height: 449px;
@@ -38,7 +38,7 @@
   }
 }
 
-.list-favorit_img {
+.list-favorite_img {
   margin-bottom: 48px;
   @media screen and (min-width: 768px) {
     margin-bottom: 20px;
@@ -64,7 +64,7 @@
 //   }
 // }
 
-.list-favorit_btn {
+.list-favorite_btn {
   display: flex;
   justify-content: center;
   margin-bottom: 24px;
@@ -80,7 +80,7 @@
   margin-right: 20px;
 }
 
-.list-favorit_coctail {
+.list-favorite_coctail {
   margin-bottom: 16px;
   font-weight: 900;
   font-size: 26px;
