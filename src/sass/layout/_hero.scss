@@ -1,19 +1,26 @@
 .hero__section{
     @extend %section;
-    padding-bottom: 40px;
-    position: relative;
+
+
+    @media screen and (max-width: 767px) {
+            padding-bottom: 40px;
+        }
+ @media screen and (max-width: 1280px) {
+     padding-bottom: 60px;
+ }
 
 }
-// .hero__container{
-
-// }
+.hero__container{
+position: relative;
+}
 .hero__box{
 
     @media screen and (min-width: 768px) {
-            // display: flex;
             width:336px;
-            // flex-wrap: wrap;
 }
+   @media screen and (min-width: 1280px) {
+       width: 688px;
+   }
 }
 .hero__caption{
     @extend %section-title;
@@ -26,9 +33,10 @@
     }
 
     @media screen and (min-width: 1280px) {
-        font-size: 48px;
-        line-height: 1.5;
+        font-size: 52px;
+        line-height: 1.54;
     }
+
 }
 .hero__desc{
     font-family: 'Poppins';
@@ -40,15 +48,39 @@
     color: $black-color;
     margin-bottom: 20px;
     @media screen and (min-width: 768px) {
-
-            margin-bottom: 40px;
-        }
+        margin-bottom: 40px;
+    }
+    @media screen and (min-width: 1280px) {
+    font-size: 18px;
+    line-height: 1.56;
+    }
 
 }
 
 .search__list{
     @extend %list;
+
+    @media screen and (max-width: 767px) {
+    display: none;
+    }
+    @media screen and (min-width: 768px) {
     height: 75px;
+ }
+  @media screen and (min-width: 1280px) {
+      height: 120px;
+  }
+}
+
+.search__item{
+    font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #5F6775;
+@media screen and (min-width: 1280px) {
+        font-size: 24px;
+    }
 }
 .search__input{
     width: 93px;
@@ -70,7 +102,7 @@
     }
 }
 .hero__picture{
-
+width: 100%;
     margin-bottom: 60px;
     @media screen and (min-width: 768px) {
         position: absolute;
@@ -78,8 +110,13 @@
         height:294px;
         top:0;
         // bottom: 0;
-        right:32px;
+        right:0;
+        margin-bottom: 0;
     }
+         @media screen and (min-width: 1280px) {
+             width: 501px;
+             height: 439px;
+         }
 }
 
 .search__box{
