@@ -13,7 +13,7 @@
   }
 }
 
-.list-ingridients {
+.list-ingredients {
   @extend %list;
   @media screen and (min-width: 768px) {
     display: flex;
@@ -22,7 +22,7 @@
   }
 }
 
-.list-ingridients__item {
+.list-ingredients__item {
   margin-left: auto;
   margin-right: auto;
   max-width: 280px;
@@ -47,7 +47,7 @@
   }
 }
 
-.list-ingridients__name {
+.list-ingredients__name {
   margin-bottom: 16px;
   font-weight: 900;
   font-size: 26px;
@@ -66,7 +66,7 @@
   }
 }
 
-.list-ingridients__descr {
+.list-ingredients__descr {
   font-weight: 600;
   font-size: 14px;
   line-height: 1.5;

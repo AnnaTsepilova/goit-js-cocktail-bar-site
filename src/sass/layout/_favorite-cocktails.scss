@@ -2,7 +2,7 @@
   @extend %section;
 }
 
-.title-favoriteCoctails {
+.title-favoritecocktails {
   @extend %section-title;
   text-align: center;
 }
@@ -39,6 +39,9 @@
 }
 
 .list-favorite_img {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  width: 100%;
   margin-bottom: 48px;
   @media screen and (min-width: 768px) {
     margin-bottom: 20px;
@@ -106,7 +109,7 @@
   // max-width: 239px;
 }
 
-.add-box-ingridients {
+.add-box-ingredients {
   margin-left: auto;
   margin-right: auto;
 }
@@ -132,7 +135,7 @@
   }
 }
 
-.add-box-ingridients__text {
+.add-box-ingredients__text {
   font-weight: 400;
   font-size: 20px;
   line-height: 3;
