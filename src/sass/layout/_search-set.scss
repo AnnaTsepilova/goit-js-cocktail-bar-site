@@ -1,0 +1,38 @@
+.search-set{
+    @extend %section;
+    padding-top: 0;
+}
+
+.search-set__caption {
+    @extend %section-title;
+    text-align: center;
+}
+
+.search-set__list{
+    @extend %list;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.coctail__card{
+    border: 1px solid $accent-color;
+    border-radius: 4px;
+}
+.coctail__desc{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 26px;
+    line-height: 1.62;
+    color:$primary-black-color;
+
+    text-align: center;
+    margin-top: 48px;
+    margin-bottom: 16px;
+}
+.box__btn{
+    display: flex;
+    gap:20px;
+    justify-content: center;
+    margin-bottom: 24px;
+}
