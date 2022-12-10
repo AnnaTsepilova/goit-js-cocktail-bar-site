@@ -39,6 +39,9 @@
 }
 
 .list-favorit_img {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  width: 100%;
   margin-bottom: 48px;
   @media screen and (min-width: 768px) {
     margin-bottom: 20px;
