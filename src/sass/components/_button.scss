@@ -26,7 +26,7 @@
     color: $accent-color;
     background: $btn-white-bg-color;
   }
-  
+
   &:active {
     color: $white-color;
     background: $accent-color;
@@ -34,7 +34,7 @@
 
   @media screen and (min-width: 768px) {
   width: 160px;
-
+height: 48px;
   font-size: 20px;
   }
 
