@@ -1,3 +1,96 @@
 .modal-ingredients {
   width: 320px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background-color: #fcfcfc;
+  // outline: 1px solid tomato;
+  @media screen and (min-width: 768px) {
+    width: 715px;
+    padding: 40px 28px 28px;
+    background-color: #fff;
+  }
+}
+
+.modal-ingredients__title {
+  font-family: 'Roboto';
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 1.19;
+  color: #202025;
+  margin-bottom: 20px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 28px;
+  }
+}
+
+.modal-ingredients__headline {
+  font-family: 'Poppins';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: #202025;
+  margin-bottom: 20px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 40px;
+  }
+}
+
+.modal-ingredients__line {
+  @media screen and (min-width: 768px) {
+    display: block;
+    width: 715px;
+    height: 0px;
+    margin-left: -28px;
+    margin-bottom: 28px;
+    border: 1px solid #fd5103;
+  }
+}
+
+.modal-ingredients__text {
+  font-family: 'Poppins';
+  font-size: 16px;
+  line-height: 1.75;
+  color: #5f6775;
+  margin-bottom: 28px;
+}
+
+.modal-ingredients__accent {
+  font-family: 'Poppins';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #202025;
+  @media screen and (min-width: 768px) {
+    color: #000;
+  }
+}
+
+.modal-ingredients__list {
+  @extend %list;
+  margin-bottom: 32px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 40px;
+  }
+}
+
+.modal-ingredients__item {
+  font-family: 'Poppins';
+  font-size: 16px;
+  line-height: 1.63;
+  color: #5f6775;
+}
+
+.modal-ingredients__item {
+  &:before {
+    content: '✶ ';
+    color: #202025;
+  }
+}
+
+.modal-ingredients__btn {
+  background-color: $accent-color;
+  @media screen and (min-width: 768px) {
+    margin-left: auto;
+  }
 }

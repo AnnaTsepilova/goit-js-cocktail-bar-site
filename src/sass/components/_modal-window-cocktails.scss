@@ -3,7 +3,7 @@
   margin: 0 auto;
   padding: 40px 20px;
   background-color: #fcfcfc;
-  // outline: 1px solid tomato;
+  outline: 1px solid tomato;
   @media screen and (min-width: 768px) {
     width: 822px;
     padding: 40px 28px 28px;
@@ -106,16 +106,18 @@
   font-family: 'Poppins';
   font-size: 16px;
   line-height: 1.62;
-  color: #000917;
+  color: #5f6775;
 }
 
 .modal-coctails__item {
   &:before {
     content: '✶ ';
+    color: #000917;
   }
 }
 
 .modal-coctails__btn {
+  background-color: $accent-color;
   @media screen and (min-width: 768px) {
     margin-left: auto;
   }
