@@ -1,0 +1,92 @@
+.search-set{
+    @extend %section;
+
+    @media screen and (max-width: 767px) {
+        padding-top: 0;
+        }
+        @media screen and (min-width: 1280px) {
+        padding-top: 120px;
+        }
+}
+
+.search-set__caption {
+    @extend %section-title;
+    text-align: center;
+}
+
+.search-set__list{
+    @extend %list;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    @media screen and (min-width: 768px) {
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 32px;
+
+        }
+}
+.coctail__card{
+    border: 1px solid $accent-color;
+    border-radius: 4px;
+    @media screen and (max-width: 767px) {
+            width: 280px;
+        }
+    @media screen and (min-width: 768px) {
+        width: 335px;
+    }
+        @media screen and (min-width: 1280px) {
+            width: 395px;
+        }
+}
+.coctail__pic{
+    display: block;
+    width:280px;
+     border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    @media screen and (min-width: 768px) {
+            width: 335px;
+            height: 395px;
+        }
+  @media screen and (min-width: 1280px) {
+      width: 395px;
+  }
+
+}
+.coctail__desc{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 26px;
+    line-height: 1.62;
+    color:$primary-black-color;
+
+    text-align: center;
+    margin-top: 48px;
+    margin-bottom: 16px;
+    @media screen and (min-width: 768px) {
+        margin-top: 20px;
+        margin-bottom: 25px;
+        font-size: 28px;
+        line-height: 1.17;
+        }
+   @media screen and (min-width: 1280px) {
+       margin-bottom: 27px;
+       font-size: 32px;
+       line-height: 1.18;
+   }
+}
+.box__btn{
+    display: flex;
+    // gap:20px;
+    justify-content: center;
+    margin-bottom: 24px;
+ @media screen and (min-width: 768px) {
+    margin-bottom: 20px;
+            }
+  @media screen and (min-width: 1280px) {
+
+      margin-bottom: 28px;
+
+  }
+}

@@ -1,23 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Favorite cocktails</title>
 
     <link rel="stylesheet" href="./sass/index.scss" />
-    
-</head>
+  </head>
 
-<body>
-    <!-- ❗️❗️❗️ Add partials like so for every page -->
+  <body>
     <include src="./partials/header.html"></include>
 
     <main>
-        
-        <include src="./partials/search-set.html"></include>
-
+      <section class="favorite-cocktails">
+        <div class="container">
+          <h2 class="title-favoritecocktails">Favorite cocktails</h2>
+          <ul class="list-favorite">
+            <li class="list-favorite__item">
+              <img class="list-favorite_img" src="/src/images/plugs/affair.jpg" alt="" />
+              <h3 class="list-favorite_coctail">Negrony</h3>
+              <div class="list-favorite_btn">
+                <button class="btn-learn_more">Learn more</button>
+                <button class="btn-add_and_remove">
+                  Remove
+                  <svg class="icon-heart__svg" width="22" height="19">
+                    <use href="./images/sprite.svg#icon-heart"></use>
+                  </svg>
+                </button>
+              </div>
+            </li>
+            <li class="list-favorite__item">
+              <img class="list-favorite_img" src="/src/images/plugs/ace.jpg" alt="" />
+              <h3 class="list-favorite_coctail">Negrony</h3>
+              <div class="list-favorite_btn">
+                <button class="btn-learn_more">Learn more</button
+                ><button class="btn-add_and_remove">
+                  Remove<svg class="icon-heart__svg" width="22" height="19">
+                    <use href="./images/sprite.svg#icon-heart"></use>
+                  </svg>
+                </button>
+              </div>
+            </li>
+            <li class="list-favorite__item">
+              <img class="list-favorite_img" src="/src/images/plugs/ace.jpg" alt="" />
+              <h3 class="list-favorite_coctail">Negrony</h3>
+              <div class="list-favorite_btn">
+                <button class="btn-learn_more">Learn more</button
+                ><button class="btn-add_and_remove">
+                  Remove<svg class="icon-heart__svg" width="22" height="19">
+                    <use href="./images/sprite.svg#icon-heart"></use>
+                  </svg>
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
     </main>
 
     <include src="./partials/footer.html"></include>
@@ -26,5 +64,5 @@
     <include src="./partials/modal-window-ingredients.html"></include>
 
     <script type="module" src="./index.js"></script>
-</body>
+  </body>
 </html>

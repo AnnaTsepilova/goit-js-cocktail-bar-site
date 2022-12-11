@@ -13,8 +13,7 @@
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  line-height: 24px;
-  /* identical to box height, or 120% */
+  line-height: 2;
   letter-spacing: 0.02em;
 
   color: $white-color;
@@ -22,11 +21,13 @@
   background: $btn-accent-color;
   border-radius: 4px;
 
+  transition: color 250ms $cubic, background 250ms $cubic;
+
   &:hover {
     color: $accent-color;
     background: $btn-white-bg-color;
   }
-  
+
   &:active {
     color: $white-color;
     background: $accent-color;
@@ -34,8 +35,9 @@
 
   @media screen and (min-width: 768px) {
   width: 160px;
-
+height: 48px;
   font-size: 20px;
+  line-height: 1.2;
   }
 
   @media screen and (min-width: 1280px) {
@@ -43,6 +45,7 @@
   height: 48px;
 
   font-size: 20px;
+  line-height: 1.2;
   }
 }
 
@@ -60,14 +63,15 @@
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
-  line-height: 24px;
-  /* identical to box height, or 120% */
+  line-height: 2;
   letter-spacing: 0.02em;
 
   color: $white-color;
 
   background: $btn-accent-color;
   border-radius: 4px;
+
+  transition: color 250ms $cubic, background 250ms $cubic;
 
   &:hover {
     color: $accent-color;
@@ -102,8 +106,7 @@
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  line-height: 24px;
-  /* identical to box height, or 171% */
+  line-height: 1.71;
   letter-spacing: 0.02em;
 
   color: $accent-color;
@@ -112,6 +115,8 @@
 
   border: 1px solid $accent-color;
   border-radius: 4px;
+
+  transition: color 250ms $cubic, background 250ms $cubic;
 
   &:hover {
     background: $white-color;
@@ -127,10 +132,14 @@
   height: 48px;
 
   font-size: 20px;
+  line-height: 1.2;
   }
 
   @media screen and (min-width: 1280px) {
   width: 141px;
+
+  font-size: 20px;
+  line-height: 1.2;
   }
 }
 
