@@ -1,0 +1,30 @@
+.title__noResults {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    max-width: 280px;
+
+    @extend %section-title;
+
+    @media screen and (min-width: 768px) {
+        max-width: 330px;
+    }
+    
+    @media screen and (min-width: 1280px) {
+        max-width: 500px;
+        margin-bottom: 70px;
+    }
+}
+
+.icon-noResults {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+    width: 280px;
+    height: auto;
+
+    @media screen and (min-width: 768px) {
+        width: 345px;
+        height: auto;
+    }
+}
