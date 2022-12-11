@@ -99,8 +99,28 @@ position: relative;
         background-color: $accent-color;
         color: $white-color;
         outline: none;
+        &~.list__icon {
+                fill: $white-color;
+            }
+    &::-webkit-calendar-picker-indicator {
+        opacity: 0;
     }
+    }
+
 }
+
+.list__icon{
+position: absolute;
+    top: 15%;
+    left: 55%;
+    width: 24px;
+    height: 24px;
+    fill: $accent-color;
+
+}
+
+
+
 .hero__picture{
 width: 100%;
     margin-bottom: 60px;
@@ -121,9 +141,11 @@ width: 100%;
 }
 
 .search__box{
+    position: relative;
     display: flex;
     justify-content: center;
     @media screen and (min-width: 768px) {
             display: none;
         }
 }
+
