@@ -1,4 +1,5 @@
 .modal-ingredients {
+  position: relative;
   width: 320px;
   margin: 0 auto;
   padding: 40px 20px;
@@ -40,10 +41,11 @@
   @media screen and (min-width: 768px) {
     display: block;
     width: 715px;
-    height: 0px;
+    height: 0;
     margin-left: -28px;
     margin-bottom: 28px;
     border: 1px solid #fd5103;
+    background-color: #fd5103;
   }
 }
 
@@ -88,9 +90,23 @@
   }
 }
 
-.modal-ingredients__btn {
+.modal__btn {
   background-color: $accent-color;
   @media screen and (min-width: 768px) {
     margin-left: auto;
+  }
+}
+
+// .modal-ingredients__icon {
+
+// }
+
+.modal__btn-close {
+  position: absolute;
+  top: 23px;
+  right: 23px;
+  @media screen and (min-width: 768px) {
+    top: 19px;
+    right: 19px;
   }
 }
