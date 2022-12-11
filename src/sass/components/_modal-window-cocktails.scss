@@ -1,0 +1,122 @@
+.modal-coctails {
+  width: 320px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background-color: #fcfcfc;
+  // outline: 1px solid tomato;
+  @media screen and (min-width: 768px) {
+    width: 822px;
+    padding: 40px 28px 28px;
+  }
+}
+
+.modal-coctails__img {
+  margin: 32px 0 22px 0;
+  border-radius: 4px;
+  @media screen and (min-width: 768px) {
+    margin: -40px 32px 0 -28px;
+    flex-shrink: 0;
+    display: flex;
+  }
+}
+
+.modal-mobile {
+  display: contents;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.modal-tablet {
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: contents;
+  }
+}
+
+.modal-coctails__cover {
+  display: flex;
+}
+
+.modal-coctails__title {
+  margin-bottom: 20px;
+  font-family: 'Roboto';
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 1.19;
+  color: #202025;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 28px;
+  }
+}
+
+.modal-coctails__headline {
+  margin-bottom: 20px;
+  font-family: 'Poppins';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.63;
+  text-transform: uppercase;
+  color: #202025;
+  @media screen and (min-width: 768px) {
+    margin: 28px 0 24px;
+  }
+}
+
+.modal-coctails__text {
+  font-family: 'Poppins';
+  font-size: 16px;
+  line-height: 1.75;
+  color: #5f6775;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 40px;
+  }
+}
+
+.modal-coctails__subject {
+  font-family: 'Poppins';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: #000917;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 8px;
+  }
+}
+
+.modal-coctails__subtitle {
+  margin: 8px 0 8px;
+  font-family: 'Poppins';
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #202025;
+  @media screen and (min-width: 768px) {
+    margin: 0 0 8px;
+  }
+}
+
+.modal-coctails__list {
+  @extend %list;
+  margin-bottom: 32px;
+}
+
+.modal-coctails__item {
+  font-family: 'Poppins';
+  font-size: 16px;
+  line-height: 1.62;
+  color: #000917;
+}
+
+.modal-coctails__item {
+  &:before {
+    content: '✶ ';
+  }
+}
+
+.modal-coctails__btn {
+  @media screen and (min-width: 768px) {
+    margin-left: auto;
+  }
+}
