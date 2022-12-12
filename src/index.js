@@ -4,6 +4,7 @@ import { LocalStorage } from './js/localStorage';
 import * as favorites from './js/favorites';
 import * as themeSwitch from './js/themeSwitch';
 import { CocktailsRender } from './js/cocktailsRender';
+import * as mobileMenu from './js/mobileMenu';
 
 // ---------инициализация класса CocktailsRender для вывода блоков----------
 const cocktailUI = new CocktailsRender();
