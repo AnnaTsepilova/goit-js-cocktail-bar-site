@@ -1,41 +1,37 @@
-// import * as localStorage from './js/localStorage';
 import axios from 'axios';
+import { LocalStorage } from './localStorage';
+import { CocktailsApi } from './cocktailsApi';
 
-const BASE_URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?';
+const locStorage = new LocalStorage();
+const coctailApi = new CocktailsApi();
 
-export default class ApiFavorite {
-  constructor() {
-    this.searchCocktailName = '';
-    this.searchCocktailName = '';
-    // this.cocktails = [...cocktails];
-    // this.inngredients = [...inngredients];
+const getId = document.querySelector('.btn-add_and_remove');
+
+export class ApiFavorite {
+  static BASE_URL = 'https://www.thecocktaildb.com/api/json/v1/1';
+
+  constructor() {}
+
+  addCocktailById() {
+    const id = locStorage.saveByKey(key, idDrink);
   }
 
-  addCocktailById(id) {}
+  addIngredientByName(newIngredient) {}
 
-  addIngredientByName(addIngredient) {}
-
-  remmoveCocktailById() {}
+  removeCocktailById(removeId) {
+    const index = this.arrCockt.indexOf(removeId);
+    this.arrCockt.splice(index, 1);
+  }
 
   removeIngredientByName() {}
 
   async getAllCocktails() {
-    try {
-      const response = await axios(`${BASE_URL}f=a`);
-      console.log(response);
-    } catch (err) {
-      console.log(err);
-    }
+    const memoryId = JSON.parse(locStorage.getByKey(id));
+    const arrId = memoryId.filter(el => el.idDrink);
+    coctailApi.getCocktailById(arrId);
   }
 
-  async getAllIngredients() {
-    try {
-      const response = await axios(`${BASE_URL}i=vodka`);
-      console.log(response);
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  async getAllIngredients() {}
 
   searchByCocktailName() {}
 
@@ -43,7 +39,3 @@ export default class ApiFavorite {
 
   isCoctailInFavorites() {}
 }
-
-const newApi = new ApiFavorite();
-
-newApi.getAllCocktails();
