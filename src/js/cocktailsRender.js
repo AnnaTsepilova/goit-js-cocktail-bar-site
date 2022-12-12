@@ -26,6 +26,8 @@ export class CocktailsRender {
     return this.generateAlphabet().forEach(letter => {
       let option = document.createElement('option');
       option.value = letter;
+      option.classList = "cocktails__option";
+      option.textContent = letter;
       refs.searchDatalist.appendChild(option);
     });
   }
