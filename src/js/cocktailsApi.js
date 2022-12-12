@@ -29,4 +29,9 @@ export class CocktailsApi {
     const response = await axios.get(`${CocktailsApi.BASE_URL}lookup.php?iid=${ingredientId}`);
     return response.data;
   }
+
+  async getRandomCocktail() {
+    const response = await axios.get(`${CocktailsApi.BASE_URL}random.php`);
+    return response.data;
+  }
 }
