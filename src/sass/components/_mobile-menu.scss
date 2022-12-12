@@ -1,0 +1,35 @@
+// .mobile-menu {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 90vw;
+//   height: 90vh;
+//   padding: 0 20px;
+//   background-color: #ffffff;
+//   outline: 1px solid tomato;
+//   @media screen and (min-width: 768px) {
+//     width: 468px;
+//     height: 90vh;
+//   }
+// }
+// .mobile-menu__link {
+//   @extend%link;
+// }
+
+// .mobile-menu__item {
+//   font-family: 'Poppins';
+//   font-size: 28px;
+//   line-height: 0.86;
+//   letter-spacing: 0.02em;
+//   color: #000000;
+// }
+
+// .mobile-menu__list {
+//   @extend%list;
+// }
+
+// .mobile-menu__item {
+//   &:not(:last-child) {
+//     margin-bottom: 32px;
+//   }
+// }
