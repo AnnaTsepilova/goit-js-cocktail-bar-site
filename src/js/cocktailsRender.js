@@ -1,4 +1,5 @@
 import { refs } from './refs';
+import { CocktailsApi } from './cocktailsApi';
 
 export class CocktailsRender {
   constructor() {}
@@ -54,5 +55,52 @@ export class CocktailsRender {
         }
       }
     };
+  }
+
+  // ----------------рендерим карточки коклейлей----------
+  createCocktailCard(drinks) {
+    return drinks
+      .map(({ strDrinkThumb, strDrink }) => {
+        return `<li class="coctail__card">
+            <img class="coctail__pic" src="${strDrinkThumb}" alt="${strDrink}" />
+            <p class="coctail__desc">${strDrink}</p>
+            <div class="box__btn">
+              <button class="btn-learn_more" type="button">Learn more</button>
+              <button class="btn-add_and_remove" type="button">
+                Add to
+                <svg class="icon-heart__svg" width="22" height="19">
+                  <use href="./images/sprite.svg#icon-heart"></use>
+                </svg>
+              </button>
+            </div>
+          </li>`;
+      })
+      .join('');
+  }
+
+  // ----------------рендерим рандомные 9 коктейлей----------
+  renderRandomCocktails() {
+    const cocktailsApi = new CocktailsApi();
+    const thisObj = this;
+    
+    const makePromise = () => {
+      return new Promise(resolve => {
+        cocktailsApi.getRandomCocktail()
+        .then(response => resolve(response))
+      });
+    };
+
+    let promises = [];
+    for (let i = 0; i < 9; i+=1) {
+      promises.push(makePromise());
+    }
+
+    Promise.all(promises)
+      .then(function (response) {
+        let cocktailArray = [];
+        response.map(elm => cocktailArray.push(elm.drinks[0]));
+        refs.searchSet.innerHTML = thisObj.createCocktailCard(cocktailArray);
+      }) 
+      .catch(error => console.log(error));
   }
 }
