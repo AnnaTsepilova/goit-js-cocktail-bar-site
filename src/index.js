@@ -1,3 +1,4 @@
+import { refs } from './js/refs';
 import { CocktailsApi } from './js/cocktailsApi';
 import { LocalStorage } from './js/localStorage';
 import * as favorites from './js/favorites';
@@ -6,10 +7,12 @@ import { CocktailsRender } from './js/cocktailsRender';
 
 // ---------инициализация класса CocktailsRender для вывода блоков----------
 const cocktailUI = new CocktailsRender();
-const SearchList = document.querySelector('.search__list');
 
 // ---------рендерим алфавитный поиск----------
-SearchList.insertAdjacentHTML('beforeend', cocktailUI.renderAlphabet());
+refs.searchList.insertAdjacentHTML('beforeend', cocktailUI.renderAlphabet());
+
+// ----не могу достучаться к ней из класса, надо пофиксить
+cocktailUI.renderOptionDataList();
 
 // ---------инициализация класса cocktailsApi----------
 const cocktailsApi = new CocktailsApi();
