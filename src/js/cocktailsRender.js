@@ -31,6 +31,66 @@ export class CocktailsRender {
       refs.searchDatalist.appendChild(option);
     });
   }
+
+  // -------------test------------------
+
+  addDatalistListeners() {
+    input.onfocus = function () {
+    cocktailsAbc.style.display = 'block';
+    input.style.borderRadius = '4px';
+    };
+  for (let option of cocktailsAbc.options) {
+    option.onclick = function () {
+      input.value = option.value;
+      cocktailsAbc.style.display = 'none';
+      input.style.borderRadius = '4px';
+    };
+  }
+
+  input.oninput = function () {
+    currentFocus = -1;
+    var text = input.value.toUpperCase();
+    for (let option of cocktailsAbc.options) {
+      if (option.value.toUpperCase().indexOf(text) > -1) {
+        option.style.display = 'block';
+      } else {
+        option.style.display = 'none';
+      }
+    }
+  };
+  }
+}
+
+
+// ---------------TEST-----------------
+
+export function dataList() {
+  const input = document.querySelector('.hero__input');
+  const cocktailsAbc = document.querySelector('#cocktails__abc');
+
+  input.onfocus = function () {
+    cocktailsAbc.style.display = 'block';
+    input.style.borderRadius = '4px';
+  };
+  for (let option of cocktailsAbc.options) {
+    option.onclick = function () {
+      input.value = option.value;
+      cocktailsAbc.style.display = 'none';
+      input.style.borderRadius = '4px';
+    };
+  }
+
+  input.oninput = function () {
+    currentFocus = -1;
+    var text = input.value.toUpperCase();
+    for (let option of cocktailsAbc.options) {
+      if (option.value.toUpperCase().indexOf(text) > -1) {
+        option.style.display = 'block';
+      } else {
+        option.style.display = 'none';
+      }
+    }
+  };
 }
 
 
