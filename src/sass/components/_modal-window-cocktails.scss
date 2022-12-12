@@ -20,9 +20,17 @@
   }
 }
 
-.modal__btn-close {
-  background-color: primary-white-color;
+.modal-coctails__btn-close {
+  position: absolute;
+  top: 23px;
+  right: 23px;
+  background-color: $primary-white-color;
   border: 0;
+  cursor: pointer;
+  @media screen and (min-width: 768px) {
+    top: 19px;
+    right: 19px;
+  }
 }
 
 .modal-coctails {
@@ -30,7 +38,7 @@
   width: 320px;
   margin: 0 auto;
   padding: 40px 20px;
-  background-color: primary-white-color;
+  background-color: $primary-white-color;
   // outline: 1px solid tomato;
   @media screen and (min-width: 768px) {
     width: 822px;

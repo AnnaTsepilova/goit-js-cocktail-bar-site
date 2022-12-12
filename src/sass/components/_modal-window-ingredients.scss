@@ -1,3 +1,38 @@
+.backdrop1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $secondary-text-color;
+  // z-index: 1;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 250ms $cubic, visibility 250ms $cubic;
+}
+
+.backdrop1--is-hidden1 {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  & .modal-ingredients {
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}
+
+.modal-ingredients__btn-close {
+  position: absolute;
+  top: 23px;
+  right: 23px;
+  background-color: $primary-white-color;
+  border: 0;
+  cursor: pointer;
+  @media screen and (min-width: 768px) {
+    top: 19px;
+    right: 19px;
+  }
+}
+
 .modal-ingredients {
   position: relative;
   width: 320px;
@@ -94,15 +129,5 @@
   background-color: $accent-color;
   @media screen and (min-width: 768px) {
     margin-left: auto;
-  }
-}
-
-.modal__btn-close {
-  position: absolute;
-  top: 23px;
-  right: 23px;
-  @media screen and (min-width: 768px) {
-    top: 19px;
-    right: 19px;
   }
 }
