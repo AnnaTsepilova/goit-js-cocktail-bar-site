@@ -8,9 +8,10 @@ const cocktailApi = new CocktailsApi();
 const getId = document.querySelector('.btn-add_and_remove');
 
 export class ApiFavorite {
-  static localStorageKey = 'favorite-cocktails';
+  static favoriteCocktailsKey = 'favorite-cocktails';
+  static facoriteIngridientsKey = 'favorite-ingridient';
 
-  constructor() { }
+  constructor() {}
 
   addCocktailById(cocktailID) {
     cocktailApi.getCocktailById(cocktailID).then(function (resposne) {
@@ -23,7 +24,7 @@ export class ApiFavorite {
     if (!cocktailObject.idDrink) {
       return;
     }
- 
+
     let cocktails = this.getAllCocktails();
     //console.log(cocktails);
     if (!cocktails) {
@@ -38,7 +39,7 @@ export class ApiFavorite {
 
     cocktails.push(cocktailObject);
 
-    localStorage.setItem(ApiFavorite.localStorageKey, JSON.stringify(cocktails));
+    localStorage.setItem(ApiFavorite.favoriteCocktailsKey, JSON.stringify(cocktails));
   }
 
   removeCocktailById(cocktailID) {
@@ -52,25 +53,46 @@ export class ApiFavorite {
 
     for (let key in cocktails) {
       if (cocktails[key].idDrink == cocktailID) {
-        cocktails.splice(key, 1); 
+        cocktails.splice(key, 1);
       }
     }
 
-    localStorage.setItem(ApiFavorite.localStorageKey, JSON.stringify(cocktails));
+    localStorage.setItem(ApiFavorite.favoriteCocktailsKey, JSON.stringify(cocktails));
   }
 
   getAllCocktails() {
-    return JSON.parse(localStorage.getItem(ApiFavorite.localStorageKey));
+    return JSON.parse(localStorage.getItem(ApiFavorite.favoriteCocktailsKey)) ?? [];
   }
 
-  addIngredientByName(newIngredient) {}
+  async addIngredientByName(name) {
+    const ingridients = this.getAllIngredients();
+    if (ingridients && ingridients.find(ingridient => ingridient.strIngredient === name)) {
+      return;
+    }
+    const ingridientsByName = await cocktailApi.getIngredientByName(name);
+
+    const newIngridient =
+      ingridientsByName &&
+      ingridientsByName.ingredients.find(ingridient => ingridient.strIngredient === name);
+    // если не нашло то может вывести alert?
+    if (!newIngridient) {
+      return;
+    }
+
+    ingridients.push(newIngridient);
+    this.saveIngridients(ingridients);
+  }
 
   /*removeCocktailById(removeId) {
     const index = this.arrCockt.indexOf(removeId);
     this.arrCockt.splice(index, 1);
   }*/
 
-  removeIngredientByName() {}
+  removeIngredientByName(name) {
+    const ingredients = this.getAllIngredients();
+    const filteredIngridients = ingredients.filter(ingridient => ingridient.strIngredient !== name);
+    this.saveIngridients(filteredIngridients);
+  }
 
   /*async getAllCocktails() {
     const memoryId = JSON.parse(locStorage.getByKey(id));
@@ -84,8 +106,9 @@ export class ApiFavorite {
       return;
     }
     return cocktails
-      .map(cocktail => 
-        `
+      .map(
+        cocktail =>
+          `
         <li class="list-favorite__item" id="c_${cocktail.idDrink}">
           <img class="list-favorite_img" src="${cocktail.strDrinkThumb}" alt="${cocktail.strDrink}" />
           <h3 class="list-favorite_coctail">${cocktail.strDrink}</h3>
@@ -103,13 +126,33 @@ export class ApiFavorite {
       .join('');
   }
 
-  getAllIngredients(data) {
-    return data
-      .map(elem => {
+  /**
+   * @typedef {object} Ingredient
+   * @property {string} Ingredient.idIngredient
+   * @property {string} Ingredient.strIngredient
+   * @property {string} Ingredient.strDescription
+   * @property {string} Ingredient.strType
+   * @property {string} Ingredient.strAlcohol
+   * @property {string} Ingredient.strABV
+   * @return {[Ingredient]}
+   */
+
+  getAllIngredients() {
+    return JSON.parse(localStorage.getItem(ApiFavorite.facoriteIngridientsKey)) ?? [];
+  }
+
+  saveIngridients(ingridients) {
+    localStorage.setItem(ApiFavorite.facoriteIngridientsKey, JSON.stringify(ingridients));
+  }
+
+  renderAllIngredient() {
+    const ingridients = this.getAllIngredients();
+    return ingridients
+      .map(ingridient => {
         `
         <li class="list-ingredients__item">
-          <h3 class="list-ingredients__name">${data}</h3>
-          <p class="list-ingredients__descr">${data}</p>
+          <h3 class="list-ingredients__name">${ingridient.strIngredient}</h3>
+          <p class="list-ingredients__descr">${ingridient.strDescription}</p>
           <div class="box-btn">
             <button class="btn-learn_more">Learn more</button>
             <button class="btn-add_and_remove">
@@ -120,10 +163,8 @@ export class ApiFavorite {
           </div>
         </li>`;
       })
-      .join(' ');
+      .join('');
   }
-
-  renderAllIngredient(data) {}
 
   // async searchByCocktailName(event) {
   //   event.preventDefault();
@@ -140,7 +181,10 @@ export class ApiFavorite {
 
   searchByIngredientsName() {}
 
-  isCoctailInFavorites() {}
+  isCoctailInFavorites(cocktailId) {
+    const cocktails = this.getAllCocktails();
+    return !!cocktails.find(cocktail => cocktail.idDrink === cocktailId);
+  }
 }
 
 // const favoriteCocktails = document.querySelector('.favorite-cocktails');
