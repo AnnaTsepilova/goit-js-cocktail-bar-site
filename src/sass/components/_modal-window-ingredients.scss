@@ -3,12 +3,12 @@
   width: 320px;
   margin: 0 auto;
   padding: 40px 20px;
-  background-color: #fcfcfc;
+  background-color: $primary-white-color;
   // outline: 1px solid tomato;
   @media screen and (min-width: 768px) {
     width: 715px;
     padding: 40px 28px 28px;
-    background-color: #fff;
+    background-color: $white-color;
   }
 }
 
@@ -17,7 +17,7 @@
   font-weight: 900;
   font-size: 32px;
   line-height: 1.19;
-  color: #202025;
+  color: $pagination-arrow-active;
   margin-bottom: 20px;
   @media screen and (min-width: 768px) {
     margin-bottom: 28px;
@@ -30,7 +30,7 @@
   font-size: 16px;
   line-height: 1.5;
   text-transform: uppercase;
-  color: #202025;
+  color: $pagination-arrow-active;
   margin-bottom: 20px;
   @media screen and (min-width: 768px) {
     margin-bottom: 40px;
@@ -44,8 +44,8 @@
     height: 0;
     margin-left: -28px;
     margin-bottom: 28px;
-    border: 1px solid #fd5103;
-    background-color: #fd5103;
+    border: 0.5px solid $accent-color;
+    background-color: $accent-color;
   }
 }
 
@@ -53,7 +53,7 @@
   font-family: 'Poppins';
   font-size: 16px;
   line-height: 1.75;
-  color: #5f6775;
+  color: $secondary-text-color;
   margin-bottom: 28px;
 }
 
@@ -62,7 +62,7 @@
   font-weight: 600;
   font-size: 16px;
   line-height: 1.75;
-  color: #202025;
+  color: $pagination-arrow-active;
   @media screen and (min-width: 768px) {
     color: #000;
   }
@@ -80,13 +80,13 @@
   font-family: 'Poppins';
   font-size: 16px;
   line-height: 1.63;
-  color: #5f6775;
+  color: $secondary-text-color;
 }
 
 .modal-ingredients__item {
   &:before {
     content: '✶ ';
-    color: #202025;
+    color: $pagination-arrow-active;
   }
 }
 
@@ -96,10 +96,6 @@
     margin-left: auto;
   }
 }
-
-// .modal-ingredients__icon {
-
-// }
 
 .modal__btn-close {
   position: absolute;
