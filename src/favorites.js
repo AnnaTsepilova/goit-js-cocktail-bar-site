@@ -1,6 +1,6 @@
 import { refs } from './js/refs';
 import { CocktailsApi } from './js/cocktailsApi';
-import { ApiFavorite }  from './js/favorites';
+import { ApiFavorite }  from './js/favoritesApi';
 import * as themeSwitch from './js/themeSwitch';
 import { CocktailsRender } from './js/cocktailsRender';
 
