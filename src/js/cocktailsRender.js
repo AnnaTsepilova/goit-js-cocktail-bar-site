@@ -21,7 +21,7 @@ export class CocktailsRender {
       .join('');
   }
 
-  //--------генерация опций в списке алфавита моб
+  //--------генерация опций в списке алфавита моб-------------------------
   renderOptionDataList() {
     return this.generateAlphabet().forEach(letter => {
       let option = document.createElement('option');
@@ -32,65 +32,27 @@ export class CocktailsRender {
     });
   }
 
-  // -------------test------------------
-
+  // ---------показываем и прячем выпадающий список поиска по алфавиту в мобильном меню------------------
   addDatalistListeners() {
-    input.onfocus = function () {
-    cocktailsAbc.style.display = 'block';
-    input.style.borderRadius = '4px';
+    refs.searchMobileInput.onfocus = function () {
+      refs.searchDatalist.style.display = 'block';
     };
-  for (let option of cocktailsAbc.options) {
-    option.onclick = function () {
-      input.value = option.value;
-      cocktailsAbc.style.display = 'none';
-      input.style.borderRadius = '4px';
-    };
-  }
-
-  input.oninput = function () {
-    currentFocus = -1;
-    var text = input.value.toUpperCase();
-    for (let option of cocktailsAbc.options) {
-      if (option.value.toUpperCase().indexOf(text) > -1) {
-        option.style.display = 'block';
-      } else {
-        option.style.display = 'none';
-      }
+    for (let option of refs.searchDatalist.options) {
+      option.onclick = function () {
+        refs.searchMobileInput.value = option.value;
+        refs.searchDatalist.style.display = 'none';
+      };
     }
-  };
+
+    refs.searchMobileInput.oninput = function () {
+      const text = refs.searchMobileInput.value.toUpperCase();
+      for (let option of refs.searchDatalist.options) {
+        if (option.value.toUpperCase().indexOf(text) > -1) {
+          option.style.display = 'block';
+        } else {
+          option.style.display = 'none';
+        }
+      }
+    };
   }
 }
-
-
-// ---------------TEST-----------------
-
-export function dataList() {
-  const input = document.querySelector('.hero__input');
-  const cocktailsAbc = document.querySelector('#cocktails__abc');
-
-  input.onfocus = function () {
-    cocktailsAbc.style.display = 'block';
-    input.style.borderRadius = '4px';
-  };
-  for (let option of cocktailsAbc.options) {
-    option.onclick = function () {
-      input.value = option.value;
-      cocktailsAbc.style.display = 'none';
-      input.style.borderRadius = '4px';
-    };
-  }
-
-  input.oninput = function () {
-    currentFocus = -1;
-    var text = input.value.toUpperCase();
-    for (let option of cocktailsAbc.options) {
-      if (option.value.toUpperCase().indexOf(text) > -1) {
-        option.style.display = 'block';
-      } else {
-        option.style.display = 'none';
-      }
-    }
-  };
-}
-
-

@@ -108,7 +108,7 @@
             }
 }
 
-.search__input{
+.search__input {
     width: 93px;
     height: 34px;
     border: 1px solid $accent-color;
@@ -120,6 +120,7 @@
     font-weight: 700;
     font-size: 16px;
     line-height: 1.35;
+    cursor: pointer;
     &::placeholder {
             color: $accent-color;
 
@@ -183,33 +184,7 @@
     }
 }
 
-// ------------------TEST-----------------------------
-
-// .hero__input {
-//     width: 93px;
-//     height: 34px;
-
-//     padding: 6px 10px;
-//     border: 1px solid $button-orange-bgc;
-//     border-radius: 4px;
-
-//     font-weight: 700;
-//     font-size: 16px;
-//     line-height: 1.35;
-
-//     color: $button-orange-bgc;
-//     cursor: pointer;
-
-//     &:focus,
-//     &:hover {
-//         background-color: $button-orange-bgc;
-//         color: $white-color;
-
-//         &~.datalist__icon {
-//             fill: $white-color;
-//         }
-//     }
-// }
+// ---------стилизируем выпадающий список поиска по алфавиту в мобильном меню------------------
 
 .cocktails__datalist {
     position: absolute;

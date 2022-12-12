@@ -11,8 +11,8 @@ const cocktailUI = new CocktailsRender();
 // ---------рендерим алфавитный поиск----------
 refs.searchList.insertAdjacentHTML('beforeend', cocktailUI.renderAlphabet());
 
-// ----не могу достучаться к ней из класса, надо пофиксить
 cocktailUI.renderOptionDataList();
+cocktailUI.addDatalistListeners();
 
 // ---------инициализация класса cocktailsApi----------
 const cocktailsApi = new CocktailsApi();
