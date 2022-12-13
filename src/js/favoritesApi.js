@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { LocalStorage } from './localStorage';
 import { CocktailsApi } from './cocktailsApi';
-import { x } from './test';
 
 const cocktailApi = new CocktailsApi();
 
@@ -170,15 +169,17 @@ export class ApiFavorite {
     event.preventDefault();
     const searchText = event.currentTarget.searchQuery.value.trim();
     const cocktails = this.getAllCocktails();
-if (searchText === cocktails.)
+    if (searchText === cocktails.strDrink) {
+      this.renderAllCocktails();
+    }
+    // if (hits.length === 0) {
     // const { hits } = localStorage(searchText);
     // event.target.reset();
-    if (hits.length === 0) {
-      favoriteCocktails.classList.add('is-hidden'),
-        favoriteCocktailsNotFound.classList.remove('is-hidden');
-    } else {
-      return localStorage.map(() => ``).join('');
-    }
+    //   favoriteCocktails.classList.add('is-hidden'),
+    //     favoriteCocktailsNotFound.classList.remove('is-hidden');
+    // } else {
+    //   return localStorage.map(() => ``).join('');
+    // }
   }
 
   searchByIngredientsName() {}
