@@ -172,6 +172,10 @@ color: var(--primary-white-color);
     margin: 0;
     transition: color 150ms var(--timing-function),
       background-color 150ms var(--timing-function);
+
+      & .icon-heart__svg {
+        transition: fill 150ms var(--timing-function);
+      }
   }
   
   body.light-theme {
@@ -182,6 +186,10 @@ color: var(--primary-white-color);
   body.dark-theme {
     background-color: #202025;
     color: #FCFCFC;
+
+    & .icon-heart__svg {
+      fill: #202025;
+    }
   }
   
   /* THEME SWITCH */
