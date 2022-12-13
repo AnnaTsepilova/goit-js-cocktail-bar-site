@@ -20,7 +20,7 @@ export class CocktailsApi {
     return response.data;
   }
 
-  /** @typedef {object} IngridientsResponse
+  /* @typedef {object} IngridientsResponse
    * @property {object[]} ingredients
    * @property {string} ingredients.idIngredient
    * @property {string} ingredients.strIngredient
