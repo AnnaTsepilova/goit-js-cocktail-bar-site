@@ -4,6 +4,7 @@ import { LocalStorage } from './js/localStorage';
 import * as favorites from './js/favoritesApi';
 import * as themeSwitch from './js/themeSwitch';
 import { CocktailsRender } from './js/cocktailsRender';
+import { Header } from './js/header';
 
 import * as modalCocktails from './js/modalCocktails';
 import * as modalIngredients from './js/modalIngredients';
