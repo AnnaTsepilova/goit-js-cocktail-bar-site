@@ -108,7 +108,7 @@
             }
 }
 
-.search__input{
+.search__input {
     width: 93px;
     height: 34px;
     border: 1px solid $accent-color;
@@ -120,6 +120,11 @@
     font-weight: 700;
     font-size: 16px;
     line-height: 1.35;
+    cursor: pointer;
+    &::placeholder {
+            color: $accent-color;
+
+        }
     &:hover,
     &:focus{
         background-color: $accent-color;
@@ -132,6 +137,10 @@
 
     &::-webkit-calendar-picker-indicator {
         opacity: 0;
+    }
+    &::placeholder {
+        color:$white-color;
+
     }
     }
 
@@ -175,3 +184,40 @@
     }
 }
 
+// ---------стилизируем выпадающий список поиска по алфавиту в мобильном меню------------------
+
+.cocktails__datalist {
+    position: absolute;
+    top: 100%;
+
+    width: 93px;
+    max-height: 84px;
+
+    border: 1px solid $accent-color;
+    border-radius: 4px;
+
+    overflow-y: auto;
+
+    background-color: $white-color;
+}
+
+.cocktails__option {
+    display: flex;
+    align-items: center;
+
+    padding: 6px 10px;
+
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 1.5;
+
+    color: $secondary-text-color;
+    cursor: pointer;
+
+    &:focus,
+    &:hover,
+    .active {
+        background-color: $accent-color;
+        color: $white-color;
+    }
+}
