@@ -20,6 +20,17 @@ export class CocktailsApi {
     return response.data;
   }
 
+  /** @typedef {object} IngridientsResponse
+   * @property {object[]} ingredients
+   * @property {string} ingredients.idIngredient
+   * @property {string} ingredients.strIngredient
+   * @property {string} ingredients.strDescription
+   * @property {string} ingredients.strType
+   * @property {string} ingredients.strAlcohol
+   * @property {string} ingredients.strABV
+   * @return {Promise <IngridientsResponse> }
+   */
+
   async getIngredientByName(IngredientName) {
     const response = await axios.get(`${CocktailsApi.BASE_URL}search.php?i=${IngredientName}`);
     return response.data;
