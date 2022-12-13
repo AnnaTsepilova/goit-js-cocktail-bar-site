@@ -9,7 +9,7 @@ const getId = document.querySelector('.btn-add_and_remove');
 
 export class ApiFavorite {
   static favoriteCocktailsKey = 'favorite-cocktails';
-  static facoriteIngridientsKey = 'favorite-ingridient';
+  static favoriteIngridientsKey = 'favorite-ingridient';
 
   constructor() {}
 
@@ -138,11 +138,11 @@ export class ApiFavorite {
    */
 
   getAllIngredients() {
-    return JSON.parse(localStorage.getItem(ApiFavorite.facoriteIngridientsKey)) ?? [];
+    return JSON.parse(localStorage.getItem(ApiFavorite.favoriteIngridientsKey)) ?? [];
   }
 
   saveIngridients(ingridients) {
-    localStorage.setItem(ApiFavorite.facoriteIngridientsKey, JSON.stringify(ingridients));
+    localStorage.setItem(ApiFavorite.favoriteIngridientsKey, JSON.stringify(ingridients));
   }
 
   renderAllIngredient() {
@@ -166,18 +166,20 @@ export class ApiFavorite {
       .join('');
   }
 
-  // async searchByCocktailName(event) {
-  //   event.preventDefault();
-  //   searchText = event.currentTarget.searchQuery.value.trim();
-  //   const { hits } = await localStorage(searchText);
-  //   event.target.reset();
-  //   if (hits.length === 0) {
-  //     favoriteCocktails.classList.add('is-hidden'),
-  //       favoriteCocktailsNotFound.classList.remove('is-hidden');
-  //   } else {
-  //     return localStorage.map(() => ``).join('');
-  //   }
-  // }
+  searchByCocktailName(event) {
+    event.preventDefault();
+    const searchText = event.currentTarget.searchQuery.value.trim();
+    const cocktails = this.getAllCocktails();
+if (searchText === cocktails.)
+    // const { hits } = localStorage(searchText);
+    // event.target.reset();
+    if (hits.length === 0) {
+      favoriteCocktails.classList.add('is-hidden'),
+        favoriteCocktailsNotFound.classList.remove('is-hidden');
+    } else {
+      return localStorage.map(() => ``).join('');
+    }
+  }
 
   searchByIngredientsName() {}
 
