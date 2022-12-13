@@ -10,7 +10,7 @@ refs.closeModalCoctailsBtn.addEventListener("click", toggleModal);
 refs.closeModalCoctailsBtnTablet.addEventListener("click", toggleModal);
 
 function toggleModal() {
-  refs.modalCoctails.classList.toggle("backdrop--is-hidden");
+  refs.modalCoctails.classList.toggle("с-backdrop--is-hidden");
 };
 
 refs.modalCoctails.addEventListener('click', onBackdropClick);

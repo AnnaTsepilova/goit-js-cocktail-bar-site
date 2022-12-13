@@ -8,10 +8,10 @@ refs.openModalIngredBtn.addEventListener("click", toggleModalIngred);
 refs.closeModalIngredBtn.addEventListener("click", toggleModalIngred);
 
 function toggleModalIngred() {
-  refs.modalIngred.classList.toggle("ingredbackdrop--is-hidden");
+  refs.modalIngred.classList.toggle("i-backdrop--is-hidden");
 };
 
-refs.modalCoctails.addEventListener('click', onBackdropClick);
+refs.modalIngred.addEventListener('click', onBackdropClick);
 
 function onBackdropClick(event) {
   if (event.currentTarget === event.target) {
