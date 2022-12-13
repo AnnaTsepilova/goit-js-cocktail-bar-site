@@ -2,7 +2,11 @@ import { refs } from './refs';
 import { CocktailsApi } from './cocktailsApi';
 
 export class CocktailsRender {
-  constructor() {}
+  cocktailsApi;
+
+  constructor() {
+    this.cocktailsApi = new CocktailsApi();
+  }
   // --------генератор алфавита------------
   generateAlphabet() {
     const alphabet = [...Array(26)].map((_, i) => String.fromCharCode(i + 65));
@@ -33,8 +37,9 @@ export class CocktailsRender {
     });
   }
 
-  // ---------показываем и прячем выпадающий список поиска по алфавиту в мобильном меню------------------
+  // ---------показываем и прячем выпадающий список поиска по алфавиту в мобильном версии------------------
   addDatalistListeners() {
+    const thisObj = this;
     refs.searchMobileInput.onfocus = function () {
       refs.searchDatalist.style.display = 'block';
     };
@@ -42,6 +47,7 @@ export class CocktailsRender {
       option.onclick = function () {
         refs.searchMobileInput.value = option.value;
         refs.searchDatalist.style.display = 'none';
+        thisObj.searchDatalistByABC();
       };
     }
 
@@ -55,6 +61,29 @@ export class CocktailsRender {
         }
       }
     };
+  }
+
+  // ------------рендерим коклейли по выпадающему списку в мобильной версии------------------
+  searchDatalistByABC() {
+    const thisObj = this;
+    const letter = refs.searchMobileInput.value;
+    refs.searchSet.innerHTML = '';
+    
+    this.cocktailsApi.getCocktailsBySymbol(letter)
+      .then(response => {
+        if (response.drinks === null) {
+          // ----заинсталить красивую нотификашку
+
+          window.alert('На жаль такий коктейль відсутній');
+          return;
+          // ----заинсталить красивую нотификашку ^^^^^
+        }
+        refs.searchSetCaption.textContent = 'Searching results';
+        refs.searchSet.innerHTML = thisObj.createCocktailCard(response.drinks);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   // ----------------рендерим карточки коклейлей----------
@@ -80,12 +109,11 @@ export class CocktailsRender {
 
   // ----------------рендерим рандомные 9 коктейлей----------
   renderRandomCocktails() {
-    const cocktailsApi = new CocktailsApi();
     const thisObj = this;
     
     const makePromise = () => {
       return new Promise(resolve => {
-        cocktailsApi.getRandomCocktail()
+        thisObj.cocktailsApi.getRandomCocktail()
         .then(response => resolve(response))
       });
     };
