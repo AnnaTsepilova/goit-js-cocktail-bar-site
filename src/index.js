@@ -11,7 +11,7 @@ const cocktailUI = new CocktailsRender();
 
 // ---------рендерим алфавитный поиск----------
 refs.searchList.innerHTML = cocktailUI.renderAlphabet();
- 
+
 cocktailUI.renderOptionDataList();
 cocktailUI.addDatalistListeners();
 
