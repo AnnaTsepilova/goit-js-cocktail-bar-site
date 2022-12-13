@@ -8,7 +8,9 @@ export const refs = {
     headerSearch: document.querySelector('.header__search'),
     
     closeModalBtn: document.querySelector(".js-close-menu"),
-    modalCocktailWindow: document.querySelector("[data-modal]"),
+    modalCocktailWindow: document.querySelector("[data-modalCocktails]"),
+    modalDetailCocktailContainer: document.querySelector(".modal-cocktails__wrapper"),
+
    
 };
 
