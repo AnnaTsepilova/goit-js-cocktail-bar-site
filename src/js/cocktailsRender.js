@@ -203,11 +203,14 @@ export class CocktailsRender {
     for (let btn of learnMoreBtn) {
       btn.addEventListener('click', this.onLearnMoreBtn)
     }
-    
   }
 
   onLearnMoreBtn(e) {
     e.preventDefault();
+    refs.modalCocktailWindow.classList.toggle("backdrop--is-hidden");
+  }
+
+  toggleModal() {
     refs.modalCocktailWindow.classList.toggle("backdrop--is-hidden");
   }
 
