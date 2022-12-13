@@ -1,4 +1,4 @@
-.backdrop1 {
+.ingredbackdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,7 +11,7 @@
   transition: opacity 250ms $cubic, visibility 250ms $cubic;
 }
 
-.backdrop1--is-hidden1 {
+.ingredbackdrop--is-hidden {
   opacity: 0;
   pointer-events: none;
   visibility: hidden;

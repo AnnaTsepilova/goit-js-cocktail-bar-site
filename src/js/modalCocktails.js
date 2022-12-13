@@ -1,17 +1,19 @@
 const refs = {
-  openModalBtn: document.querySelector("[data-modal-open]"),
-  closeModalBtn: document.querySelector("[data-modal-close]"),
-  modal: document.querySelector("[data-modal]"),
+  openModalCoctailsBtn: document.querySelector("[data-modalCoctails-open]"),
+  closeModalCoctailsBtn: document.querySelector("[data-modalCoctails-close]"),
+  closeModalCoctailsBtnTablet: document.querySelector("[data-modalCoctailsTablet-close]"),
+  modalCoctails: document.querySelector("[data-modalCoctails]"),
 };
 
-refs.openModalBtn.addEventListener("click", toggleModal);
-refs.closeModalBtn.addEventListener("click", toggleModal);
+refs.openModalCoctailsBtn.addEventListener("click", toggleModal);
+refs.closeModalCoctailsBtn.addEventListener("click", toggleModal);
+refs.closeModalCoctailsBtnTablet.addEventListener("click", toggleModal);
 
 function toggleModal() {
-  refs.modal.classList.toggle("backdrop--is-hidden");
+  refs.modalCoctails.classList.toggle("backdrop--is-hidden");
 };
 
-refs.modal.addEventListener('click', onBackdropClick);
+refs.modalCoctails.addEventListener('click', onBackdropClick);
 
 function onBackdropClick(event) {
   if (event.currentTarget === event.target) {
