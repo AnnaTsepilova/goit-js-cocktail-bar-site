@@ -25,7 +25,7 @@ const searchSetCaption = document.querySelector('.search-set__caption');
 
 // refs.searchList.addEventListener('click', searchByABC);
 // searchInput.addEventListener('blur', searchDatalistByABC);
-headerSearch.addEventListener('submit', searchByHeader);
+// headerSearch.addEventListener('submit', searchByHeader);
 // ----консты и ивенты^^^^^
 
 // ------поиск по АВС

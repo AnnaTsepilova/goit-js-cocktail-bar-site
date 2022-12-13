@@ -16,5 +16,5 @@ cocktailUI.renderOptionDataList();
 cocktailUI.addDatalistListeners();
 cocktailUI.renderRandomCocktails();
 refs.searchList.addEventListener('click', function (e) { cocktailUI.searchByABC(e) });
-
+refs.headerSearch.addEventListener('submit', searchByHeader);
 
