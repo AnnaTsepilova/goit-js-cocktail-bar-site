@@ -4,8 +4,13 @@ import { LocalStorage } from './js/localStorage';
 import * as favorites from './js/favoritesApi';
 import * as themeSwitch from './js/themeSwitch';
 import { CocktailsRender } from './js/cocktailsRender';
+
+import * as modalCocktails from './js/modalCocktails';
+import * as modalIngredients from './js/modalIngredients';
+
 import * as mobileMenu from './js/mobileMenu';
 import * as searchCoctails from './js/searchCoctails';
+
 
 
 // ---------инициализация класса CocktailsRender для вывода блоков----------
