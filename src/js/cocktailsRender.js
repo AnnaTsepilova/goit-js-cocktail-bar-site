@@ -107,6 +107,38 @@ export class CocktailsRender {
       .join('');
   }
 
+
+
+  // ----------------рендерим карточки коктейлей по ABC----------
+
+  searchByABC(e) {
+    const letter = e.target.innerText;
+    console.dir(e.target.innerText);
+    refs.searchSet.innerHTML = '';
+    const thisObj = this;
+
+    this.cocktailsApi.getCocktailsBySymbol(letter)
+      .then(response => {
+        console.log(response);
+        if (response.drinks === null) {
+          // ----заинсталить красивую нотификашку
+
+          window.alert('На жаль такий коктейль відсутній');
+          return;
+          // ----заинсталить красивую нотификашку ^^^^^
+        }
+        refs.searchSetCaption.textContent = 'Searching results';
+        refs.searchSet.innerHTML = thisObj.createCocktailCard(response.drinks);
+        thisObj.onRenderComplete();
+      })
+
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+
+
   // ----------------рендерим рандомные 9 коктейлей----------
   renderRandomCocktails() {
     const thisObj = this;
@@ -128,7 +160,29 @@ export class CocktailsRender {
         let cocktailArray = [];
         response.map(elm => cocktailArray.push(elm.drinks[0]));
         refs.searchSet.innerHTML = thisObj.createCocktailCard(cocktailArray);
+        thisObj.onRenderComplete();
       }) 
       .catch(error => console.log(error));
   }
+
+  // -------------подключаем кнопку learn more к отрендеренным карточкам коктейлей---------------
+  onRenderComplete() {
+    const learnMoreBtn = document.querySelectorAll('.btn-learn_more');
+    console.log(learnMoreBtn);
+
+    for (let btn of learnMoreBtn) {
+      btn.addEventListener('click', this.onLearnMoreBtn)
+    }
+    
+  }
+
+  onLearnMoreBtn(e) {
+    e.preventDefault();
+    console.log("clicked LEARN_MORE btn ", e.target);
+
+    // favorite.removeCocktailById(e.target.dataset.cocktailId);
+    // const removeCocktailCard = document.querySelector('#c_' + e.target.dataset.cocktailId);
+    // removeCocktailCard.remove();
+  }
+
 }

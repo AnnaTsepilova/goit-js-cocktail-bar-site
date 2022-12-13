@@ -23,36 +23,36 @@ const searchInput = document.querySelector('.search__input');
 const headerSearch = document.querySelector('.header__search');
 const searchSetCaption = document.querySelector('.search-set__caption');
 
-refs.searchList.addEventListener('click', searchByABC);
+// refs.searchList.addEventListener('click', searchByABC);
 // searchInput.addEventListener('blur', searchDatalistByABC);
 headerSearch.addEventListener('submit', searchByHeader);
 // ----консты и ивенты^^^^^
 
 // ------поиск по АВС
-function searchByABC(e) {
-  const letter = e.target.innerText;
-  console.dir(e.target.innerText);
-  searchSet.innerHTML = '';
+// function searchByABC(e) {
+//   const letter = e.target.innerText;
+//   console.dir(e.target.innerText);
+//   searchSet.innerHTML = '';
 
-  getCocktailsBySymbol(letter)
-    .then(response => {
-      console.log(response);
-      if (response.drinks === null) {
-        // ----заинсталить красивую нотификашку
+//   getCocktailsBySymbol(letter)
+//     .then(response => {
+//       console.log(response);
+//       if (response.drinks === null) {
+//         // ----заинсталить красивую нотификашку
 
-        window.alert('На жаль такий коктейль відсутній');
-        return;
-        // ----заинсталить красивую нотификашку ^^^^^
-      }
+//         window.alert('На жаль такий коктейль відсутній');
+//         return;
+//         // ----заинсталить красивую нотификашку ^^^^^
+//       }
 
-      searchSetCaption.textContent = 'Searching results';
-      createCoctailCard(response.drinks);
-    })
+//       searchSetCaption.textContent = 'Searching results';
+//       createCoctailCard(response.drinks);
+//     })
 
-    .catch(error => {
-      console.log(error);
-    });
-}
+//     .catch(error => {
+//       console.log(error);
+//     });
+// }
 
 // ------поиск мобилка АВС
 // function searchDatalistByABC(e) {
@@ -129,4 +129,5 @@ function createCoctailCard(drinks) {
     })
     .join('');
   searchSet.insertAdjacentHTML('beforeend', markup);
+
 }
