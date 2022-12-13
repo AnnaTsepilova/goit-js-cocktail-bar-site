@@ -49,12 +49,31 @@
   }
 }
 
+@media (min-width: 768px) {
+  .menu-container {
+    &.is-open {
+      transform: translateX(30%);
+    }
+  }
+}
+
 .menu-container {
   & .menu-toggle {
     position: absolute;
     top: 29px;
     right: 27px;
     // color: #fff;
+  }
+}
+
+@media (min-width: 768px) {
+  .menu-container {
+    & .menu-toggle {
+      position: absolute;
+      top: 29px;
+      right: 250px;
+      // color: #fff;
+    }
   }
 }
 
