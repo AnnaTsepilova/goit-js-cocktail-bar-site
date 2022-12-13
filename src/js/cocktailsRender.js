@@ -1,7 +1,12 @@
 import { refs } from './refs';
+import { CocktailsApi } from './cocktailsApi';
 
 export class CocktailsRender {
-  constructor() {}
+  cocktailsApi;
+
+  constructor() {
+    this.cocktailsApi = new CocktailsApi();
+  }
   // --------генератор алфавита------------
   generateAlphabet() {
     const alphabet = [...Array(26)].map((_, i) => String.fromCharCode(i + 65));
@@ -26,14 +31,15 @@ export class CocktailsRender {
     return this.generateAlphabet().forEach(letter => {
       let option = document.createElement('option');
       option.value = letter;
-      option.classList = "cocktails__option";
+      option.classList = 'cocktails__option';
       option.textContent = letter;
       refs.searchDatalist.appendChild(option);
     });
   }
 
-  // ---------показываем и прячем выпадающий список поиска по алфавиту в мобильном меню------------------
+  // ---------показываем и прячем выпадающий список поиска по алфавиту в мобильном версии------------------
   addDatalistListeners() {
+    const thisObj = this;
     refs.searchMobileInput.onfocus = function () {
       refs.searchDatalist.style.display = 'block';
     };
@@ -41,6 +47,7 @@ export class CocktailsRender {
       option.onclick = function () {
         refs.searchMobileInput.value = option.value;
         refs.searchDatalist.style.display = 'none';
+        thisObj.searchDatalistByABC();
       };
     }
 
@@ -54,5 +61,74 @@ export class CocktailsRender {
         }
       }
     };
+  }
+
+  // ------------рендерим коклейли по выпадающему списку в мобильной версии------------------
+  searchDatalistByABC() {
+    const thisObj = this;
+    const letter = refs.searchMobileInput.value;
+    refs.searchSet.innerHTML = '';
+    
+    this.cocktailsApi.getCocktailsBySymbol(letter)
+      .then(response => {
+        if (response.drinks === null) {
+          // ----заинсталить красивую нотификашку
+
+          window.alert('На жаль такий коктейль відсутній');
+          return;
+          // ----заинсталить красивую нотификашку ^^^^^
+        }
+        refs.searchSetCaption.textContent = 'Searching results';
+        refs.searchSet.innerHTML = thisObj.createCocktailCard(response.drinks);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  // ----------------рендерим карточки коклейлей----------
+  createCocktailCard(drinks) {
+    return drinks
+      .map(({ strDrinkThumb, strDrink }) => {
+        return `<li class="coctail__card">
+            <img class="coctail__pic" src="${strDrinkThumb}" alt="${strDrink}" />
+            <p class="coctail__desc">${strDrink}</p>
+            <div class="box__btn">
+              <button class="btn-learn_more" type="button">Learn more</button>
+              <button class="btn-add_and_remove" type="button">
+                Add to
+                <svg class="icon-heart__svg" width="22" height="19">
+                  <use href="./images/sprite.svg#icon-heart"></use>
+                </svg>
+              </button>
+            </div>
+          </li>`;
+      })
+      .join('');
+  }
+
+  // ----------------рендерим рандомные 9 коктейлей----------
+  renderRandomCocktails() {
+    const thisObj = this;
+    
+    const makePromise = () => {
+      return new Promise(resolve => {
+        thisObj.cocktailsApi.getRandomCocktail()
+        .then(response => resolve(response))
+      });
+    };
+
+    let promises = [];
+    for (let i = 0; i < 9; i+=1) {
+      promises.push(makePromise());
+    }
+
+    Promise.all(promises)
+      .then(function (response) {
+        let cocktailArray = [];
+        response.map(elm => cocktailArray.push(elm.drinks[0]));
+        refs.searchSet.innerHTML = thisObj.createCocktailCard(cocktailArray);
+      }) 
+      .catch(error => console.log(error));
   }
 }
