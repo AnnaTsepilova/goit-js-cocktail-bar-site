@@ -151,3 +151,7 @@
     color: $ingr-title-color;
   }
 }
+
+.modal-coctails__link {
+  @extend%link;
+}
