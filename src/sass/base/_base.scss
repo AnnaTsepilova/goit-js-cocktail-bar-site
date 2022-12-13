@@ -53,6 +53,10 @@ img {
 }
 
 .dark-theme {
-    background-color: $primary-black-color;
-    color: $primary-white-color;
+    --main-text-color: #ffffff;
+    --accent-color: #fd5103;
+    --secondary-text-color: #5f6775;
+    --main-bg-color: #252024;
+    --button-bg-color: #fe7031;
+    --black-text-color: #ffffff;
 }
