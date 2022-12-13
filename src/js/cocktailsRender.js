@@ -1,5 +1,6 @@
 import { refs } from './refs';
 import { CocktailsApi } from './cocktailsApi';
+import sprite from '../images/sprite.svg';
 
 export class CocktailsRender {
   cocktailsApi;
@@ -98,7 +99,7 @@ export class CocktailsRender {
               <button class="btn-add_and_remove" type="button">
                 Add to
                 <svg class="icon-heart__svg" width="22" height="19">
-                  <use href="./images/sprite.svg#icon-heart"></use>
+                  <use href="${sprite}#icon-heart"/>
                 </svg>
               </button>
             </div>
@@ -107,11 +108,10 @@ export class CocktailsRender {
       .join('');
   }
 
-
-
   // ----------------рендерим карточки коктейлей по ABC----------
-
   searchByABC(e) {
+    e.preventDefault();
+
     const letter = e.target.innerText;
     console.dir(e.target.innerText);
     refs.searchSet.innerHTML = '';
@@ -137,8 +137,38 @@ export class CocktailsRender {
       });
   }
 
+  // ----------------рендерим карточки коктейлей из хедера----------
+  searchByHeader(e) {
+    e.preventDefault();
 
+    const cocktailName = e.currentTarget.elements.query.value;
+    console.log(cocktailName);
+    const thisObj = this;
 
+    console.log(e.currentTarget.elements.query.value);
+    refs.searchSet.innerHTML = '';
+
+    this.cocktailsApi.searchCocktailByName(cocktailName)
+      .then(response => {
+        console.log(response);
+        if (response.drinks === null) {
+          // ----заинсталить красивую нотификашку
+
+          window.alert('На жаль такий коктейль відсутній');
+          return;
+          // ----заинсталить красивую нотификашку ^^^^^
+        }
+
+        refs.searchSetCaption.textContent = 'Searching results';
+        refs.searchSet.innerHTML = thisObj.createCocktailCard(response.drinks);
+        thisObj.onRenderComplete();
+      })
+
+      .catch(error => {
+        console.log(error);
+      });
+  }
+  
   // ----------------рендерим рандомные 9 коктейлей----------
   renderRandomCocktails() {
     const thisObj = this;
@@ -178,11 +208,7 @@ export class CocktailsRender {
 
   onLearnMoreBtn(e) {
     e.preventDefault();
-    console.log("clicked LEARN_MORE btn ", e.target);
-
-    // favorite.removeCocktailById(e.target.dataset.cocktailId);
-    // const removeCocktailCard = document.querySelector('#c_' + e.target.dataset.cocktailId);
-    // removeCocktailCard.remove();
+    refs.modalCocktailWindow.classList.toggle("backdrop--is-hidden");
   }
 
 }
