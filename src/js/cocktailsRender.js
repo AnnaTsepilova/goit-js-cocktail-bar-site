@@ -110,6 +110,8 @@ export class CocktailsRender {
 
   // ----------------рендерим карточки коктейлей по ABC----------
   searchByABC(e) {
+    e.preventDefault();
+
     const letter = e.target.innerText;
     console.dir(e.target.innerText);
     refs.searchSet.innerHTML = '';
@@ -137,14 +139,16 @@ export class CocktailsRender {
 
   // ----------------рендерим карточки коктейлей из хедера----------
   searchByHeader(e) {
+    e.preventDefault();
+
     const cocktailName = e.currentTarget.elements.query.value;
     console.log(cocktailName);
+    const thisObj = this;
 
-    e.preventDefault();
     console.log(e.currentTarget.elements.query.value);
-    searchSet.innerHTML = '';
+    refs.searchSet.innerHTML = '';
 
-    searchCocktailByName(cocktailName)
+    this.cocktailsApi.searchCocktailByName(cocktailName)
       .then(response => {
         console.log(response);
         if (response.drinks === null) {
@@ -155,8 +159,9 @@ export class CocktailsRender {
           // ----заинсталить красивую нотификашку ^^^^^
         }
 
-        searchSetCaption.textContent = 'Searching results';
-        createCoctailCard(response.drinks);
+        refs.searchSetCaption.textContent = 'Searching results';
+        refs.searchSet.innerHTML = thisObj.createCocktailCard(response.drinks);
+        thisObj.onRenderComplete();
       })
 
       .catch(error => {
