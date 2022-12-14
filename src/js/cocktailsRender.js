@@ -210,42 +210,31 @@ export class CocktailsRender {
 
   onLearnMoreBtn(e) {
     e.preventDefault();
-    const thisObj = this;
+  
     refs.modalCocktailWindow.classList.toggle("с-backdrop--is-hidden");
     const cocktailsApi = new CocktailsApi();
+    refs.modalDetailCocktailContainer.innerHTML = '';
+    refs.modalDetailCocktailContainerMobile.innerHTML = '';    
+      console.log(e.target.dataset.cocktailId);
     cocktailsApi.getCocktailById(e.target.dataset.cocktailId)
       .then(response => {
-        // console.log(response);
-        // console.log(refs.modalDetailCocktailContainer);
+        const favorite = new ApiFavorite();
+
+        let drink = response.drinks[0];
+        let isFavorite = favorite.isCoctailInFavorites(drink.idDrink);
 
         if (window.screen.width < 768){
-          refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(response.drinks[0]);
+          refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(drink, isFavorite);
         } else {
-          refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(response.drinks[0]);
+          refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(drink, isFavorite);
         }
 
-        thisObj.onRenderCompleteModal();        
+        favorite.favoritesBtnLister(drink, isFavorite);
       });
   }
 
   toggleModal() {
     refs.modalCocktailWindow.classList.toggle('с-backdrop--is-hidden');
   }
-
-  onRenderCompleteModal() {
-    const addToFavBtn = document.querySelector('.btn-favorite');
-    const cocktailId = addToFavBtn.dataset.cocktailId;
-    console.log(cocktailId);
-
-    addToFavBtn.addEventListener('click', e => {
-      const favorite = new ApiFavorite();
-      favorite.addCocktailById(cocktailId);
-    });
-  }
-
-
-  // favorite.removeCocktailById(e.target.dataset.cocktailId);
-  // const removeCocktailCard = document.querySelector('#c_' + e.target.dataset.cocktailId);
-  // removeCocktailCard.remove();
 
 }
