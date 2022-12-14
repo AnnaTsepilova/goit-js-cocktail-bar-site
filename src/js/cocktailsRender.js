@@ -2,7 +2,6 @@ import { refs } from './refs';
 import { CocktailsApi } from './cocktailsApi';
 import sprite from '../images/sprite.svg';
 import { createCocktailDetails, createCocktailDetailsMobile } from './modalCocktails';
-
 export class CocktailsRender {
   cocktailsApi;
 
