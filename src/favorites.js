@@ -1,13 +1,12 @@
 import { refs } from './js/refs';
 import { CocktailsApi } from './js/cocktailsApi';
-import { ApiFavorite }  from './js/favoritesApi';
+import { ApiFavorite } from './js/favoritesApi';
 import * as themeSwitch from './js/themeSwitch';
 import { CocktailsRender } from './js/cocktailsRender';
+import * as mobileMenu from './js/mobileMenu';
 
 const cocktailsApi = new CocktailsApi();
 const favorite = new ApiFavorite();
-
-
 
 // ------------ПРИМЕР---------------------
 cocktailsApi.getCocktailsBySymbol('b').then(function (response) {
@@ -22,18 +21,18 @@ cocktailsApi.getCocktailsBySymbol('b').then(function (response) {
 // ------------ПРИМЕР для теста ремува из favorites---------------
 favorite.removeCocktailById(11000);
 // --------------------------------------
-
-refs.cocktailsList.innerHTML = favorite.renderAllCocktails();
+const cocktails = favorite.getAllCocktails();
+refs.cocktailsList.innerHTML = favorite.renderAllCocktails(cocktails);
 const removeBtn = document.querySelectorAll('.btn-add_and_remove');
-console.log(removeBtn);
+// console.log(removeBtn);
 
 for (let btn of removeBtn) {
-    btn.addEventListener('click', onRemoveBtn)
+  btn.addEventListener('click', onRemoveBtn);
 }
 
 function onRemoveBtn(e) {
-    e.preventDefault();
-    favorite.removeCocktailById(e.target.dataset.cocktailId);
-    const removeCocktailCard = document.querySelector('#c_' + e.target.dataset.cocktailId);
-    removeCocktailCard.remove();
+  e.preventDefault();
+  favorite.removeCocktailById(e.target.dataset.cocktailId);
+  const removeCocktailCard = document.querySelector('#c_' + e.target.dataset.cocktailId);
+  removeCocktailCard.remove();
 }
