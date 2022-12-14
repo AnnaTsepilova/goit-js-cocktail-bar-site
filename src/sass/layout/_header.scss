@@ -1,3 +1,5 @@
+
+
 .is-hidden {
   display: none;
   visibility: hidden;
@@ -71,6 +73,10 @@ text-align: center;
 .dropdown {
   position: relative;
   display: inline-block;
+  @media screen and (max-width: 1279px) {
+    margin-top: 40px;
+  }
+  
 }
 
 /* Випадающий вміст (скритий) */
@@ -169,6 +175,7 @@ display: block;
   color: var(--primary-white-color); 
   @media screen and (max-width: 1279px) {
    margin-left: 2px;
+   margin-top: 54px;
   }
 }
 
@@ -266,6 +273,53 @@ transition: all .5s;
   
     & .icon-heart__svg {
       fill: $primary-black-color;
+    }
+
+    & .hero__desc {
+      color: $primary-white-color;
+    }
+
+    & .search-set__caption {
+      color: $primary-white-color;
+    }
+
+    & .coctail__desc {
+      color: $primary-white-color;
+    }
+
+    & .menu-toggle {
+      fill: $primary-white-color;
+    }
+
+    & .title-favoritecocktails {
+      color: $primary-white-color;
+    }
+
+    & .title-ingridient {
+      color: $primary-white-color;
+    }
+
+    & .dropdown-content {
+      background-color: $primary-black-color;
+      color: $primary-white-color;
+    }
+
+    & .dropdown-content a {
+      color: $primary-white-color;
+    }
+
+    & .dropdown-content a:hover {
+      background-color: $accent-color;
+      color: $primary-black-color;
+      border: 1px solid var(--primary-white-color);
+    }
+
+    & .menu-container {
+      background-color: $primary-black-color;
+    }
+
+    & .icon-VectorMore {
+      fill: $primary-white-color;
     }
   }
   
@@ -397,8 +451,6 @@ transition: all .5s;
   }
 }
 
-
-
 .favorite-acctive {
     position: relative;
     cursor: pointer;
@@ -443,7 +495,6 @@ transition: all .5s;
     transform: translateY(-20px);
 }
   
-
 .header__search-btn {
     width: 40px;
     height: 40px;
@@ -493,11 +544,9 @@ transition: all .5s;
     }
 }
 
-// .nodesc-menu {
-//   // --padding: 40px;
-//   // padding-top: 60px;
-//   @media screen and (min-width: 1279px) {
-//     display: none;
-//   }
-// }
+.icon-VectorMore {
+  color: #202025;
+  margin-left: 8px;
+}
+
   
