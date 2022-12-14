@@ -42,6 +42,11 @@
   z-index: 2;
   // outline: 1px solid tomato;
   @media screen and (min-width: 768px) {
+    width: 768px;
+    padding: 40px 28px 28px;
+  }
+
+  @media screen and (min-width: 1280px) {
     width: 822px;
     padding: 40px 28px 28px;
   }
@@ -81,6 +86,7 @@
 }
 
 .modal-cocktails__title {
+  margin-top: 5px;
   margin-bottom: 20px;
   font-family: 'Roboto';
   font-weight: 900;
