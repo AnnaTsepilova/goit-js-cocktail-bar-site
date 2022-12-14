@@ -36,14 +36,13 @@
     }
 }   
 
-// 
+
 .desc-nav__menu {
+@media screen and (min-width: 1279.98px) {
 display: flex;
 list-style: none;
+gap: 60px; 
 }
-
-.fav-gap {
-  margin-left: 60px;
 }
 
 .nav-menu__li {
@@ -59,52 +58,11 @@ display: block;
 text-align: center;
 }
 
-// .favorites-a:hover {
-//  color: #FD5103;
-// }
-
-// .fav-a {
-//   position: relative;
-//   list-style: none;
-//   color: #202025;
-//   text-decoration: none;
-// }
-
-// .fav-a:hover {
-//   color: #F5F5F5;
-//   background-color: var(--accent-color);
-// }
-
-// .fav-ul {
-//  width: 210px;
-//  height: 96px;
-//  position: absolute;
-//  left: 0;
-//  top: 100%;
-//  display: none;
-//  padding: 0;
-//  margin-top: 8px;
-//  border: 1px solid var(--accent-color);
-//  border-radius: 4px;
-// }
-
-// .nav-menu__li:hover .fav-ul {
-//   display: inline-block;
-// }
-
-// .nav-fav-cocktails {
-//   margin-top: 12px;
-// }
-
-// 
 
 /* Кнопка випадающого списку */
 .dropbtn {
-  background-color: #F5F5F5;
-  color: #202025;
-  transition: color 150ms var(--timing-function),
-  background-color 150ms var(--timing-function);
-  margin-left: 60px;
+  background-color: transparent;
+  color: var(--primary-white-color);
   border: none;
 }
 
@@ -112,50 +70,49 @@ text-align: center;
 .dropdown {
   position: relative;
   display: inline-block;
-  margin-top: 0;
 }
 
-/* Випадающе содержиме (скрите) */
+/* Випадающий вміст (скритий) */
 .dropdown-content {
   display: none;
   position: absolute;
-  left: 60px;
   background-color: #f1f1f1;
   min-width: 210px;
-  margin-top: 8px;
+  margin-top: 0;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
 
-/* Ссылки внутри выпадающего списка */
+/* Посилання випадающого списку */
 .dropdown-content a {
   color: #202025;
-  padding: 12px 35px 12px 12px;
+  padding: 12px 15px 12px 12px;
   text-decoration: none;
   display: block;
   border: 1px solid var(--accent-color);
-  border-radius: 4px;
+  border-radius: 1px;
 }
 
-/* Изменение цвета выпадающих ссылок при наведении курсора */
+/* Зміна кольору випадающих посилань */
 .dropdown-content a:hover {
   color: #F5F5F5;
   background-color: #FD5103;
   border: 1px solid #FD5103;
-  border-radius: 4px;
-  transition: color 150ms var(--timing-function),
-  background-color 150ms var(--timing-function);
+  border-radius: 1px;
+  transition: all .4s;
 }
 
-/* Показать выпадающее меню при наведении курсора */
-.dropdown:hover .dropdown-content {display: block;}
+/* Показати випадающе меню при наведенні курсору */
+.dropdown:hover .dropdown-content {
+display: block;
+}
 
-/* Изменение цвета фона кнопки раскрывающегося списка при отображении содержимого раскрывающегося списка */
 .dropdown:hover .dropbtn {
   color: #FD5103;
+  // transition: all .5s;
+  transition: color 150ms var(--cubic),
+  background-color 150ms var(--cubic);
 }
-
-// 
 
 .navigation-wrapper {
     display: none;
@@ -210,6 +167,7 @@ text-align: center;
   text-decoration: none;
   color: var(--primary-white-color); 
 }
+
 .mob-nav__link:hover {
 color: #FD5103;
 transition: all .5s;
@@ -294,16 +252,16 @@ transition: all .5s;
   }
   
   body.light-theme {
-    background-color: #F5F5F5;
-    color: var(--primary-text-color-LT);
+    background-color: $white-color;
+    color: $primary-black-color;
   }
   
   body.dark-theme {
-    background-color: #202025;
-    color: #FCFCFC;
-
+    background-color: $primary-black-color;
+    color: $primary-white-color;
+  
     & .icon-heart__svg {
-      fill: #202025;
+      fill: $primary-black-color;
     }
   }
   
@@ -382,10 +340,40 @@ transition: all .5s;
 
 .theme-switch__light {
   margin-right: 12px;
+  font-family: 'Poppins';
+  font-size: 18px;
+  line-height: 1.33;
 }
-  
+
+.light-theme {
+  & .theme-switch__light {
+    color: $accent-color;
+  }
+}
+
+.dark-theme {
+  & .theme-switch__light {
+    color: $primary-white-color;
+  }
+}
+
 .theme-switch__dark {
   margin-left: 12px;
+  font-family: 'Poppins';
+  font-size: 18px;
+  line-height: 1.33;
+}
+
+.light-theme {
+  & .theme-switch__dark {
+    color: $secondary-text-color;
+  }
+}
+
+.dark-theme {
+  & .theme-switch__dark {
+    color: $accent-color;
+  }
 }
 
 
