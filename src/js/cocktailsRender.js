@@ -139,41 +139,6 @@ export class CocktailsRender {
       });
   }
 
-<<<<<<< Updated upstream
-  // ----------------рендерим карточки коктейлей из хедера----------
-  searchByHeader(e) {
-    e.preventDefault();
-
-    const cocktailName = e.currentTarget.elements.query.value;
-    console.log(cocktailName);
-    const thisObj = this;
-
-    console.log(e.currentTarget.elements.query.value);
-    refs.searchSet.innerHTML = '';
-
-    this.cocktailsApi.searchCocktailByName(cocktailName)
-      .then(response => {
-        console.log(response);
-        if (response.drinks === null) {
-          // ----заинсталить красивую нотификашку
-
-          window.alert('На жаль такий коктейль відсутній');
-          return;
-          // ----заинсталить красивую нотификашку ^^^^^
-        }
-
-        refs.searchSetCaption.textContent = 'Searching results';
-        refs.searchSet.innerHTML = thisObj.createCocktailCard(response.drinks);
-        thisObj.onRenderComplete();
-      })
-
-      .catch(error => {
-        console.log(error);
-      });
-  }
-  
-=======
->>>>>>> Stashed changes
   // ----------------рендерим рандомные 9 коктейлей----------
   renderRandomCocktails() {
     const thisObj = this;
@@ -211,14 +176,10 @@ export class CocktailsRender {
 
   onLearnMoreBtn(e) {
     e.preventDefault();
-<<<<<<< Updated upstream
-    refs.modalCocktailWindow.classList.toggle("backdrop--is-hidden");
-=======
     console.log('clicked LEARN_MORE btn ', e.target);
 
     // favorite.removeCocktailById(e.target.dataset.cocktailId);
     // const removeCocktailCard = document.querySelector('#c_' + e.target.dataset.cocktailId);
     // removeCocktailCard.remove();
->>>>>>> Stashed changes
   }
 }

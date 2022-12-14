@@ -1,52 +1,36 @@
-
-    <div class="container header-container">
-      <a class="header-logo" href="./index.html">
-      <picture>
-        <source
-        srcset="
-        ./images/header/Logo@mob.png   1x,
-        ./images/header/Logo@mob2x.png 2x
-        "
+<div class="container header-container">
+  <a class="header-logo" href="./index.html">
+    <picture>
+      <source
+        srcset="./images/header/Logo@mob.png 1x, ./images/header/Logo@mob2x.png 2x"
         media="(max-width: 767px)"
-        />
-        <source
-        srcset="
-        ./images/header/Logo@tab.png   1x,
-        ./images/header/Logo@tab2x.png 2x
-        "
+      />
+      <source
+        srcset="./images/header/Logo@tab.png 1x, ./images/header/Logo@tab2x.png 2x"
         media="(min-width: 768px)"
-        />
-        <source/>
-        <img
-        class="logo-cocktails"
-        src="./images/header/Logo@mob.png"
-        alt="logo"
-        widt="156"
-        />
-      </picture>
-      </a> 
-        
-    <div class="desctop-wrapper">
-       <div class="navigation-wrapper">
-       <nav class="desc-nav">
+      />
+      <source />
+      <img class="logo-cocktails" src="./images/header/Logo@mob.png" alt="logo" widt="156" />
+    </picture>
+  </a>
+
+  <div class="desctop-wrapper">
+    <div class="navigation-wrapper">
+      <nav class="desc-nav">
         <ul class="desc-nav__link">
           <li>
             <a class="mob-nav__link" href="./index.html">Home</a>
           </li>
           <li>
-            
-            <button href="#" class="mob-nav__link favorite-acctive" >
-                Favorite
-            </button>
+            <button href="#" class="mob-nav__link favorite-acctive">Favorite</button>
 
             <div class="favorite-wrapper favorite-wrapper__close">
-            <button class="favorite-link"><a href="./favorite-cocktails.html"
-              target="_self">Favorite cocktails</a>
-            </button>
-            <button>
-            <a href="./favorite-ingredients.html" 
-              target="_self">Favorite ingredients</a>   
-            </button>
+              <button class="favorite-link">
+                <a href="./favorite-cocktails.html" target="_self">Favorite cocktails</a>
+              </button>
+              <button>
+                <a href="./favorite-ingredients.html" target="_self">Favorite ingredients</a>
+              </button>
             </div>
           </li>
         </ul>
@@ -54,48 +38,45 @@
     </div>
 
     <div class="features-wrapper">
-        
-      <form class="header__search js-search-cocktail">
+      <form class="header__search js-search-cocktail js-search-favorite">
         <button class="header__search-btn" type="submit">
-            <svg class="search__icon" width="20" height="20">
-                <use xlink:href="./images/sprite.svg#icon-search" />
-              </svg>
+          <svg class="search__icon" width="20" height="20">
+            <use xlink:href="./images/sprite.svg#icon-search" />
+          </svg>
         </button>
-        <input 
-         class="header__input"
-         type="text"
-         name="query"
-         placeholder="Search" 
-         />
+        <input class="header__input" type="text" name="query" placeholder="Search" />
       </form>
 
       <div class="theme-switch">
         <p class="theme-switch__light">Light</p>
         <div class="theme-switch__control">
-          <input class="theme-switch__toggle" type="checkbox" name="theme" id="theme-switch-toggle"
-            aria-label="Переключить между тёмной и светлой темой" />
-          <label aria-hidden="true" class="theme-switch__track" for="theme-switch-toggle">
-          </label>
+          <input
+            class="theme-switch__toggle"
+            type="checkbox"
+            name="theme"
+            id="theme-switch-toggle"
+            aria-label="Переключить между тёмной и светлой темой"
+          />
+          <label aria-hidden="true" class="theme-switch__track" for="theme-switch-toggle"> </label>
           <div aria-hidden="true" class="theme-switch__marker"></div>
         </div>
         <p class="theme-switch__dark">Dark</p>
       </div>
       <script src="./js/themeSwitch.js" type="module"></script>
-     </div>
     </div>
+  </div>
 
-      <button type="button" class="menu-open" aria-label="mobile menu button">
-        <svg class="mob-btn__icon" width="30" height="16">
-            <use xlink:href="./images/sprite.svg#icon-menu" />
-        </svg>
-      </button>
+  <button type="button" class="menu-open" aria-label="mobile menu button">
+    <svg class="mob-btn__icon" width="30" height="16">
+      <use xlink:href="./images/sprite.svg#icon-menu" />
+    </svg>
+  </button>
 
-    <div class="mob-menu is-hidden" data-menu>
-      <button type="button" class="mob-btn-close" aria-label="mobile menu button">
+  <div class="mob-menu is-hidden" data-menu>
+    <button type="button" class="mob-btn-close" aria-label="mobile menu button">
       <svg class="mob-btn__icon" width="32" height="32">
         <use xlink:href="./images/sprite.svg#icon-close" />
       </svg>
-      </button>
-    </div>
+    </button>
+  </div>
 </div>
-

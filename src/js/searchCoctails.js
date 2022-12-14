@@ -129,5 +129,4 @@ function createCoctailCard(drinks) {
     })
     .join('');
   searchSet.insertAdjacentHTML('beforeend', markup);
-
 }

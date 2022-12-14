@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { refs } from './refs';
 import { LocalStorage } from './localStorage';
 import { CocktailsApi } from './cocktailsApi';
 
@@ -99,8 +100,7 @@ export class ApiFavorite {
     coctailApi.getCocktailById(arrId);
   }*/
 
-  renderAllCocktails() {
-    const cocktails = this.getAllCocktails();
+  renderAllCocktails(cocktails) {
     if (!cocktails) {
       return;
     }
@@ -144,8 +144,8 @@ export class ApiFavorite {
     localStorage.setItem(ApiFavorite.favoriteIngridientsKey, JSON.stringify(ingridients));
   }
 
-  renderAllIngredient() {
-    const ingridients = this.getAllIngredients();
+  renderAllIngredient(ingridients) {
+    // const ingridients = this.getAllIngredients();
     return ingridients
       .map(ingridient => {
         `
@@ -167,22 +167,37 @@ export class ApiFavorite {
 
   searchByCocktailName(event) {
     event.preventDefault();
-    const searchText = event.currentTarget.searchQuery.value.trim();
+    const searchText = event.target.query.value;
     const cocktails = this.getAllCocktails();
-    if (searchText === cocktails.strDrink) {
-      this.renderAllCocktails();
-    }
-    // if (hits.length === 0) {
-    // const { hits } = localStorage(searchText);
-    // event.target.reset();
-    //   favoriteCocktails.classList.add('is-hidden'),
-    //     favoriteCocktailsNotFound.classList.remove('is-hidden');
-    // } else {
-    //   return localStorage.map(() => ``).join('');
-    // }
+    const newCocktails = [];
+    refs.cocktailsList.innerHTML = '';
+    cocktails.map(cocktail => {
+      const cocByName = cocktail.strDrink.toLowerCase();
+      if (cocByName.includes(searchText.toLowerCase())) {
+        newCocktails.push(cocktail);
+        console.log(newCocktails);
+        refs.cocktailsList.insertAdjacentHTML('beforeend', this.renderAllCocktails(newCocktails));
+      }
+    });
   }
 
-  searchByIngredientsName() {}
+  searchByIngredientsName(event) {
+    event.preventDefault();
+    const searchText = event.target.query.value;
+    const ingridients = this.getAllIngredients();
+    const newIngridients = [];
+    refs.ingridientsList.innerHTML = '';
+    ingridients.map(ingridient => {
+      const ingrByName = ingridient.strIngredient.toLowerCase();
+      if (ingrByName.includes(searchText.toLowerCase())) {
+        newIngridients.push(ingridient);
+        refs.ingridientsList.insertAdjacentHTML(
+          'beforeend',
+          this.renderAllIngredient(newIngridients)
+        );
+      }
+    });
+  }
 
   isCoctailInFavorites(cocktailId) {
     const cocktails = this.getAllCocktails();
@@ -190,7 +205,8 @@ export class ApiFavorite {
   }
 }
 
-// const favoriteCocktails = document.querySelector('.favorite-cocktails');
-// const favoriteCocktailsNotFound = document.querySelector('.add-box-cocktails');
-// form.addEventListener('submit', formSubmit);
-// let searchText = '';
+const favorite = new ApiFavorite();
+
+refs.searchFavorite.addEventListener('submit', function (event) {
+  favorite.searchByCocktailName(event);
+});
