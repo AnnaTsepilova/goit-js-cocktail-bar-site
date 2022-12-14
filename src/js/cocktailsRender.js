@@ -184,13 +184,12 @@ export class CocktailsRender {
   }
 
   getPageLimit() {
-    console.log(window.screen.width);
     // Mobile
     if (window.screen.width < 768) {
       return 3;
     }
     // Tablet
-    if (window.screen.width >= 768 || window.screen.width < 1280) {
+    if (window.screen.width >= 768 & window.screen.width < 1280) {
       return 6;
     }
     return 9;
