@@ -70,8 +70,9 @@ export class CocktailsRender {
     const thisObj = this;
     const letter = refs.searchMobileInput.value;
     refs.searchSet.innerHTML = '';
-    
-    this.cocktailsApi.getCocktailsBySymbol(letter)
+
+    this.cocktailsApi
+      .getCocktailsBySymbol(letter)
       .then(response => {
         if (response.drinks === null) {
           // ----заинсталить красивую нотификашку
@@ -82,6 +83,7 @@ export class CocktailsRender {
         }
         refs.searchSetCaption.textContent = 'Searching results';
         refs.searchSet.innerHTML = thisObj.createCocktailCard(response.drinks);
+        thisObj.onRenderComplete();
       })
       .catch(error => {
         console.log(error);
@@ -118,7 +120,8 @@ export class CocktailsRender {
     refs.searchSet.innerHTML = '';
     const thisObj = this;
 
-    this.cocktailsApi.getCocktailsBySymbol(letter)
+    this.cocktailsApi
+      .getCocktailsBySymbol(letter)
       .then(response => {
         console.log(response);
         if (response.drinks === null) {
@@ -138,7 +141,7 @@ export class CocktailsRender {
       });
   }
 
-  // ----------------рендерим карточки коктейлей из хедера----------
+   // ----------------рендерим карточки коктейлей из хедера----------
   searchByHeader(e) {
     e.preventDefault();
 
@@ -169,20 +172,19 @@ export class CocktailsRender {
         console.log(error);
       });
   }
-  
+
   // ----------------рендерим рандомные 9 коктейлей----------
   renderRandomCocktails() {
     const thisObj = this;
-    
+
     const makePromise = () => {
       return new Promise(resolve => {
-        thisObj.cocktailsApi.getRandomCocktail()
-        .then(response => resolve(response))
+        thisObj.cocktailsApi.getRandomCocktail().then(response => resolve(response));
       });
     };
 
     let promises = [];
-    for (let i = 0; i < 9; i+=1) {
+    for (let i = 0; i < 9; i += 1) {
       promises.push(makePromise());
     }
 
@@ -192,7 +194,7 @@ export class CocktailsRender {
         response.map(elm => cocktailArray.push(elm.drinks[0]));
         refs.searchSet.innerHTML = thisObj.createCocktailCard(cocktailArray);
         thisObj.onRenderComplete();
-      }) 
+      })
       .catch(error => console.log(error));
   }
 
@@ -202,30 +204,33 @@ export class CocktailsRender {
     console.log(learnMoreBtn);
 
     for (let btn of learnMoreBtn) {
-      btn.addEventListener('click', this.onLearnMoreBtn)
+      btn.addEventListener('click', this.onLearnMoreBtn);
     }
   }
 
   onLearnMoreBtn(e) {
     e.preventDefault();
-    refs.modalCocktailWindow.classList.toggle("с-backdrop--is-hidden");
+    refs.modalCocktailWindow.classList.toggle('с-backdrop--is-hidden');
     const cocktailsApi = new CocktailsApi();
-    cocktailsApi.getCocktailById(e.target.dataset.cocktailId)
-      .then(response => {
-        console.log(response);
-        console.log(refs.modalDetailCocktailContainer);
+    cocktailsApi.getCocktailById(e.target.dataset.cocktailId).then(response => {
+      console.log(response);
+      console.log(refs.modalDetailCocktailContainer);
 
-        if (window.screen.width < 768){
-          refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(response.drinks[0]);
-        } else {
-          refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(response.drinks[0]);
-        }
-        
-      });
+      if (window.screen.width < 768) {
+        refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(
+          response.drinks[0]
+        );
+      } else {
+        refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(response.drinks[0]);
+      }
+    });
   }
 
   toggleModal() {
-    refs.modalCocktailWindow.classList.toggle("с-backdrop--is-hidden");
+    refs.modalCocktailWindow.classList.toggle('с-backdrop--is-hidden');
   }
 
+  // favorite.removeCocktailById(e.target.dataset.cocktailId);
+  // const removeCocktailCard = document.querySelector('#c_' + e.target.dataset.cocktailId);
+  // removeCocktailCard.remove();
 }
