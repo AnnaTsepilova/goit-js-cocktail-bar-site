@@ -2,14 +2,27 @@ const refs = {
   closeModalCocktailsBtn: document.querySelector("[data-modalCocktails-close]"),
   closeModalCocktailsBtnTablet: document.querySelector("[data-modalCocktailsTablet-close]"),
   modalCocktails: document.querySelector("[data-modalCocktails]"),
+  body: document.querySelector('body'),
 };
 
 refs.closeModalCocktailsBtn.addEventListener("click", toggleModal);
 refs.closeModalCocktailsBtnTablet.addEventListener("click", toggleModal);
 
-function toggleModal() {
-  refs.modalCocktails.classList.toggle("с-backdrop--is-hidden");
-};
+// function toggleModal() {
+//   refs.modalCocktails.classList.toggle("с-backdrop--is-hidden");
+// };
+
+export function toggleModal() {
+  refs.modalCocktails.classList.toggle('с-backdrop--is-hidden');
+
+  if (!refs.modalCocktails.classList.contains('с-backdrop--is-hidden')) {
+    // Disable scroll
+    refs.body.style.overflow = 'hidden';
+  } else {
+    // Enable scroll
+    refs.body.style.overflow = 'auto';
+  }
+}
 
 refs.modalCocktails.addEventListener('click', onBackdropClick);
 
@@ -45,13 +58,13 @@ export const createCocktailDetails = (drink) => {
           <h3 class="modal-cocktails__subject">Ingredients</h3>
           <p class="modal-cocktails__subtitle">Per cocktail</p>
           <ul class="modal-cocktails__list">` +
-          ingredients.map(ingredient => {
-            return `
+    ingredients.map(ingredient => {
+      return `
             <li class="modal-cocktails__item">
               <a class="modal-cocktails__link" href="#" data-modalIngred-open>${ingredient}</a>
             </li>`
-          }).join('') +
-          `</ul>
+    }).join('') +
+    `</ul>
         </div>
       </div>
       <h3 class="modal-cocktails__headline">Instractions:</h3>
@@ -77,17 +90,17 @@ export const createCocktailDetailsMobile = (drink) => {
     <h3 class="modal-cocktails__headline">Instractions:</h3>
     <p class="modal-cocktails__text">${drink.strInstructions}</p>
     <img class="modal-cocktails__img" src="${drink.strDrinkThumb}" alt="${drink.strDrink}" width="280" height="280" loading="lazy" />
-      
+
     <h3 class="modal-cocktails__subject">Ingredients</h3>
     <p class="modal-cocktails__subtitle">Per cocktail</p>
     <ul class="modal-cocktails__list">` +
-      ingredients.map(ingredient => {
-        return `
+    ingredients.map(ingredient => {
+      return `
         <li class="modal-cocktails__item">
           <a class="modal-cocktails__link" href="#" data-modalIngred-open>${ingredient}</a>
         </li>`
-      }).join('') +
-      `</ul>        
+    }).join('') +
+    `</ul>
     <button class="modal-cocktails__btn btn-favorite" data-cocktail-id="${drink.idDrink}>Add to favorite</button>
   `;
 }
