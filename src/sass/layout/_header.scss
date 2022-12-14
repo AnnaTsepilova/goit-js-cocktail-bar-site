@@ -33,14 +33,15 @@
       justify-content: flex-end;
       margin-right: 40px;
       margin-left: 0;
+      
     }
 }   
 
 
 .desc-nav__menu {
+  list-style: none;
 @media screen and (min-width: 1279.98px) {
 display: flex;
-list-style: none;
 gap: 60px; 
 }
 }
@@ -58,8 +59,8 @@ display: block;
 text-align: center;
 }
 
-
 /* Кнопка випадающого списку */
+
 .dropbtn {
   background-color: transparent;
   color: var(--primary-white-color);
@@ -166,6 +167,9 @@ display: block;
   display: inline-block;
   text-decoration: none;
   color: var(--primary-white-color); 
+  @media screen and (max-width: 1279px) {
+   margin-left: 2px;
+  }
 }
 
 .mob-nav__link:hover {
@@ -267,11 +271,28 @@ transition: all .5s;
   
   /* THEME SWITCH */
 
+  .theme-switch__mob {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    margin: 0 auto;
+ 
+    @media screen and (max-width: 1279px) {
+        display: none;
+    }
+  }
+
+  .menu-container__wrap {
+    display: flex;
+  }
+
   .theme-switch {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 12px;
+    margin: 0 auto;
  
     @media screen and (max-width: 1279px) {
         display: none;
@@ -471,4 +492,12 @@ transition: all .5s;
       color: $accent-color;
     }
 }
+
+// .nodesc-menu {
+//   // --padding: 40px;
+//   // padding-top: 60px;
+//   @media screen and (min-width: 1279px) {
+//     display: none;
+//   }
+// }
   
