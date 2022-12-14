@@ -1,0 +1,62 @@
+const refs = {
+  closeModalCocktailsBtn: document.querySelector("[data-modalCocktails-close]"),
+  closeModalCocktailsBtnTablet: document.querySelector("[data-modalCocktailsTablet-close]"),
+  modalCocktails: document.querySelector("[data-modalCocktails]"),
+};
+
+refs.closeModalCocktailsBtn.addEventListener("click", toggleModal);
+refs.closeModalCocktailsBtnTablet.addEventListener("click", toggleModal);
+
+function toggleModal() {
+  refs.modalCocktails.classList.toggle("с-backdrop--is-hidden");
+};
+
+refs.modalCocktails.addEventListener('click', onBackdropClick);
+
+function onBackdropClick(event) {
+  if (event.currentTarget === event.target) {
+    toggleModal();
+  }
+}
+
+// ----------------рендерим модальное окно Cocktail Details----------
+export const createCocktailDetails = (drink) => {
+  //console.log(drink);
+  let ingredients = [];
+  for (let props in drink) {
+    if (props.indexOf('strIngredient') != -1) {
+      if (drink[props]) {
+        ingredients.push(drink[props]);
+      }
+    }
+  }
+
+  return `
+      <div class="modal-cocktails-title__wrap">
+        <img
+          class="modal-cocktails__img"
+          src="${drink.strDrinkThumb}"
+          alt="${drink.strDrink}"
+          width="288"
+          height="320"
+          loading="lazy"
+        />
+        <div class="modal-cocktails__wrap">
+          <h2 class="modal-cocktails__title">${drink.strDrink}</h2>
+          <h3 class="modal-cocktails__subject">Ingredients</h3>
+          <p class="modal-cocktails__subtitle">Per cocktail</p>
+          <ul class="modal-cocktails__list">` +
+          ingredients.map(ingredient => {
+            return `
+            <li class="modal-cocktails__item">
+              <a class="modal-cocktails__link" href="#" data-modalIngred-open>${ingredient}</a>
+            </li>`
+          }).join('') +
+          `</ul>
+        </div>
+      </div>
+      <h3 class="modal-cocktails__headline">Instractions:</h3>
+      <p class="modal-cocktails__text">${drink.strInstructions}</p>
+      <button class="modal__btn btn-favorite" data-cocktail-id="${drink.idDrink}">Add to favorite</button>
+  `;
+}

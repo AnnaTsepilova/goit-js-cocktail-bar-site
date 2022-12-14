@@ -9,6 +9,6 @@ export const refs = {
   ingridientsList: document.querySelector('.list-ingredients'),
   closeModalBtn: document.querySelector('[data-modal-close]'),
   modalCocktailWindow: document.querySelector('[data-modal]'),
-
+  modalDetailCocktailContainer: document.querySelector('.modal-cocktails__wrapper'),
   searchFavorite: document.querySelector('.js-search-favorite'),
 };
