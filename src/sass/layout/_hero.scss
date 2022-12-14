@@ -1,0 +1,223 @@
+.hero__section{
+    @extend %section;
+    @media screen and (max-width: 767px) {
+        padding-bottom: 40px;
+    }
+    @media screen and (max-width: 1280px) {
+        padding-bottom: 60px;
+    }
+
+}
+
+.hero__container{
+   position: relative;
+}
+
+.hero__box{
+    @media screen and (min-width: 768px) {
+        width:336px;
+    }
+    @media screen and (min-width: 1280px) {
+        width: 688px;
+    }
+}
+
+.hero__caption{
+    @extend %section-title;
+    color:$accent-color;
+
+    @media screen and (min-width: 768px) {
+        font-weight: 600;
+        font-size: 26px;
+        line-height: 1.62;
+        margin-bottom: 40px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        font-size: 52px;
+        line-height: 1.54;
+    }
+
+}
+
+.hero__desc{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 2;
+    letter-spacing: 0.02em;
+    color: $black-color;
+    margin-bottom: 20px;
+    @media screen and (min-width: 768px) {
+        margin-bottom: 40px;
+    }
+    @media screen and (min-width: 1280px) {
+        font-size: 18px;
+        line-height: 1.56;
+    }
+
+}
+
+.search__list{
+    @extend %list;
+
+    @media screen and (max-width: 767px) {
+       display: none;
+    }
+    @media screen and (min-width: 768px) {
+       display: flex;
+       flex-wrap: wrap;
+       justify-content: center;
+       width: 325px;
+    }
+
+   @media screen and (min-width:1280px) {
+       width: 519px;
+   }
+}
+.letter__btn{
+    border:none;
+    background-color: transparent;
+    padding: 0;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #5F6775;
+    align-items: center;
+    text-align: center;
+     &:focus,
+     &:hover {
+        -webkit-text-stroke: 1px $black-color;
+        color: $accent-color;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+                }
+
+        @media screen and (min-width: 768px) {
+                width: 24px;
+                height: 25px;
+            }
+        @media screen and (min-width: 1280px) {
+                font-size: 24px;
+                width: 39px;
+                height: 40px;
+            }
+}
+
+.search__input {
+    width: 93px;
+    height: 34px;
+    border: 1px solid $accent-color;
+    border-radius: 4px;
+    color:$accent-color;
+    padding: 6px 10px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.35;
+    cursor: pointer;
+    &::placeholder {
+            color: $accent-color;
+
+        }
+    &:hover,
+    &:focus{
+        background-color: $accent-color;
+        color: $white-color;
+        outline: none;
+
+        &~.list__icon {
+                fill: $white-color;
+            }
+
+    &::-webkit-calendar-picker-indicator {
+        opacity: 0;
+    }
+    &::placeholder {
+        color:$white-color;
+
+    }
+    }
+
+}
+
+.list__icon{
+    position: absolute;
+    top: 15%;
+    left: 55%;
+    width: 24px;
+    height: 24px;
+    fill: $accent-color;
+}
+
+
+.hero__picture{
+    width: 100%;
+    margin-bottom: 60px;
+    @media screen and (min-width: 768px) {
+        position: absolute;
+        width: 336px;
+        height:294px;
+        top:0;
+        right:15px;
+        margin-bottom: 0;
+    }
+    @media screen and (min-width: 1280px) {
+        width: 501px;
+        height: 439px;
+        right: 0;
+    }
+}
+
+.search__box{
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    @media screen and (min-width: 768px) {
+        display: none;
+    }
+}
+
+// ---------стилизируем выпадающий список поиска по алфавиту в мобильном меню------------------
+
+.cocktails__datalist {
+    position: absolute;
+    top: 100%;
+
+    width: 93px;
+    max-height: 84px;
+
+    border: 1px solid $accent-color;
+    border-radius: 4px;
+
+    overflow-y: auto;
+
+    background-color: $white-color;
+}
+
+.cocktails__option {
+    display: flex;
+    align-items: center;
+
+    padding: 6px 10px;
+
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 1.5;
+
+    color: $secondary-text-color;
+    cursor: pointer;
+
+    &:focus,
+    &:hover,
+    .active {
+        background-color: $accent-color;
+        color: $white-color;
+    }
+}

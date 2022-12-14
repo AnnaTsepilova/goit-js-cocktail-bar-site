@@ -1,22 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Favorite ingredients</title>
 
     <link rel="stylesheet" href="./sass/index.scss" />
-    
-</head>
+  </head>
 
-<body class="light-theme">
-    <!-- ❗️❗️❗️ Add partials like so for every page -->
+  <body>
     <include src="./partials/header.html"></include>
     <main>
-
-        <include src="./partials/search-set.html"></include>
-
+      <section class="favotite-ingredients">
+        <div class="container">
+          <h2 class="title-ingridient">Favorite ingredients</h2>
+          <ul class="list-ingredients">
+            <!-- рендерим сюда -->
+            
+            <!-- <li class="list-ingredients__item">
+              <h3 class="list-ingredients__name">Campari</h3>
+              <p class="list-ingredients__descr">LIQUEUR</p>
+              <div class="box-btn">
+                <button class="btn-learn_more">Learn more</button>
+                <button class="btn-add_and_remove">
+                  Remove<svg class="icon-heart__svg" width="22" height="19">
+                    <use href="./images/sprite.svg#icon-heart"></use>
+                  </svg>
+                </button>
+              </div>
+            </li>
+            <li class="list-ingredients__item">
+              <h3 class="list-ingredients__name">Campari</h3>
+              <p class="list-ingredients__descr">LIQUEUR</p>
+              <div class="box-btn">
+                <button class="btn-learn_more">Learn more</button
+                ><button class="btn-add_and_remove">
+                  Remove<svg class="icon-heart__svg" width="22" height="19">
+                    <use href="./images/sprite.svg#icon-heart"></use>
+                  </svg>
+                </button>
+              </div>
+            </li>
+            <li class="list-ingredients__item">
+              <h3 class="list-ingredients__name">Campari</h3>
+              <p class="list-ingredients__descr">LIQUEUR</p>
+              <div class="box-btn">
+                <button class="btn-learn_more">Learn more</button
+                ><button class="btn-add_and_remove">
+                  Remove<svg class="icon-heart__svg" width="22" height="19">
+                    <use href="./images/sprite.svg#icon-heart"></use>
+                  </svg>
+                </button>
+              </div>
+            </li> -->
+          </ul>
+        </div>
+      </section>
     </main>
 
     <include src="./partials/footer.html"></include>
@@ -24,7 +63,6 @@
     <include src="./partials/modal-window-cocktails.html"></include>
     <include src="./partials/modal-window-ingredients.html"></include>
 
-    <script type="module" src="./index.js"></script>
-</body>
-
+    <script type="module" src="./favorites.js"></script>
+  </body>
 </html>

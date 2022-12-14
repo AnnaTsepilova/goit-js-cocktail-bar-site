@@ -1,0 +1,353 @@
+@import '~node_modules/modern-normalize/modern-normalize.css';
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@400;900&display=swap");
+.search-set__list, .search__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.search-set, .hero__section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.search-set__caption, .hero__caption {
+  margin-top: 0;
+  margin-bottom: 60px;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.91;
+  color: #202025;
+}
+@media screen and (min-width: 768px) {
+  .search-set__caption, .hero__caption {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.31;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .search-set__caption, .hero__caption {
+    font-size: 48px;
+    line-height: 1.5;
+  }
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  background-color: #FCFCFC;
+  color: #202025;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+@media screen and (min-width: 480px) {
+  .container {
+    width: 480px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .container {
+    width: 1280px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.dark-theme {
+  background-color: #202025;
+  color: #FCFCFC;
+}
+
+.btn-learn_more {
+  display: block;
+  padding: 0;
+  width: 108px;
+  height: 39px;
+  border: 0;
+  cursor: pointer;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 2;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  background: #FE7031;
+  border-radius: 4px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), background 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-learn_more:hover {
+  color: #FD5103;
+  background: #F5F5F5;
+}
+.btn-learn_more:active {
+  color: #FFFFFF;
+  background: #FD5103;
+}
+@media screen and (min-width: 768px) {
+  .btn-learn_more {
+    width: 160px;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .btn-learn_more {
+    width: 182px;
+    height: 48px;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}
+
+.btn-favorite {
+  display: block;
+  border: 0;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 2;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  background: #FE7031;
+  border-radius: 4px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), background 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-favorite:hover {
+  color: #FD5103;
+  background: #F5F5F5;
+}
+.btn-favorite:active {
+  color: #FFFFFF;
+  background: #FD5103;
+}
+
+.btn-add_and_remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  height: 39px;
+  border: 0;
+  cursor: pointer;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.71;
+  letter-spacing: 0.02em;
+  color: #FD5103;
+  background: transparent;
+  border: 1px solid #FD5103;
+  border-radius: 4px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), background 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-add_and_remove:hover {
+  background: #FFFFFF;
+}
+.btn-add_and_remove:active {
+  color: #FFFFFF;
+  background: #FD5103;
+}
+@media screen and (min-width: 768px) {
+  .btn-add_and_remove {
+    width: 123px;
+    height: 48px;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .btn-add_and_remove {
+    width: 141px;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}
+
+.icon-heart__svg {
+  fill: #FCFCFC;
+  margin-left: 8px;
+  width: 19px;
+  height: 17px;
+}
+.icon-heart__svg:checked {
+  fill: #FD5103;
+}
+@media screen and (min-width: 768px) {
+  .icon-heart__svg {
+    margin-left: 4px;
+    width: 21px;
+    height: 19px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .icon-heart__svg {
+    margin-left: 4px;
+    width: 21px;
+    height: 19px;
+  }
+}
+
+.hero__section {
+  padding-bottom: 40px;
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .hero__box {
+    width: 336px;
+  }
+}
+
+.hero__caption {
+  color: #FD5103;
+}
+@media screen and (min-width: 768px) {
+  .hero__caption {
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 1.62;
+    margin-bottom: 40px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .hero__caption {
+    font-size: 48px;
+    line-height: 1.5;
+  }
+}
+
+.hero__desc {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 2;
+  letter-spacing: 0.02em;
+  color: #000000;
+  margin-bottom: 20px;
+}
+@media screen and (min-width: 768px) {
+  .hero__desc {
+    margin-bottom: 40px;
+  }
+}
+
+.search__list {
+  height: 75px;
+}
+
+.search__input {
+  width: 93px;
+  height: 34px;
+  border: 1px solid #FD5103;
+  border-radius: 4px;
+  color: #FD5103;
+  padding: 6px 10px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.35;
+}
+.search__input:hover, .search__input:focus {
+  background-color: #FD5103;
+  color: #FFFFFF;
+  outline: none;
+}
+
+.hero__picture {
+  margin-bottom: 60px;
+}
+@media screen and (min-width: 768px) {
+  .hero__picture {
+    position: absolute;
+    width: 336px;
+    height: 294px;
+    top: 0;
+    right: 32px;
+  }
+}
+
+.search__box {
+  display: flex;
+  justify-content: center;
+}
+@media screen and (min-width: 768px) {
+  .search__box {
+    display: none;
+  }
+}
+
+.search-set {
+  padding-top: 0;
+}
+
+.search-set__caption {
+  text-align: center;
+}
+
+.search-set__list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.coctail__card {
+  border: 1px solid #FD5103;
+  border-radius: 4px;
+}
+
+.coctail__desc {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 26px;
+  line-height: 1.62;
+  color: #202025;
+  text-align: center;
+  margin-top: 48px;
+  margin-bottom: 16px;
+}
+
+.box__btn {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 24px;
+}/*# sourceMappingURL=index.css.map */

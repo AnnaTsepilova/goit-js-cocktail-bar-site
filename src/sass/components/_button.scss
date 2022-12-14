@@ -1,0 +1,171 @@
+// <button class="btn-learn_more">Learn more</button>
+.btn-learn_more {
+  display: block;
+  padding: 0;
+
+  width: 108px;
+  height: 39px;
+  border: 0;
+
+  cursor: pointer;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 2;
+  letter-spacing: 0.02em;
+
+  color: $white-color;
+
+  background: $btn-accent-color;
+  border-radius: 4px;
+
+  transition: color 250ms $cubic, background 250ms $cubic;
+
+  &:hover {
+    color: $accent-color;
+    background: $btn-white-bg-color;
+  }
+
+  &:active {
+    color: $white-color;
+    background: $accent-color;
+  }
+
+  @media screen and (min-width: 768px) {
+  width: 160px;
+height: 48px;
+  font-size: 20px;
+  line-height: 1.2;
+  }
+
+  @media screen and (min-width: 1280px) {
+  width: 182px;
+  height: 48px;
+
+  font-size: 20px;
+  line-height: 1.2;
+  }
+}
+
+// <button class="btn-favorite">Add to favorite</button>
+// <button class="btn-favorite">Remove from favorite</button>
+.btn-favorite {
+  display: block;
+
+  border: 0;
+  padding: 0 24px;
+  height: 48px;
+
+  cursor: pointer;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 2;
+  letter-spacing: 0.02em;
+
+  color: $white-color;
+
+  background: $btn-accent-color;
+  border-radius: 4px;
+
+  transition: color 250ms $cubic, background 250ms $cubic;
+
+  &:hover {
+    color: $accent-color;
+    background: $btn-white-bg-color;
+  }
+
+  &:active {
+    color: $white-color;
+    background: $accent-color;
+  }
+}
+
+
+// <button class="btn-add_and_remove">
+//   Add to
+//   <svg class="icon-heart__svg" width="22" height="19">
+//     <use href="${sprite}#icon-heart"></use>
+//   </svg>
+// </button>
+.btn-add_and_remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 110px;
+  height: 39px;
+  border: 0;
+
+  cursor: pointer;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.71;
+  letter-spacing: 0.02em;
+
+  color: $accent-color;
+
+  background: transparent;
+
+  border: 1px solid $accent-color;
+  border-radius: 4px;
+
+  transition: color 250ms $cubic, background 250ms $cubic;
+
+  &:hover {
+    background: $white-color;
+  }
+
+  &:active {
+    color: $white-color;
+    background: $accent-color;
+  }
+
+  @media screen and (min-width: 768px) {
+  width: 123px;
+  height: 48px;
+
+  font-size: 20px;
+  line-height: 1.2;
+  }
+
+  @media screen and (min-width: 1280px) {
+  width: 141px;
+
+  font-size: 20px;
+  line-height: 1.2;
+  }
+}
+
+.icon-heart__svg {
+  fill: $primary-white-color;
+  margin-left: 8px;
+
+  width: 19px;
+  height: 17px;
+
+  &:checked {
+    fill: $accent-color;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-left: 4px;
+
+    width: 21px;
+    height: 19px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-left: 4px;
+
+    width: 21px;
+    height: 19px;
+  }
+}
