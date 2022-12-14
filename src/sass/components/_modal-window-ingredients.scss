@@ -1,17 +1,17 @@
-.backdrop1 {
+.i-backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: $secondary-text-color;
-  // z-index: 1;
+  background-color: $primary-text-color-LT;
+  z-index: 3;
   opacity: 1;
   visibility: visible;
   transition: opacity 250ms $cubic, visibility 250ms $cubic;
 }
 
-.backdrop1--is-hidden1 {
+.i-backdrop--is-hidden {
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
@@ -27,6 +27,7 @@
   background-color: $primary-white-color;
   border: 0;
   cursor: pointer;
+
   @media screen and (min-width: 768px) {
     top: 19px;
     right: 19px;
@@ -39,6 +40,7 @@
   margin: 0 auto;
   padding: 40px 20px;
   background-color: $primary-white-color;
+  z-index: 4;
   // outline: 1px solid tomato;
   @media screen and (min-width: 768px) {
     width: 715px;

@@ -1,6 +1,7 @@
 import { refs } from './refs';
 import { CocktailsApi } from './cocktailsApi';
 import sprite from '../images/sprite.svg';
+import { createCocktailDetails } from './modalCocktails';
 
 export class CocktailsRender {
   cocktailsApi;
@@ -90,13 +91,13 @@ export class CocktailsRender {
   // ----------------рендерим карточки коклейлей----------
   createCocktailCard(drinks) {
     return drinks
-      .map(({ strDrinkThumb, strDrink }) => {
+      .map(({ strDrinkThumb, strDrink, idDrink }) => {
         return `<li class="coctail__card">
             <img class="coctail__pic" src="${strDrinkThumb}" alt="${strDrink}" />
             <p class="coctail__desc">${strDrink}</p>
             <div class="box__btn">
-              <button class="btn-learn_more" type="button">Learn more</button>
-              <button class="btn-add_and_remove" type="button">
+              <button class="btn-learn_more" type="button" data-cocktail-id="${idDrink}">Learn more</button>
+              <button class="btn-add_and_remove" type="button" data-cocktail-id="${idDrink}">
                 Add to
                 <svg class="icon-heart__svg" width="22" height="19">
                   <use href="${sprite}#icon-heart"/>
@@ -132,7 +133,6 @@ export class CocktailsRender {
         refs.searchSet.innerHTML = thisObj.createCocktailCard(response.drinks);
         thisObj.onRenderComplete();
       })
-
       .catch(error => {
         console.log(error);
       });
@@ -208,6 +208,16 @@ export class CocktailsRender {
 
   onLearnMoreBtn(e) {
     e.preventDefault();
-    refs.modalCocktailWindow.classList.toggle('backdrop--is-hidden');
+    refs.modalCocktailWindow.classList.toggle('с-backdrop--is-hidden');
+    const cocktailsApi = new CocktailsApi();
+    cocktailsApi.getCocktailById(e.target.dataset.cocktailId).then(response => {
+      console.log(response);
+      console.log(refs.modalDetailCocktailContainer);
+      refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(response.drinks[0]);
+    });
+  }
+
+  toggleModal() {
+    refs.modalCocktailWindow.classList.toggle('с-backdrop--is-hidden');
   }
 }
