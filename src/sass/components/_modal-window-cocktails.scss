@@ -40,6 +40,8 @@
   padding: 40px 20px;
   background-color: $primary-white-color;
   z-index: 101;
+  // overflow-y: auto;
+  // overflow-x: hidden;
   // outline: 1px solid tomato;
   @media screen and (min-width: 768px) {
     width: 768px;

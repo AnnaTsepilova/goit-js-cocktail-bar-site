@@ -2,6 +2,7 @@ import { refs } from './refs';
 import { CocktailsApi } from './cocktailsApi';
 import sprite from '../images/sprite.svg';
 import { createCocktailDetails, createCocktailDetailsMobile } from './modalCocktails';
+import { ApiFavorite } from './favoritesApi';
 
 export class CocktailsRender {
   cocktailsApi;
@@ -201,36 +202,39 @@ export class CocktailsRender {
   // -------------подключаем кнопку learn more к отрендеренным карточкам коктейлей---------------
   onRenderComplete() {
     const learnMoreBtn = document.querySelectorAll('.btn-learn_more');
-    console.log(learnMoreBtn);
 
     for (let btn of learnMoreBtn) {
-      btn.addEventListener('click', this.onLearnMoreBtn);
+      btn.addEventListener('click', e => this.onLearnMoreBtn(e));
     }
   }
 
   onLearnMoreBtn(e) {
     e.preventDefault();
-    refs.modalCocktailWindow.classList.toggle('с-backdrop--is-hidden');
+  
+    refs.modalCocktailWindow.classList.toggle("с-backdrop--is-hidden");
     const cocktailsApi = new CocktailsApi();
-    cocktailsApi.getCocktailById(e.target.dataset.cocktailId).then(response => {
-      console.log(response);
-      console.log(refs.modalDetailCocktailContainer);
+    refs.modalDetailCocktailContainer.innerHTML = '';
+    refs.modalDetailCocktailContainerMobile.innerHTML = '';    
+      console.log(e.target.dataset.cocktailId);
+    cocktailsApi.getCocktailById(e.target.dataset.cocktailId)
+      .then(response => {
+        const favorite = new ApiFavorite();
 
-      if (window.screen.width < 768) {
-        refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(
-          response.drinks[0]
-        );
-      } else {
-        refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(response.drinks[0]);
-      }
-    });
+        let drink = response.drinks[0];
+        let isFavorite = favorite.isCoctailInFavorites(drink.idDrink);
+
+        if (window.screen.width < 768){
+          refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(drink, isFavorite);
+        } else {
+          refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(drink, isFavorite);
+        }
+
+        favorite.favoritesBtnLister(drink, isFavorite);
+      });
   }
 
   toggleModal() {
     refs.modalCocktailWindow.classList.toggle('с-backdrop--is-hidden');
   }
 
-  // favorite.removeCocktailById(e.target.dataset.cocktailId);
-  // const removeCocktailCard = document.querySelector('#c_' + e.target.dataset.cocktailId);
-  // removeCocktailCard.remove();
 }

@@ -1,6 +1,7 @@
 import { refs } from './refs';
 import { CocktailsApi } from './cocktailsApi';
 import sprite from '../images/sprite.svg';
+import { createCocktailDetails, createCocktailDetailsMobile } from './modalCocktails';
 
 const cocktailApi = new CocktailsApi();
 
@@ -13,8 +14,9 @@ export class ApiFavorite {
   constructor() {}
 
   addCocktailById(cocktailID) {
+    const thisObj = this;
     cocktailApi.getCocktailById(cocktailID).then(function (resposne) {
-      this.addCocktail(resposne);
+      thisObj.addCocktail(resposne.drinks[0]);
     });
   }
 
@@ -111,7 +113,7 @@ export class ApiFavorite {
           <img class="list-favorite_img" src="${cocktail.strDrinkThumb}" alt="${cocktail.strDrink}" />
           <h3 class="list-favorite_coctail">${cocktail.strDrink}</h3>
           <div class="list-favorite_btn">
-            <button class="btn-learn_more">Learn more</button>
+            <button class="btn-learn_more" data-cocktail-id="${cocktail.idDrink}">Learn more</button>
             <button class="btn-add_and_remove" data-cocktail-id="${cocktail.idDrink}">
               Remove
               <svg class="icon-heart__svg" width="22" height="19">
@@ -192,10 +194,27 @@ export class ApiFavorite {
     const cocktails = this.getAllCocktails();
     return !!cocktails.find(cocktail => cocktail.idDrink === cocktailId);
   }
+
+// -----------функция добавления/удаления коктейля в Favorites из Cocktails Details----------------
+  favoritesBtnLister(drink) {
+    const addToFavBtn = document.querySelector('.btn-favorite');
+
+    addToFavBtn.addEventListener('click', e => {
+      let isFavorite = this.isCoctailInFavorites(drink.idDrink);
+
+      if (isFavorite) {
+        this.removeCocktailById(drink.idDrink);
+      } else {
+        this.addCocktailById(drink.idDrink);
+      }
+
+      if (window.screen.width < 768){
+        refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(drink, !isFavorite);
+      } else {
+        refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(drink, !isFavorite);
+      }
+
+      this.favoritesBtnLister(drink);
+    });
+  }
 }
-
-const favorite = new ApiFavorite();
-
-refs.searchFavorite.addEventListener('submit', function (event) {
-  favorite.searchByCocktailName(event);
-});
