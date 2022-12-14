@@ -33,8 +33,8 @@ function onBackdropClick(event) {
 // }
 
 
-// ----------------рендерим модальное окно Cocktail Details Tablet----------
-export const createCocktailDetails = (drink) => {
+// ----------------рендерим модальное окно Cocktail Details Tablet---------- 
+function parseIngredients(drink) {
   let ingredients = [];
   for (let props in drink) {
     if (props.indexOf('strIngredient') != -1) {
@@ -42,6 +42,22 @@ export const createCocktailDetails = (drink) => {
         ingredients.push(drink[props]);
       }
     }
+  }
+
+  return ingredients;
+}
+
+// ----------------рендерим модальное окно Cocktail Details Tablet----------
+export const createCocktailDetails = (drink, inFavorites) => {
+  let ingredients = parseIngredients(drink);
+  let addBtnText = 'Add to favorite';
+  let removeBtnText = 'Remove from favorite';
+
+  let btnStatusFav = addBtnText;
+  if (inFavorites) {
+    btnStatusFav = removeBtnText;
+  } else {
+    btnStatusFav = addBtnText;
   }
 
   return `
@@ -70,20 +86,21 @@ export const createCocktailDetails = (drink) => {
       </div>
       <h3 class="modal-cocktails__headline">Instractions:</h3>
       <p class="modal-cocktails__text">${drink.strInstructions}</p>
-      <button class="modal__btn btn-favorite" data-cocktail-id="${drink.idDrink}">Add to favorite</button>
-  `;
+      <button class="modal__btn btn-favorite" data-cocktail-id="${drink.idDrink}">${btnStatusFav}</button>
+      `;
 }
 
 // ----------------рендерим модальное окно Cocktail Details Mobile----------
-export const createCocktailDetailsMobile = (drink) => {
-  //console.log(drink);
-  let ingredients = [];
-  for (let props in drink) {
-    if (props.indexOf('strIngredient') != -1) {
-      if (drink[props]) {
-        ingredients.push(drink[props]);
-      }
-    }
+export const createCocktailDetailsMobile = (drink, inFavorites) => {
+  let ingredients = parseIngredients(drink);
+  let addBtnText = 'Add to favorite';
+  let removeBtnText = 'Remove from favorite';
+
+  let btnStatusFav = addBtnText;
+  if (inFavorites) {
+    btnStatusFav = removeBtnText;
+  } else {
+    btnStatusFav = addBtnText;
   }
 
   return `
@@ -100,9 +117,9 @@ export const createCocktailDetailsMobile = (drink) => {
         <li class="modal-cocktails__item">
           <a class="modal-cocktails__link" href="#" data-modalIngred-open>${ingredient}</a>
         </li>`
-    }).join('') +
-    `</ul>
-    <button class="modal-cocktails__btn btn-favorite" data-cocktail-id="${drink.idDrink}>Add to favorite</button>
+      }).join('') +
+      `</ul>
+    <button class="modal-cocktails__btn btn-favorite" data-cocktail-id="${drink.idDrink}>${btnStatusFav}</button>
   `;
 }
 
