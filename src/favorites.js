@@ -10,7 +10,7 @@ const favorite = new ApiFavorite();
 
 
 // ------------ПРИМЕР---------------------
-cocktailsApi.getCocktailsBySymbol('r').then(function (response) {
+cocktailsApi.getCocktailsBySymbol('b').then(function (response) {
     let i = 0;
     for (cocktail of response.drinks) {
         //console.log(cocktail);
