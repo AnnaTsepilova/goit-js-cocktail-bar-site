@@ -2,6 +2,8 @@ import { refs } from './refs';
 import { CocktailsApi } from './cocktailsApi';
 import sprite from '../images/sprite.svg';
 import { createCocktailDetails, createCocktailDetailsMobile } from './modalCocktails';
+import { Pagination } from './pag';
+
 export class CocktailsRender {
   cocktailsApi;
 
@@ -131,14 +133,26 @@ export class CocktailsRender {
           // ----заинсталить красивую нотификашку ^^^^^
         }
         refs.searchSetCaption.textContent = 'Searching results';
-        refs.searchSet.innerHTML = thisObj.createCocktailCard(response.drinks);
-        thisObj.onRenderComplete();
+        // refs.searchSet.innerHTML = thisObj.createCocktailCard(response.drinks);
+        // thisObj.onRenderComplete();
+        const pagCock = new Pagination({
+          items: response.drinks,
+          paginationRoot: refs.pagCont,
+          rootGallery: refs.searchSet,
+          range: 9,
+          fn: this.someFN,
+        });
       })
+
       .catch(error => {
         console.log(error);
       });
   }
 
+  someFN(array) {
+    refs.searchSet.innerHTML = thisObj.createCocktailCard(array);
+    thisObj.onRenderComplete();
+  }
   // ----------------рендерим карточки коктейлей из хедера----------
   searchByHeader(e) {
     e.preventDefault();
