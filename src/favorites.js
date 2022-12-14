@@ -3,6 +3,7 @@ import { CocktailsApi } from './js/cocktailsApi';
 import { ApiFavorite } from './js/favoritesApi';
 import * as themeSwitch from './js/themeSwitch';
 import { CocktailsRender } from './js/cocktailsRender';
+import * as mobileMenu from './js/mobileMenu';
 
 const cocktailsApi = new CocktailsApi();
 const favorite = new ApiFavorite();
