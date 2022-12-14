@@ -1,6 +1,4 @@
-import axios from 'axios';
 import { refs } from './refs';
-import { LocalStorage } from './localStorage';
 import { CocktailsApi } from './cocktailsApi';
 import sprite from '../images/sprite.svg';
 
@@ -157,7 +155,7 @@ export class ApiFavorite {
             <button class="btn-learn_more">Learn more</button>
             <button class="btn-add_and_remove">
               Remove<svg class="icon-heart__svg" width="22" height="19">
-                <use href="./images/sprite.svg#icon-heart"></use>
+                <use href="${sprite}#icon-heart"></use>
               </svg>
             </button>
           </div>
