@@ -6,10 +6,10 @@ const refs = {
   openModalIngredLinkM: document.querySelector("[data-modalIngredLinkM-open]"),
 };
 
-refs.openModalIngredBtn.addEventListener("click", toggleModalIngred);
+// refs.openModalIngredBtn.addEventListener("click", toggleModalIngred);
 refs.closeModalIngredBtn.addEventListener("click", toggleModalIngred);
-refs.openModalIngredLinkT.addEventListener("click", toggleModalIngred);
-refs.openModalIngredLinkM.addEventListener("click", toggleModalIngred);
+// refs.openModalIngredLinkT.addEventListener("click", toggleModalIngred);
+// refs.openModalIngredLinkM.addEventListener("click", toggleModalIngred);
 
 function toggleModalIngred() {
   refs.modalIngred.classList.toggle("i-backdrop--is-hidden");

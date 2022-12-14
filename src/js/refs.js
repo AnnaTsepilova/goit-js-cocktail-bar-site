@@ -7,8 +7,10 @@ export const refs = {
     searchSetCaption: document.querySelector('.search-set__caption'),
     headerSearch: document.querySelector('.header__search'),
     
-    closeModalBtn: document.querySelector("[data-modal-close]"),
-    modalCocktailWindow: document.querySelector("[data-modal]"),
+    closeModalBtn: document.querySelector(".js-close-menu"),
+    modalCocktailWindow: document.querySelector("[data-modalCocktails]"),
+    modalDetailCocktailContainer: document.querySelector(".modal-cocktails__wrapper"),
+
    
 };
 

@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: $secondary-white-color;
+  background-color: $primary-text-color-LT;
   z-index: 1;
   opacity: 1;
   visibility: visible;
@@ -15,12 +15,12 @@
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
-  & .modal-coctails {
+  & .modal-cocktails {
     transform: translate(-50%, -50%) scale(0.9);
   }
 }
 
-.modal-coctails__btn-close {
+.modal-cocktails__btn-close {
   position: absolute;
   top: 23px;
   right: 23px;
@@ -33,7 +33,7 @@
   }
 }
 
-.modal-coctails {
+.modal-cocktails {
   position: relative;
   width: 320px;
   margin: 0 auto;
@@ -47,10 +47,15 @@
   }
 }
 
-.modal-coctails__img {
+.modal-cocktails__img {
   margin: 32px 0 22px 0;
   border-radius: 4px;
+  width: 280px;
+  height: 280px;
+ 
   @media screen and (min-width: 768px) {
+    width: 288px;
+    height: 320px;
     margin: -40px 32px 0 -28px;
     flex-shrink: 0;
     display: flex;
@@ -71,11 +76,11 @@
   }
 }
 
-.modal-coctails__cover {
+.modal-cocktails__cover {
   display: flex;
 }
 
-.modal-coctails__title {
+.modal-cocktails__title {
   margin-bottom: 20px;
   font-family: 'Roboto';
   font-weight: 900;
@@ -87,7 +92,7 @@
   }
 }
 
-.modal-coctails__headline {
+.modal-cocktails__headline {
   margin-bottom: 20px;
   font-family: 'Poppins';
   font-weight: 600;
@@ -100,17 +105,19 @@
   }
 }
 
-.modal-coctails__text {
+.modal-cocktails__text {
+
   font-family: 'Poppins';
   font-size: 16px;
   line-height: 1.75;
   color: $secondary-text-color;
   @media screen and (min-width: 768px) {
     margin-bottom: 40px;
+    max-width: 650px;
   }
 }
 
-.modal-coctails__subject {
+.modal-cocktails__subject {
   font-family: 'Poppins';
   font-weight: 600;
   font-size: 16px;
@@ -122,7 +129,7 @@
   }
 }
 
-.modal-coctails__subtitle {
+.modal-cocktails__subtitle {
   margin: 8px 0 8px;
   font-family: 'Poppins';
   font-weight: 300;
@@ -134,25 +141,29 @@
   }
 }
 
-.modal-coctails__list {
+.modal-cocktails__list {
   @extend %list;
   margin-bottom: 32px;
 }
 
-.modal-coctails__item {
+.modal-cocktails__item {
   font-family: 'Poppins';
   font-size: 16px;
   line-height: 1.62;
   color: $secondary-text-color;
 }
 
-.modal-coctails__item {
+.modal-cocktails__item {
   &:before {
     content: '✶ ';
     color: $ingr-title-color;
   }
 }
 
-.modal-coctails__link {
+.modal-cocktails__link {
   @extend%link;
+}
+
+.modal-cocktails-title__wrap {
+  display: flex;
 }
