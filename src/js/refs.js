@@ -10,6 +10,8 @@ export const refs = {
     closeModalBtn: document.querySelector(".js-close-menu"),
     modalCocktailWindow: document.querySelector("[data-modalCocktails]"),
     modalDetailCocktailContainer: document.querySelector(".modal-cocktails__wrapper"),
+    modalDetailCocktailContainerMobile: document.querySelector(".modal-cocktails__wrapper-mobile"),
+
 
    
 };
