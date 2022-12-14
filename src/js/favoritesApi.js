@@ -169,34 +169,24 @@ export class ApiFavorite {
     event.preventDefault();
     const searchText = event.target.query.value;
     const cocktails = this.getAllCocktails();
-    const newCocktails = [];
     refs.cocktailsList.innerHTML = '';
-    cocktails.map(cocktail => {
+    const newCocktails = cocktails.reduce((acc, cocktail) => {
       const cocByName = cocktail.strDrink.toLowerCase();
-      if (cocByName.includes(searchText.toLowerCase())) {
-        newCocktails.push(cocktail);
-        console.log(newCocktails);
-        refs.cocktailsList.insertAdjacentHTML('beforeend', this.renderAllCocktails(newCocktails));
-      }
-    });
+      return cocByName.includes(searchText.toLowerCase()) ? [...acc, cocktail] : [...acc];
+    }, []);
+    refs.cocktailsList.insertAdjacentHTML('beforeend', this.renderAllCocktails(newCocktails));
   }
 
   searchByIngredientsName(event) {
     event.preventDefault();
     const searchText = event.target.query.value;
     const ingridients = this.getAllIngredients();
-    const newIngridients = [];
     refs.ingridientsList.innerHTML = '';
-    ingridients.map(ingridient => {
+    const newIngridients = ingridients.reduce((acc, ingridient) => {
       const ingrByName = ingridient.strIngredient.toLowerCase();
-      if (ingrByName.includes(searchText.toLowerCase())) {
-        newIngridients.push(ingridient);
-        refs.ingridientsList.insertAdjacentHTML(
-          'beforeend',
-          this.renderAllIngredient(newIngridients)
-        );
-      }
-    });
+      return ingrByName.includes(searchText.toLowerCase()) ? [...acc, ingridient] : [...acc];
+    }, []);
+    refs.ingridientsList.insertAdjacentHTML('beforeend', this.renderAllIngredient(newIngridients));
   }
 
   isCoctailInFavorites(cocktailId) {

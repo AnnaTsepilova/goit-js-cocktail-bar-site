@@ -177,22 +177,20 @@ export class CocktailsRender {
 
   onLearnMoreBtn(e) {
     e.preventDefault();
-    refs.modalCocktailWindow.classList.toggle("с-backdrop--is-hidden");
+    refs.modalCocktailWindow.classList.toggle('с-backdrop--is-hidden');
     const cocktailsApi = new CocktailsApi();
-    cocktailsApi.getCocktailById(e.target.dataset.cocktailId)
-      .then(response => {
-        console.log(response);
-        console.log(refs.modalDetailCocktailContainer);
-        refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(response.drinks[0]);
-      });
+    cocktailsApi.getCocktailById(e.target.dataset.cocktailId).then(response => {
+      console.log(response);
+      console.log(refs.modalDetailCocktailContainer);
+      refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(response.drinks[0]);
+    });
   }
 
   toggleModal() {
-    refs.modalCocktailWindow.classList.toggle("с-backdrop--is-hidden");
+    refs.modalCocktailWindow.classList.toggle('с-backdrop--is-hidden');
   }
 
-    // favorite.removeCocktailById(e.target.dataset.cocktailId);
-    // const removeCocktailCard = document.querySelector('#c_' + e.target.dataset.cocktailId);
-    // removeCocktailCard.remove();
-  }
+  // favorite.removeCocktailById(e.target.dataset.cocktailId);
+  // const removeCocktailCard = document.querySelector('#c_' + e.target.dataset.cocktailId);
+  // removeCocktailCard.remove();
 }
