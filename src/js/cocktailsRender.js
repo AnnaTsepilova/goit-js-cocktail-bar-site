@@ -2,6 +2,7 @@ import { refs } from './refs';
 import { CocktailsApi } from './cocktailsApi';
 import sprite from '../images/sprite.svg';
 import { createCocktailDetails, createCocktailDetailsMobile } from './modalCocktails';
+import { ApiFavorite } from './favoritesApi';
 
 export class CocktailsRender {
   cocktailsApi;
@@ -203,7 +204,7 @@ export class CocktailsRender {
     const learnMoreBtn = document.querySelectorAll('.btn-learn_more');
 
     for (let btn of learnMoreBtn) {
-      btn.addEventListener('click', this.onLearnMoreBtn);
+      btn.addEventListener('click', e => this.onLearnMoreBtn(e));
     }
   }
 
@@ -223,8 +224,7 @@ export class CocktailsRender {
           refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(response.drinks[0]);
         }
 
-        this.onRenderCompleteModal();
-        
+        thisObj.onRenderCompleteModal();        
       });
   }
 
@@ -234,10 +234,13 @@ export class CocktailsRender {
 
   onRenderCompleteModal() {
     const addToFavBtn = document.querySelector('.btn-favorite');
-    console.log(addToFavBtn);
-  
-  // addToFavBtn.addEventListener('click', this.onLearnMoreBtn)
-    
+    const cocktailId = addToFavBtn.dataset.cocktailId;
+    console.log(cocktailId);
+
+    addToFavBtn.addEventListener('click', e => {
+      const favorite = new ApiFavorite();
+      favorite.addCocktailById(cocktailId);
+    });
   }
 
 
