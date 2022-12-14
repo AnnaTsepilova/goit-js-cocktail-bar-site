@@ -1,19 +1,12 @@
-
-    <div class="container header-container">
-      <a class="header-logo" href="./index.html">
-      <picture>
-        <source
-        srcset="
-        ./images/header/Logo@mob.png   1x,
-        ./images/header/Logo@mob2x.png 2x
-        "
+<div class="container header-container">
+  <a class="header-logo" href="./index.html">
+    <picture>
+      <source
+        srcset="./images/header/Logo@mob.png 1x, ./images/header/Logo@mob2x.png 2x"
         media="(max-width: 767px)"
-        />
-        <source
-        srcset="
-        ./images/header/Logo@tab.png   1x,
-        ./images/header/Logo@tab2x.png 2x
-        "
+      />
+      <source
+        srcset="./images/header/Logo@tab.png 1x, ./images/header/Logo@tab2x.png 2x"
         media="(min-width: 768px)"
         />
         <source/>
@@ -25,7 +18,6 @@
         />
       </picture>
       </a> 
-        
     <div class="desctop-wrapper">
        <div class="navigation-wrapper">
        <nav class="desc-nav desc-nav__link">
@@ -33,10 +25,9 @@
           <li class="nav-menu__li mob-nav__link">
             <a class="mob-nav__link" href="./index.html">Home</a>
           </li>
-
           <li>
             <div class="dropdown" style="float:left;">
-              <button class="dropbtn">Favorites</button>
+              <button class="dropbtn">Favorite</button>
               <div class="dropdown-content">
                 <a class="fav-a" href="./favorite-cocktails.html" 
                target="_self">
@@ -53,42 +44,39 @@
     </div>
 
     <div class="features-wrapper">
-        
-      <form class="header__search js-search-cocktail">
+      <form class="header__search js-search-cocktail js-search-favorite">
         <button class="header__search-btn" type="submit">
-            <svg class="search__icon" width="20" height="20">
-                <use xlink:href="./images/sprite.svg#icon-search" />
-              </svg>
+          <svg class="search__icon" width="20" height="20">
+            <use xlink:href="./images/sprite.svg#icon-search" />
+          </svg>
         </button>
-        <input 
-         class="header__input"
-         type="text"
-         name="query"
-         placeholder="Search" 
-         />
+        <input class="header__input" type="text" name="query" placeholder="Search" />
       </form>
 
       <div class="theme-switch">
         <p class="theme-switch__light">Light</p>
         <div class="theme-switch__control">
-          <input class="theme-switch__toggle" type="checkbox" name="theme" id="theme-switch-toggle"
-            aria-label="Переключить между тёмной и светлой темой" />
-          <label aria-hidden="true" class="theme-switch__track" for="theme-switch-toggle">
-          </label>
+          <input
+            class="theme-switch__toggle"
+            type="checkbox"
+            name="theme"
+            id="theme-switch-toggle"
+            aria-label="Переключить между тёмной и светлой темой"
+          />
+          <label aria-hidden="true" class="theme-switch__track" for="theme-switch-toggle"> </label>
           <div aria-hidden="true" class="theme-switch__marker"></div>
         </div>
         <p class="theme-switch__dark">Dark</p>
       </div>
       <script src="./js/themeSwitch.js" type="module"></script>
-     </div>
     </div>
+  </div>
 
       <button class="menu-toggle js-open-menu" aria-expanded="false" aria-controls="mobile-menu">
         <svg class="mobile-menu__icon" width="30" height="16">
           <use href="./images/sprite.svg#icon-menu">
         </svg>
       </button>
-      
       <div class="menu-container js-menu-container" id="mobile-menu">
         <button class="menu-toggle js-close-menu">
           <svg class="mobile-menu__icon" width="18" height="18">
@@ -111,4 +99,3 @@
          ></script>
     </div>
 </div>
-

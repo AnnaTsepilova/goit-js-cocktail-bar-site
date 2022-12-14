@@ -1,7 +1,7 @@
 import { refs } from './refs';
 import { CocktailsApi } from './cocktailsApi';
 import sprite from '../images/sprite.svg';
-import { createCocktailDetails } from './modalCocktails';
+import { createCocktailDetails, createCocktailDetailsMobile } from './modalCocktails';
 
 export class CocktailsRender {
   cocktailsApi;
@@ -70,6 +70,7 @@ export class CocktailsRender {
     const thisObj = this;
     const letter = refs.searchMobileInput.value;
     refs.searchSet.innerHTML = '';
+
     this.cocktailsApi
       .getCocktailsBySymbol(letter)
       .then(response => {
@@ -82,6 +83,7 @@ export class CocktailsRender {
         }
         refs.searchSetCaption.textContent = 'Searching results';
         refs.searchSet.innerHTML = thisObj.createCocktailCard(response.drinks);
+        thisObj.onRenderComplete();
       })
       .catch(error => {
         console.log(error);
@@ -213,11 +215,22 @@ export class CocktailsRender {
     cocktailsApi.getCocktailById(e.target.dataset.cocktailId).then(response => {
       console.log(response);
       console.log(refs.modalDetailCocktailContainer);
-      refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(response.drinks[0]);
+
+      if (window.screen.width < 768) {
+        refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(
+          response.drinks[0]
+        );
+      } else {
+        refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(response.drinks[0]);
+      }
     });
   }
 
   toggleModal() {
     refs.modalCocktailWindow.classList.toggle('с-backdrop--is-hidden');
   }
+
+  // favorite.removeCocktailById(e.target.dataset.cocktailId);
+  // const removeCocktailCard = document.querySelector('#c_' + e.target.dataset.cocktailId);
+  // removeCocktailCard.remove();
 }

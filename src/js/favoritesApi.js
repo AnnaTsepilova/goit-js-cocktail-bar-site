@@ -1,7 +1,6 @@
-import axios from 'axios';
-import { LocalStorage } from './localStorage';
+import { refs } from './refs';
 import { CocktailsApi } from './cocktailsApi';
-import { x } from './test';
+import sprite from '../images/sprite.svg';
 
 const cocktailApi = new CocktailsApi();
 
@@ -9,7 +8,7 @@ const getId = document.querySelector('.btn-add_and_remove');
 
 export class ApiFavorite {
   static favoriteCocktailsKey = 'favorite-cocktails';
-  static facoriteIngridientsKey = 'favorite-ingridient';
+  static favoriteIngridientsKey = 'favorite-ingridient';
 
   constructor() {}
 
@@ -100,8 +99,7 @@ export class ApiFavorite {
     coctailApi.getCocktailById(arrId);
   }*/
 
-  renderAllCocktails() {
-    const cocktails = this.getAllCocktails();
+  renderAllCocktails(cocktails) {
     if (!cocktails) {
       return;
     }
@@ -117,7 +115,7 @@ export class ApiFavorite {
             <button class="btn-add_and_remove" data-cocktail-id="${cocktail.idDrink}">
               Remove
               <svg class="icon-heart__svg" width="22" height="19">
-                <use href="./images/sprite.svg#icon-heart"></use>
+                <use href="${sprite}#icon-heart"/>
               </svg>
             </button>
           </div>
@@ -138,15 +136,15 @@ export class ApiFavorite {
    */
 
   getAllIngredients() {
-    return JSON.parse(localStorage.getItem(ApiFavorite.facoriteIngridientsKey)) ?? [];
+    return JSON.parse(localStorage.getItem(ApiFavorite.favoriteIngridientsKey)) ?? [];
   }
 
   saveIngridients(ingridients) {
-    localStorage.setItem(ApiFavorite.facoriteIngridientsKey, JSON.stringify(ingridients));
+    localStorage.setItem(ApiFavorite.favoriteIngridientsKey, JSON.stringify(ingridients));
   }
 
-  renderAllIngredient() {
-    const ingridients = this.getAllIngredients();
+  renderAllIngredient(ingridients) {
+    // const ingridients = this.getAllIngredients();
     return ingridients
       .map(ingridient => {
         `
@@ -157,7 +155,7 @@ export class ApiFavorite {
             <button class="btn-learn_more">Learn more</button>
             <button class="btn-add_and_remove">
               Remove<svg class="icon-heart__svg" width="22" height="19">
-                <use href="./images/sprite.svg#icon-heart"></use>
+                <use href="${sprite}#icon-heart"></use>
               </svg>
             </button>
           </div>
@@ -166,20 +164,29 @@ export class ApiFavorite {
       .join('');
   }
 
-  // async searchByCocktailName(event) {
-  //   event.preventDefault();
-  //   searchText = event.currentTarget.searchQuery.value.trim();
-  //   const { hits } = await localStorage(searchText);
-  //   event.target.reset();
-  //   if (hits.length === 0) {
-  //     favoriteCocktails.classList.add('is-hidden'),
-  //       favoriteCocktailsNotFound.classList.remove('is-hidden');
-  //   } else {
-  //     return localStorage.map(() => ``).join('');
-  //   }
-  // }
+  searchByCocktailName(event) {
+    event.preventDefault();
+    const searchText = event.target.query.value;
+    const cocktails = this.getAllCocktails();
+    refs.cocktailsList.innerHTML = '';
+    const newCocktails = cocktails.reduce((acc, cocktail) => {
+      const cocByName = cocktail.strDrink.toLowerCase();
+      return cocByName.includes(searchText.toLowerCase()) ? [...acc, cocktail] : [...acc];
+    }, []);
+    refs.cocktailsList.insertAdjacentHTML('beforeend', this.renderAllCocktails(newCocktails));
+  }
 
-  searchByIngredientsName() {}
+  searchByIngredientsName(event) {
+    event.preventDefault();
+    const searchText = event.target.query.value;
+    const ingridients = this.getAllIngredients();
+    refs.ingridientsList.innerHTML = '';
+    const newIngridients = ingridients.reduce((acc, ingridient) => {
+      const ingrByName = ingridient.strIngredient.toLowerCase();
+      return ingrByName.includes(searchText.toLowerCase()) ? [...acc, ingridient] : [...acc];
+    }, []);
+    refs.ingridientsList.insertAdjacentHTML('beforeend', this.renderAllIngredient(newIngridients));
+  }
 
   isCoctailInFavorites(cocktailId) {
     const cocktails = this.getAllCocktails();
@@ -187,7 +194,8 @@ export class ApiFavorite {
   }
 }
 
-// const favoriteCocktails = document.querySelector('.favorite-cocktails');
-// const favoriteCocktailsNotFound = document.querySelector('.add-box-cocktails');
-// form.addEventListener('submit', formSubmit);
-// let searchText = '';
+const favorite = new ApiFavorite();
+
+refs.searchFavorite.addEventListener('submit', function (event) {
+  favorite.searchByCocktailName(event);
+});
