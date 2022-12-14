@@ -82,6 +82,7 @@ export class CocktailsRender {
         }
         refs.searchSetCaption.textContent = 'Searching results';
         refs.searchSet.innerHTML = thisObj.createCocktailCard(response.drinks);
+        thisObj.onRenderComplete();
       })
       .catch(error => {
         console.log(error);
@@ -199,7 +200,6 @@ export class CocktailsRender {
   // -------------подключаем кнопку learn more к отрендеренным карточкам коктейлей---------------
   onRenderComplete() {
     const learnMoreBtn = document.querySelectorAll('.btn-learn_more');
-    console.log(learnMoreBtn);
 
     for (let btn of learnMoreBtn) {
       btn.addEventListener('click', this.onLearnMoreBtn)
@@ -208,18 +208,21 @@ export class CocktailsRender {
 
   onLearnMoreBtn(e) {
     e.preventDefault();
+    const thisObj = this;
     refs.modalCocktailWindow.classList.toggle("с-backdrop--is-hidden");
     const cocktailsApi = new CocktailsApi();
     cocktailsApi.getCocktailById(e.target.dataset.cocktailId)
       .then(response => {
-        console.log(response);
-        console.log(refs.modalDetailCocktailContainer);
+        // console.log(response);
+        // console.log(refs.modalDetailCocktailContainer);
 
         if (window.screen.width < 768){
           refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(response.drinks[0]);
         } else {
           refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(response.drinks[0]);
         }
+
+        this.onRenderCompleteModal();
         
       });
   }
@@ -227,5 +230,18 @@ export class CocktailsRender {
   toggleModal() {
     refs.modalCocktailWindow.classList.toggle("с-backdrop--is-hidden");
   }
+
+
+  onRenderCompleteModal() {
+    const addToFavBtn = document.querySelector('.btn-favorite');
+    console.log(addToFavBtn);
+  
+  // addToFavBtn.addEventListener('click', this.onLearnMoreBtn)
+    
+  }
+
+
+
+
 
 }
