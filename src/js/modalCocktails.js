@@ -19,9 +19,8 @@ function onBackdropClick(event) {
   }
 }
 
-// ----------------рендерим модальное окно Cocktail Details----------
+// ----------------рендерим модальное окно Cocktail Details Tablet----------
 export const createCocktailDetails = (drink) => {
-  //console.log(drink);
   let ingredients = [];
   for (let props in drink) {
     if (props.indexOf('strIngredient') != -1) {
@@ -60,3 +59,37 @@ export const createCocktailDetails = (drink) => {
       <button class="modal__btn btn-favorite" data-cocktail-id="${drink.idDrink}">Add to favorite</button>
   `;
 }
+
+// ----------------рендерим модальное окно Cocktail Details Mobile----------
+export const createCocktailDetailsMobile = (drink) => {
+  //console.log(drink);
+  let ingredients = [];
+  for (let props in drink) {
+    if (props.indexOf('strIngredient') != -1) {
+      if (drink[props]) {
+        ingredients.push(drink[props]);
+      }
+    }
+  }
+
+  return `
+    <h2 class="modal-cocktails__title">${drink.strDrink}</h2>
+    <h3 class="modal-cocktails__headline">Instractions:</h3>
+    <p class="modal-cocktails__text">${drink.strInstructions}</p>
+    <img class="modal-cocktails__img" src="${drink.strDrinkThumb}" alt="${drink.strDrink}" width="280" height="280" loading="lazy" />
+      
+    <h3 class="modal-cocktails__subject">Ingredients</h3>
+    <p class="modal-cocktails__subtitle">Per cocktail</p>
+    <ul class="modal-cocktails__list">` +
+      ingredients.map(ingredient => {
+        return `
+        <li class="modal-cocktails__item">
+          <a class="modal-cocktails__link" href="#" data-modalIngred-open>${ingredient}</a>
+        </li>`
+      }).join('') +
+      `</ul>        
+    <button class="modal-cocktails__btn btn-favorite" data-cocktail-id="${drink.idDrink}>Add to favorite</button>
+  `;
+}
+
+

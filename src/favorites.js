@@ -8,14 +8,14 @@ const cocktailsApi = new CocktailsApi();
 const favorite = new ApiFavorite();
 
 // ------------ПРИМЕР---------------------
-cocktailsApi.getCocktailsBySymbol('r').then(function (response) {
-  let i = 0;
-  for (cocktail of response.drinks) {
-    //console.log(cocktail);
-    favorite.addCocktail(cocktail);
-    i++;
-    if (i >= 4) break;
-  }
+cocktailsApi.getCocktailsBySymbol('b').then(function (response) {
+    let i = 0;
+    for (cocktail of response.drinks) {
+        //console.log(cocktail);
+        favorite.addCocktail(cocktail);
+        i++;
+        if (i >= 4) break;
+    }
 });
 // ------------ПРИМЕР для теста ремува из favorites---------------
 favorite.removeCocktailById(11000);
