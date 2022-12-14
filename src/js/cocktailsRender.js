@@ -69,8 +69,8 @@ export class CocktailsRender {
     const thisObj = this;
     const letter = refs.searchMobileInput.value;
     refs.searchSet.innerHTML = '';
-    
-    this.cocktailsApi.getCocktailsBySymbol(letter)
+    this.cocktailsApi
+      .getCocktailsBySymbol(letter)
       .then(response => {
         if (response.drinks === null) {
           // ----заинсталить красивую нотификашку
@@ -117,7 +117,8 @@ export class CocktailsRender {
     refs.searchSet.innerHTML = '';
     const thisObj = this;
 
-    this.cocktailsApi.getCocktailsBySymbol(letter)
+    this.cocktailsApi
+      .getCocktailsBySymbol(letter)
       .then(response => {
         console.log(response);
         if (response.drinks === null) {
@@ -148,7 +149,8 @@ export class CocktailsRender {
     console.log(e.currentTarget.elements.query.value);
     refs.searchSet.innerHTML = '';
 
-    this.cocktailsApi.searchCocktailByName(cocktailName)
+    this.cocktailsApi
+      .searchCocktailByName(cocktailName)
       .then(response => {
         console.log(response);
         if (response.drinks === null) {
@@ -168,20 +170,19 @@ export class CocktailsRender {
         console.log(error);
       });
   }
-  
+
   // ----------------рендерим рандомные 9 коктейлей----------
   renderRandomCocktails() {
     const thisObj = this;
-    
+
     const makePromise = () => {
       return new Promise(resolve => {
-        thisObj.cocktailsApi.getRandomCocktail()
-        .then(response => resolve(response))
+        thisObj.cocktailsApi.getRandomCocktail().then(response => resolve(response));
       });
     };
 
     let promises = [];
-    for (let i = 0; i < 9; i+=1) {
+    for (let i = 0; i < 9; i += 1) {
       promises.push(makePromise());
     }
 
@@ -191,7 +192,7 @@ export class CocktailsRender {
         response.map(elm => cocktailArray.push(elm.drinks[0]));
         refs.searchSet.innerHTML = thisObj.createCocktailCard(cocktailArray);
         thisObj.onRenderComplete();
-      }) 
+      })
       .catch(error => console.log(error));
   }
 
@@ -201,14 +202,12 @@ export class CocktailsRender {
     console.log(learnMoreBtn);
 
     for (let btn of learnMoreBtn) {
-      btn.addEventListener('click', this.onLearnMoreBtn)
+      btn.addEventListener('click', this.onLearnMoreBtn);
     }
-    
   }
 
   onLearnMoreBtn(e) {
     e.preventDefault();
-    refs.modalCocktailWindow.classList.toggle("backdrop--is-hidden");
+    refs.modalCocktailWindow.classList.toggle('backdrop--is-hidden');
   }
-
 }
