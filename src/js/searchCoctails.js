@@ -1,27 +1,27 @@
-// import * as searchCoctails from './js/searchCoctails';
-// -----   ПОДКЛЮЧИ ИМПОРТ В ИНДЕКС ШОБ ПОСМОТРЕТЬ ПРЕВЬЮ
+// // import * as searchCoctails from './js/searchCoctails';
+// // -----   ПОДКЛЮЧИ ИМПОРТ В ИНДЕКС ШОБ ПОСМОТРЕТЬ ПРЕВЬЮ
 
-import { refs } from './refs';
-import axios from 'axios';
+// import { refs } from './refs';
+// import axios from 'axios';
 
-// ------из класса апи
-const BASE_URL = 'https://www.thecocktaildb.com/api/json/v1/1/';
+// // ------из класса апи
+// const BASE_URL = 'https://www.thecocktaildb.com/api/json/v1/1/';
 
-async function getCocktailsBySymbol(symbol) {
-  const response = await axios.get(`${BASE_URL}search.php?f=${symbol}`);
-  return response.data;
-}
-async function searchCocktailByName(cocktailName) {
-  const response = await axios.get(`${BASE_URL}search.php?s=${cocktailName}`);
-  return response.data;
-}
-// ------из класса апи^^^^^
+// async function getCocktailsBySymbol(symbol) {
+//   const response = await axios.get(`${BASE_URL}search.php?f=${symbol}`);
+//   return response.data;
+// }
+// async function searchCocktailByName(cocktailName) {
+//   const response = await axios.get(`${BASE_URL}search.php?s=${cocktailName}`);
+//   return response.data;
+// }
+// // ------из класса апи^^^^^
 
-// ----консты и ивенты
-const searchSet = document.querySelector('.search-set__list');
-const searchInput = document.querySelector('.search__input');
-const headerSearch = document.querySelector('.header__search');
-const searchSetCaption = document.querySelector('.search-set__caption');
+// // ----консты и ивенты
+// const searchSet = document.querySelector('.search-set__list');
+// const searchInput = document.querySelector('.search__input');
+// const headerSearch = document.querySelector('.header__search');
+// const searchSetCaption = document.querySelector('.search-set__caption');
 
 // refs.searchList.addEventListener('click', searchByABC);
 // searchInput.addEventListener('blur', searchDatalistByABC);
@@ -81,32 +81,32 @@ const searchSetCaption = document.querySelector('.search-set__caption');
 //     });
 // }
 
-// ----поиск через хедер
-function searchByHeader(e) {
-  const cocktailName = e.currentTarget.elements.query.value;
-  e.preventDefault();
-  console.log(e.currentTarget.elements.query.value);
-  searchSet.innerHTML = '';
+// // ----поиск через хедер
+// function searchByHeader(e) {
+//   const cocktailName = e.currentTarget.elements.query.value;
+//   e.preventDefault();
+//   console.log(e.currentTarget.elements.query.value);
+//   searchSet.innerHTML = '';
 
-  searchCocktailByName(cocktailName)
-    .then(response => {
-      console.log(response);
-      if (response.drinks === null) {
-        // ----заинсталить красивую нотификашку
+//   searchCocktailByName(cocktailName)
+//     .then(response => {
+//       console.log(response);
+//       if (response.drinks === null) {
+//         // ----заинсталить красивую нотификашку
 
-        window.alert('На жаль такий коктейль відсутній');
-        return;
-        // ----заинсталить красивую нотификашку ^^^^^
-      }
+//         window.alert('На жаль такий коктейль відсутній');
+//         return;
+//         // ----заинсталить красивую нотификашку ^^^^^
+//       }
 
-      searchSetCaption.textContent = 'Searching results';
-      createCoctailCard(response.drinks);
-    })
+//       searchSetCaption.textContent = 'Searching results';
+//       createCoctailCard(response.drinks);
+//     })
 
-    .catch(error => {
-      console.log(error);
-    });
-}
+//     .catch(error => {
+//       console.log(error);
+//     });
+// }
 
 // ------создание карточек
 function createCoctailCard(drinks) {
