@@ -136,13 +136,12 @@ export class CocktailsRender {
         refs.searchSet.innerHTML = thisObj.createCocktailCard(response.drinks);
         thisObj.onRenderComplete();
       })
-
       .catch(error => {
         console.log(error);
       });
   }
 
-   // ----------------рендерим карточки коктейлей из хедера----------
+  // ----------------рендерим карточки коктейлей из хедера----------
   searchByHeader(e) {
     e.preventDefault();
 
@@ -153,7 +152,8 @@ export class CocktailsRender {
     console.log(e.currentTarget.elements.query.value);
     refs.searchSet.innerHTML = '';
 
-    this.cocktailsApi.searchCocktailByName(cocktailName)
+    this.cocktailsApi
+      .searchCocktailByName(cocktailName)
       .then(response => {
         console.log(response);
         if (response.drinks === null) {
