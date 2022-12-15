@@ -8,7 +8,7 @@
   z-index: 102;
   opacity: 1;
   visibility: visible;
-  transition: opacity 250ms $cubic, visibility 250ms $cubic;
+  transition: opacity 250ms $cubic;
 }
 
 .i-backdrop--is-hidden {
