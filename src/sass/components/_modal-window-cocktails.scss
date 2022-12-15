@@ -171,6 +171,11 @@
 
 .modal-cocktails__link {
   @extend%link;
+  color: $primary-black-color;
+  transition: color 250ms $cubic;
+  &:hover {
+    color: $accent-color;
+  }
 }
 
 .modal-cocktails-title__wrap {
