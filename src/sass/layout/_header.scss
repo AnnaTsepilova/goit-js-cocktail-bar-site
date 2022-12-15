@@ -372,6 +372,39 @@ body.dark-theme {
   & .mob-nav-m__link {
     color: $primary-white-color;
   }
+
+  & .modal-ingredients {
+    background-color: $primary-black-color;
+  }
+
+  & .modal-ingredients__subject {
+    color: $primary-white-color;
+  }
+
+  & .modal-ingredients__title {
+    color: $primary-white-color;
+  }
+
+  & .modal-ingredients__item:before {
+    color: $primary-white-color;
+  }
+
+  & .modal-ingredients__headline {
+    color: $primary-white-color;
+  }
+
+  & .modal-ingredients__link {
+    color: $primary-text-color-DT;
+  }
+
+  & .modal-ingredients__text {
+    color: $primary-text-color-DT;
+  }
+
+  & .modal-ingredients__btn-close {
+    fill: $primary-white-color;
+    background-color: $primary-black-color;
+  }
   // & .theme-switch__track {
   //   fill: $primary-white-color;
   //   background-color: $accent-color;
