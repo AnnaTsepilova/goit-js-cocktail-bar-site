@@ -105,6 +105,15 @@ export class ApiFavorite {
     if (!cocktails) {
       return;
     }
+
+    if (cocktails.length == 0) {
+      return `
+      <div class="add-box-cocktails">
+        <p class="add-box-cocktails__text">You haven't added any favorite cocktails yet</p>
+      </div>
+    `;
+    }
+
     return cocktails
       .map(
         cocktail =>
@@ -147,6 +156,19 @@ export class ApiFavorite {
 
   renderAllIngredient(ingridients) {
     // const ingridients = this.getAllIngredients();
+
+    if (!ingridients) {
+      return;
+    }
+
+    if (ingridients.length == 0) {
+      return `
+        <div class="add-box-ingredients">
+            <p class="add-box-ingredients__text">You haven't added any favorite cocktails yet</p>
+        </div>
+      `;
+    }
+
     return ingridients
       .map(ingridient => {
         `
@@ -195,7 +217,7 @@ export class ApiFavorite {
     return !!cocktails.find(cocktail => cocktail.idDrink === cocktailId);
   }
 
-// -----------функция добавления/удаления коктейля в Favorites из Cocktails Details----------------
+  // -----------функция добавления/удаления коктейля в Favorites из Cocktails Details----------------
   favoritesBtnLister(drink) {
     const addToFavBtn = document.querySelector('.btn-favorite');
 
@@ -208,8 +230,11 @@ export class ApiFavorite {
         this.addCocktailById(drink.idDrink);
       }
 
-      if (window.screen.width < 768){
-        refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(drink, !isFavorite);
+      if (window.screen.width < 768) {
+        refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(
+          drink,
+          !isFavorite
+        );
       } else {
         refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(drink, !isFavorite);
       }
