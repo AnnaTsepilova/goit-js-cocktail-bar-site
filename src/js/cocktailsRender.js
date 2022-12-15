@@ -5,6 +5,8 @@ import { createCocktailDetails, createCocktailDetailsMobile } from './modalCockt
 import { ApiFavorite } from './favoritesApi';
 import { Pagination } from './pagination';
 
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 export class CocktailsRender {
   cocktailsApi;
 
@@ -78,11 +80,14 @@ export class CocktailsRender {
       .then(response => {
         if (response.drinks === null) {
           // ----заинсталить красивую нотификашку
-
-          window.alert('На жаль такий коктейль відсутній');
+          refs.searchSetCaption.textContent = '';
+          refs.notifBox.classList.remove('is-hidden');
+          Notify.failure('На жаль такий коктейль відсутній');
           return;
+
           // ----заинсталить красивую нотификашку ^^^^^
         }
+        refs.notifBox.classList.add('is-hidden');
         refs.searchSetCaption.textContent = 'Searching results';
 
         thisObj.makePagination(response.drinks);
@@ -127,10 +132,13 @@ export class CocktailsRender {
         if (response.drinks === null) {
           // ----заинсталить красивую нотификашку
 
-          window.alert('На жаль такий коктейль відсутній');
+          refs.searchSetCaption.textContent = '';
+          refs.notifBox.classList.remove('is-hidden');
+          Notify.failure('На жаль такий коктейль відсутній');
           return;
           // ----заинсталить красивую нотификашку ^^^^^
         }
+        refs.notifBox.classList.add('is-hidden');
         refs.searchSetCaption.textContent = 'Searching results';
 
         thisObj.makePagination(response.drinks);
@@ -155,12 +163,13 @@ export class CocktailsRender {
       .then(response => {
         if (response.drinks === null) {
           // ----заинсталить красивую нотификашку
-
-          window.alert('На жаль такий коктейль відсутній');
-          //return;
+          refs.searchSetCaption.textContent = '';
+          refs.notifBox.classList.remove('is-hidden');
+          Notify.failure('На жаль такий коктейль відсутній');
+          return;
           // ----заинсталить красивую нотификашку ^^^^^
         }
-
+        refs.notifBox.classList.add('is-hidden');
         refs.searchSetCaption.textContent = 'Searching results';
 
         thisObj.makePagination(response.drinks);
@@ -176,7 +185,7 @@ export class CocktailsRender {
       items: drinksArray,
       paginationRoot: refs.pageContainer,
       range: this.getPageLimit(),
-      callback: (array) => {
+      callback: array => {
         refs.searchSet.innerHTML = this.createCocktailCard(array);
         this.onRenderComplete();
       },
@@ -189,7 +198,7 @@ export class CocktailsRender {
       return 3;
     }
     // Tablet
-    if (window.screen.width >= 768 & window.screen.width < 1280) {
+    if ((window.screen.width >= 768) & (window.screen.width < 1280)) {
       return 6;
     }
     return 9;
@@ -231,31 +240,32 @@ export class CocktailsRender {
 
   onLearnMoreBtn(e) {
     e.preventDefault();
-  
-    refs.modalCocktailWindow.classList.toggle("с-backdrop--is-hidden");
+
+    refs.modalCocktailWindow.classList.toggle('с-backdrop--is-hidden');
     const cocktailsApi = new CocktailsApi();
     refs.modalDetailCocktailContainer.innerHTML = '';
-    refs.modalDetailCocktailContainerMobile.innerHTML = '';    
+    refs.modalDetailCocktailContainerMobile.innerHTML = '';
 
-    cocktailsApi.getCocktailById(e.target.dataset.cocktailId)
-      .then(response => {
-        const favorite = new ApiFavorite();
+    cocktailsApi.getCocktailById(e.target.dataset.cocktailId).then(response => {
+      const favorite = new ApiFavorite();
 
-        let drink = response.drinks[0];
-        let isFavorite = favorite.isCoctailInFavorites(drink.idDrink);
+      let drink = response.drinks[0];
+      let isFavorite = favorite.isCoctailInFavorites(drink.idDrink);
 
-        if (window.screen.width < 768){
-          refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(drink, isFavorite);
-        } else {
-          refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(drink, isFavorite);
-        }
+      if (window.screen.width < 768) {
+        refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(
+          drink,
+          isFavorite
+        );
+      } else {
+        refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(drink, isFavorite);
+      }
 
-        favorite.favoritesBtnLister(drink, isFavorite);
-      });
+      favorite.favoritesBtnLister(drink, isFavorite);
+    });
   }
 
   toggleModal() {
     refs.modalCocktailWindow.classList.toggle('с-backdrop--is-hidden');
   }
-
 }
