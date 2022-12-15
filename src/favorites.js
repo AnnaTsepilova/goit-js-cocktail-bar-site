@@ -20,8 +20,8 @@ refs.modalCocktails.addEventListener('click', function (event) {
 
 function onRemoveBtn(e) {
   e.preventDefault();
-  favorite.removeCocktailById(e.target.dataset.cocktailId);
-  const removeCocktailCard = document.querySelector('#c_' + e.target.dataset.cocktailId);
+  favorite.removeCocktailById(e.currentTarget.dataset.cocktailId);
+  const removeCocktailCard = document.querySelector('#c_' + e.currentTarget.dataset.cocktailId);
   removeCocktailCard.remove();
 }
 
