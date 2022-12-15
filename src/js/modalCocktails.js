@@ -2,7 +2,6 @@ const refs = {
   closeModalCocktailsBtn: document.querySelector("[data-modalCocktails-close]"),
   closeModalCocktailsBtnTablet: document.querySelector("[data-modalCocktailsTablet-close]"),
   modalCocktails: document.querySelector("[data-modalCocktails]"),
-  body: document.querySelector('body'),
 };
 
 refs.closeModalCocktailsBtn.addEventListener("click", toggleModal);
@@ -11,6 +10,8 @@ refs.closeModalCocktailsBtnTablet.addEventListener("click", toggleModal);
 function toggleModal() {
   refs.modalCocktails.classList.toggle("с-backdrop--is-hidden");
 };
+
+
 
 refs.modalCocktails.addEventListener('click', onBackdropClick);
 
@@ -33,7 +34,7 @@ function onBackdropClick(event) {
 // }
 
 
-// ----------------рендерим модальное окно Cocktail Details Tablet---------- 
+// ----------------рендерим модальное окно Cocktail Details Tablet----------
 function parseIngredients(drink) {
   let ingredients = [];
   for (let props in drink) {
@@ -117,8 +118,8 @@ export const createCocktailDetailsMobile = (drink, inFavorites) => {
         <li class="modal-cocktails__item">
           <a class="modal-cocktails__link" href="#" data-modalIngred-open>${ingredient}</a>
         </li>`
-      }).join('') +
-      `</ul>
+    }).join('') +
+    `</ul>
     <button class="modal-cocktails__btn btn-favorite" data-cocktail-id="${drink.idDrink}>${btnStatusFav}</button>
   `;
 }
