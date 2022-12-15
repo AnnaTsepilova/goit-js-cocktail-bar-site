@@ -34,7 +34,7 @@ export class CocktailsRender {
       .join('');
   }
 
-  //--------генерация опций в списке алфавита моб-------------------------
+  //-----------генерация опций в списке алфавита моб-------------------------
   renderOptionDataList() {
     return this.generateAlphabet().forEach(letter => {
       let option = document.createElement('option');
@@ -45,7 +45,7 @@ export class CocktailsRender {
     });
   }
 
-  // ---------показываем и прячем выпадающий список поиска по алфавиту в мобильном версии------------------
+  // -----------показываем и прячем выпадающий список поиска по алфавиту в мобильном версии------------------
   addDatalistListeners() {
     const thisObj = this;
     refs.searchMobileInput.onfocus = function () {
@@ -98,15 +98,7 @@ export class CocktailsRender {
             <p class="coctail__desc">${strDrink}</p>
             <div class="box__btn">
               <button class="btn-learn_more" type="button" data-cocktail-id="${idDrink}">Learn more</button>
-              <button class="btn-add_and_remove" type="button" data-cocktail-id="${idDrink}">` +
-                (isFavorite?`Remove
-                <svg class="icon-heart__svg solid" width="22" height="19">
-                  <use href="${sprite}#icon-heart"/>
-                </svg>`:
-                `Add to
-                <svg class="icon-heart__svg" width="22" height="19">
-                  <use href="${sprite}#icon-heart"/>
-                </svg>`) +
+              <button class="btn-add_and_remove" type="button" data-cocktail-id="${idDrink}">` + this.createFavoriteBtn(isFavorite) +
               `</button>
             </div>
           </li>`;
@@ -114,6 +106,20 @@ export class CocktailsRender {
       .join('');
   }
 
+  createFavoriteBtn(isFavorite) {
+    return (
+      isFavorite ? 
+      `Remove
+      <svg class="icon-heart__svg solid" width="22" height="19">
+        <use href="${sprite}#icon-heart"/>
+      </svg>`
+      :
+      `Add to
+      <svg class="icon-heart__svg" width="22" height="19">
+        <use href="${sprite}#icon-heart"/>
+      </svg>`
+    );    
+  }
   // ----------------рендерим карточки коктейлей по ABC----------
   searchByABC(e) {
     e.preventDefault();
@@ -164,6 +170,7 @@ export class CocktailsRender {
     refs.searchSetCaption.textContent = 'Searching results';
   }
 
+  // ---------------пагинация-----------------------
   makePagination(drinksArray) {
     const pagCock = new Pagination({
       items: drinksArray,
@@ -216,10 +223,30 @@ export class CocktailsRender {
   // -------------подключаем кнопку learn more к отрендеренным карточкам коктейлей---------------
   onRenderComplete() {
     const learnMoreBtn = document.querySelectorAll('.btn-learn_more');
+    const favoritesBtn = document.querySelectorAll('.btn-add_and_remove');
 
     for (let btn of learnMoreBtn) {
       btn.addEventListener('click', e => this.onLearnMoreBtn(e));
     }
+
+    for (let btn of favoritesBtn) {
+      btn.addEventListener('click', e => this.onFavoritesBtn(e));
+    }
+  }
+
+  onFavoritesBtn(e) {
+    e.preventDefault();
+    const cocktailId = e.currentTarget.dataset.cocktailId;
+    let isFavorite = this.#favoriteApi.isCoctailInFavorites(cocktailId);
+
+    if (isFavorite) {
+      this.#favoriteApi.removeCocktailById(cocktailId);
+    } else {
+      this.#favoriteApi.addCocktailById(cocktailId);
+    }
+
+    e.currentTarget.innerHTML = this.createFavoriteBtn(!isFavorite);
+
   }
 
   onLearnMoreBtn(e) {
@@ -249,4 +276,6 @@ export class CocktailsRender {
   toggleModal() {
     refs.modalCocktailWindow.classList.toggle('с-backdrop--is-hidden');
   }
+
+
 }
