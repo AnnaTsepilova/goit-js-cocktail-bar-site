@@ -8,10 +8,12 @@ import { Pagination } from './pagination';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export class CocktailsRender {
-  cocktailsApi;
+  #cocktailsApi;
+  #favoriteApi;
 
   constructor() {
-    this.cocktailsApi = new CocktailsApi();
+    this.#cocktailsApi = new CocktailsApi();
+    this.#favoriteApi = new ApiFavorite();
   }
   // --------генератор алфавита------------
   generateAlphabet() {
@@ -75,22 +77,10 @@ export class CocktailsRender {
     const letter = refs.searchMobileInput.value;
     refs.searchSet.innerHTML = '';
 
-    this.cocktailsApi
+    this.#cocktailsApi
       .getCocktailsBySymbol(letter)
       .then(response => {
-        if (response.drinks === null) {
-          // ----заинсталить красивую нотификашку
-          refs.searchSetCaption.textContent = '';
-          refs.notifBox.classList.remove('is-hidden');
-          Notify.failure('На жаль такий коктейль відсутній');
-          return;
-
-          // ----заинсталить красивую нотификашку ^^^^^
-        }
-        refs.notifBox.classList.add('is-hidden');
-        refs.searchSetCaption.textContent = 'Searching results';
-
-        thisObj.makePagination(response.drinks);
+        thisObj.renderResults(response);
       })
       .catch(error => {
         console.log(error);
@@ -101,17 +91,23 @@ export class CocktailsRender {
   createCocktailCard(drinks) {
     return drinks
       .map(({ strDrinkThumb, strDrink, idDrink }) => {
+        let isFavorite = this.#favoriteApi.isCoctailInFavorites(idDrink);
+
         return `<li class="coctail__card">
             <img class="coctail__pic" src="${strDrinkThumb}" alt="${strDrink}" />
             <p class="coctail__desc">${strDrink}</p>
             <div class="box__btn">
               <button class="btn-learn_more" type="button" data-cocktail-id="${idDrink}">Learn more</button>
-              <button class="btn-add_and_remove" type="button" data-cocktail-id="${idDrink}">
-                Add to
+              <button class="btn-add_and_remove" type="button" data-cocktail-id="${idDrink}">` +
+                (isFavorite?`Remove
+                <svg class="icon-heart__svg solid" width="22" height="19">
+                  <use href="${sprite}#icon-heart"/>
+                </svg>`:
+                `Add to
                 <svg class="icon-heart__svg" width="22" height="19">
                   <use href="${sprite}#icon-heart"/>
-                </svg>
-              </button>
+                </svg>`) +
+              `</button>
             </div>
           </li>`;
       })
@@ -126,22 +122,10 @@ export class CocktailsRender {
 
     refs.searchSet.innerHTML = '';
 
-    this.cocktailsApi
+    this.#cocktailsApi
       .getCocktailsBySymbol(letter)
       .then(response => {
-        if (response.drinks === null) {
-          // ----заинсталить красивую нотификашку
-
-          refs.searchSetCaption.textContent = '';
-          refs.notifBox.classList.remove('is-hidden');
-          Notify.failure('На жаль такий коктейль відсутній');
-          return;
-          // ----заинсталить красивую нотификашку ^^^^^
-        }
-        refs.notifBox.classList.add('is-hidden');
-        refs.searchSetCaption.textContent = 'Searching results';
-
-        thisObj.makePagination(response.drinks);
+        thisObj.renderResults(response);
       })
       .catch(error => {
         console.log(error);
@@ -151,33 +135,33 @@ export class CocktailsRender {
   // ----------------рендерим карточки коктейлей из хедера----------
   searchByHeader(e) {
     e.preventDefault();
-
-    const cocktailName = e.currentTarget.elements.query.value;
     const thisObj = this;
-
-    console.log(e.currentTarget.elements.query.value);
+    const cocktailName = e.currentTarget.elements.query.value;
+    
     refs.searchSet.innerHTML = '';
 
-    this.cocktailsApi
+    this.#cocktailsApi
       .searchCocktailByName(cocktailName)
       .then(response => {
-        if (response.drinks === null) {
-          // ----заинсталить красивую нотификашку
-          refs.searchSetCaption.textContent = '';
-          refs.notifBox.classList.remove('is-hidden');
-          Notify.failure('На жаль такий коктейль відсутній');
-          return;
-          // ----заинсталить красивую нотификашку ^^^^^
-        }
-        refs.notifBox.classList.add('is-hidden');
-        refs.searchSetCaption.textContent = 'Searching results';
-
-        thisObj.makePagination(response.drinks);
+        thisObj.renderResults(response);
       })
-
       .catch(error => {
         console.log(error);
       });
+  }
+
+  renderResults(response) {
+    this.makePagination(response.drinks);
+    if (response.drinks === null) {
+      // ----заинсталить красивую нотификашку
+      refs.searchSetCaption.textContent = '';
+      refs.notifBox.classList.remove('is-hidden');
+      Notify.failure('На жаль такий коктейль відсутній');
+      return;
+      // ----заинсталить красивую нотификашку ^^^^^
+    }
+    refs.notifBox.classList.add('is-hidden');
+    refs.searchSetCaption.textContent = 'Searching results';
   }
 
   makePagination(drinksArray) {
@@ -210,7 +194,7 @@ export class CocktailsRender {
 
     const makePromise = () => {
       return new Promise(resolve => {
-        thisObj.cocktailsApi.getRandomCocktail().then(response => resolve(response));
+        thisObj.#cocktailsApi.getRandomCocktail().then(response => resolve(response));
       });
     };
 
@@ -242,15 +226,12 @@ export class CocktailsRender {
     e.preventDefault();
 
     refs.modalCocktailWindow.classList.toggle('с-backdrop--is-hidden');
-    const cocktailsApi = new CocktailsApi();
     refs.modalDetailCocktailContainer.innerHTML = '';
     refs.modalDetailCocktailContainerMobile.innerHTML = '';
 
-    cocktailsApi.getCocktailById(e.target.dataset.cocktailId).then(response => {
-      const favorite = new ApiFavorite();
-
+    this.#cocktailsApi.getCocktailById(e.target.dataset.cocktailId).then(response => {
       let drink = response.drinks[0];
-      let isFavorite = favorite.isCoctailInFavorites(drink.idDrink);
+      let isFavorite = this.#favoriteApi.isCoctailInFavorites(drink.idDrink);
 
       if (window.screen.width < 768) {
         refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(
@@ -261,7 +242,7 @@ export class CocktailsRender {
         refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(drink, isFavorite);
       }
 
-      favorite.favoritesBtnLister(drink, isFavorite);
+      this.#favoriteApi.favoritesBtnLister(drink, isFavorite);
     });
   }
 

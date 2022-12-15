@@ -166,11 +166,19 @@
     @extend %list;
 }
 
-.paginarion_btn-prev {
+.paginarion__btn-prev {
     margin-right: 12px;
+    cursor: pointer;
 }
+
 .paginarion_btn-next{
     margin-left: 12px;
+    cursor: pointer;
+}
+
+.arrow-grey {
+    fill: $secondary-text-color;
+    cursor: default;
 }
 
 .is-hidden{
