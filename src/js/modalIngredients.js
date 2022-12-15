@@ -44,9 +44,6 @@ export function onCocktailModalOpen() {
   const ingredientLinks = document.querySelectorAll("[data-modalIngred-open]");
 
   ingredientLinks.forEach(elm => elm.addEventListener("click", toggleModalIngred));
-
-  console.log('test');
-
 };
 
 export const createIngrDetails = (ingr, inFavorites) => {

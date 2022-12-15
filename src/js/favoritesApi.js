@@ -156,7 +156,7 @@ export class ApiFavorite {
           <div class="box-btn">
             <button class="btn-learn_more1" data-modalIngred-open data-ingredient-name="${ingridient.strIngredient}">Learn more</button>
             <button class="btn-add_and_remove solid">
-              Remove<svg class="icon-heart__svg" width="22" height="19">
+              Remove<svg class="icon-heart__svg solid" width="22" height="19">
                 <use href="${sprite}#icon-heart"></use>
               </svg>
             </button>

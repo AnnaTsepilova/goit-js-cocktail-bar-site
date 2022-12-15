@@ -3,7 +3,7 @@ import { ApiFavorite } from './js/favoritesApi';
 import * as themeSwitch from './js/themeSwitch';
 import { CocktailsRender } from './js/cocktailsRender';
 import * as mobileMenu from './js/mobileMenu';
-import * as modalIngredients from './js/modalIngredients';
+import { onCocktailModalOpen } from './js/modalIngredients';
 
 const favorite = new ApiFavorite();
 const cocktailUI = new CocktailsRender();
@@ -82,6 +82,8 @@ for (let ingredient of ingredientsList) {
     onRemoveBtn(ingredient);
   });
 }
+
+onCocktailModalOpen();
 
 // const removeBtn = document.querySelectorAll('.btn-add_and_remove');
 // cocktailUI.onRenderComplete();
