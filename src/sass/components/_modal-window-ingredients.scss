@@ -7,6 +7,7 @@
   background-color: $primary-text-color-LT;
   z-index: 102;
   opacity: 1;
+  overflow: auto;
   visibility: visible;
   transition: opacity 250ms $cubic;
 }
@@ -37,9 +38,13 @@
 .modal-ingredients {
   position: relative;
   width: 320px;
+  min-height: 425px;
   margin: 0 auto;
+  margin-top: 60px;
   padding: 40px 20px;
   background-color: $primary-white-color;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   z-index: 103;
   // outline: 1px solid tomato;
   @media screen and (min-width: 768px) {
