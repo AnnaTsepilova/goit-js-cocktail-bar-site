@@ -9,7 +9,7 @@
   opacity: 1;
   overflow: auto;
   visibility: visible;
-  transition: opacity 250ms $cubic, visibility 250ms $cubic;
+  transition: opacity 250ms $cubic;
 }
 
 .с-backdrop--is-hidden {
@@ -47,11 +47,13 @@
   z-index: 101;
   @media screen and (min-width: 768px) {
     max-width: 768px;
+    min-height: 542px;
     padding: 40px 28px 28px;
   }
 
   @media screen and (min-width: 1280px) {
     max-width: 822px;
+    min-height: 542px;
     padding: 40px 28px 28px;
   }
 }
