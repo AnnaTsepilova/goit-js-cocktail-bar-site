@@ -1,13 +1,19 @@
 import { refs } from './refs';
 import { CocktailsApi } from './cocktailsApi';
 import sprite from '../images/sprite.svg';
-import { createCocktailDetails, createCocktailDetailsMobile } from './modalCocktails';
+import { onLearnMoreBtn } from './modalCocktails';
+import { ApiFavorite } from './favoritesApi';
+import { Pagination } from './pagination';
+
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export class CocktailsRender {
-  cocktailsApi;
+  #cocktailsApi;
+  #favoriteApi;
 
   constructor() {
-    this.cocktailsApi = new CocktailsApi();
+    this.#cocktailsApi = new CocktailsApi();
+    this.#favoriteApi = new ApiFavorite();
   }
   // --------генератор алфавита------------
   generateAlphabet() {
@@ -28,7 +34,7 @@ export class CocktailsRender {
       .join('');
   }
 
-  //--------генерация опций в списке алфавита моб-------------------------
+  //-----------генерация опций в списке алфавита моб-------------------------
   renderOptionDataList() {
     return this.generateAlphabet().forEach(letter => {
       let option = document.createElement('option');
@@ -39,7 +45,7 @@ export class CocktailsRender {
     });
   }
 
-  // ---------показываем и прячем выпадающий список поиска по алфавиту в мобильном версии------------------
+  // -----------показываем и прячем выпадающий список поиска по алфавиту в мобильном версии------------------
   addDatalistListeners() {
     const thisObj = this;
     refs.searchMobileInput.onfocus = function () {
@@ -71,19 +77,10 @@ export class CocktailsRender {
     const letter = refs.searchMobileInput.value;
     refs.searchSet.innerHTML = '';
 
-    this.cocktailsApi
+    this.#cocktailsApi
       .getCocktailsBySymbol(letter)
       .then(response => {
-        if (response.drinks === null) {
-          // ----заинсталить красивую нотификашку
-
-          window.alert('На жаль такий коктейль відсутній');
-          return;
-          // ----заинсталить красивую нотификашку ^^^^^
-        }
-        refs.searchSetCaption.textContent = 'Searching results';
-        refs.searchSet.innerHTML = thisObj.createCocktailCard(response.drinks);
-        thisObj.onRenderComplete();
+        thisObj.renderResults(response);
       })
       .catch(error => {
         console.log(error);
@@ -94,83 +91,108 @@ export class CocktailsRender {
   createCocktailCard(drinks) {
     return drinks
       .map(({ strDrinkThumb, strDrink, idDrink }) => {
+        let isFavorite = this.#favoriteApi.isCoctailInFavorites(idDrink);
+
         return `<li class="coctail__card">
             <img class="coctail__pic" src="${strDrinkThumb}" alt="${strDrink}" />
             <p class="coctail__desc">${strDrink}</p>
             <div class="box__btn">
               <button class="btn-learn_more" type="button" data-cocktail-id="${idDrink}">Learn more</button>
-              <button class="btn-add_and_remove" type="button" data-cocktail-id="${idDrink}">
-                Add to
-                <svg class="icon-heart__svg" width="22" height="19">
-                  <use href="${sprite}#icon-heart"/>
-                </svg>
-              </button>
+              <button class="btn-add_and_remove" type="button" data-cocktail-id="${idDrink}">` + this.createFavoriteBtn(isFavorite) +
+              `</button>
             </div>
           </li>`;
       })
       .join('');
   }
 
+  createFavoriteBtn(isFavorite) {
+    return (
+      isFavorite ? 
+      `Remove
+      <svg class="icon-heart__svg solid" width="22" height="19">
+        <use href="${sprite}#icon-heart"/>
+      </svg>`
+      :
+      `Add to
+      <svg class="icon-heart__svg" width="22" height="19">
+        <use href="${sprite}#icon-heart"/>
+      </svg>`
+    );    
+  }
   // ----------------рендерим карточки коктейлей по ABC----------
   searchByABC(e) {
     e.preventDefault();
-
-    const letter = e.target.innerText;
-    console.dir(e.target.innerText);
-    refs.searchSet.innerHTML = '';
     const thisObj = this;
+    const letter = e.target.innerText;
 
-    this.cocktailsApi
+    refs.searchSet.innerHTML = '';
+
+    this.#cocktailsApi
       .getCocktailsBySymbol(letter)
       .then(response => {
-        console.log(response);
-        if (response.drinks === null) {
-          // ----заинсталить красивую нотификашку
-
-          window.alert('На жаль такий коктейль відсутній');
-          return;
-          // ----заинсталить красивую нотификашку ^^^^^
-        }
-        refs.searchSetCaption.textContent = 'Searching results';
-        refs.searchSet.innerHTML = thisObj.createCocktailCard(response.drinks);
-        thisObj.onRenderComplete();
+        thisObj.renderResults(response);
       })
-
       .catch(error => {
         console.log(error);
       });
   }
 
-   // ----------------рендерим карточки коктейлей из хедера----------
+  // ----------------рендерим карточки коктейлей из хедера----------
   searchByHeader(e) {
     e.preventDefault();
-
-    const cocktailName = e.currentTarget.elements.query.value;
-    console.log(cocktailName);
     const thisObj = this;
-
-    console.log(e.currentTarget.elements.query.value);
+    const cocktailName = e.currentTarget.elements.query.value;
+    
     refs.searchSet.innerHTML = '';
 
-    this.cocktailsApi.searchCocktailByName(cocktailName)
+    this.#cocktailsApi
+      .searchCocktailByName(cocktailName)
       .then(response => {
-        console.log(response);
-        if (response.drinks === null) {
-          // ----заинсталить красивую нотификашку
-
-          window.alert('На жаль такий коктейль відсутній');
-          return;
-          // ----заинсталить красивую нотификашку ^^^^^
-        }
-
-        refs.searchSetCaption.textContent = 'Searching results';
-        refs.searchSet.innerHTML = thisObj.createCocktailCard(response.drinks);
-        thisObj.onRenderComplete();
+        thisObj.renderResults(response);
       })
-
       .catch(error => {
         console.log(error);
       });
+  }
+
+  renderResults(response) {
+    this.makePagination(response.drinks);
+    if (response.drinks === null) {
+      // ----заинсталить красивую нотификашку
+      refs.searchSetCaption.textContent = '';
+      refs.notifBox.classList.remove('is-hidden');
+      Notify.failure('На жаль такий коктейль відсутній');
+      return;
+      // ----заинсталить красивую нотификашку ^^^^^
+    }
+    refs.notifBox.classList.add('is-hidden');
+    refs.searchSetCaption.textContent = 'Searching results';
+  }
+
+  // ---------------пагинация-----------------------
+  makePagination(drinksArray) {
+    const pagCock = new Pagination({
+      items: drinksArray,
+      paginationRoot: refs.pageContainer,
+      range: this.getPageLimit(),
+      callback: array => {
+        refs.searchSet.innerHTML = this.createCocktailCard(array);
+        this.onRenderComplete();
+      },
+    });
+  }
+
+  getPageLimit() {
+    // Mobile
+    if (window.screen.width < 768) {
+      return 3;
+    }
+    // Tablet
+    if ((window.screen.width >= 768) & (window.screen.width < 1280)) {
+      return 6;
+    }
+    return 9;
   }
 
   // ----------------рендерим рандомные 9 коктейлей----------
@@ -179,12 +201,12 @@ export class CocktailsRender {
 
     const makePromise = () => {
       return new Promise(resolve => {
-        thisObj.cocktailsApi.getRandomCocktail().then(response => resolve(response));
+        thisObj.#cocktailsApi.getRandomCocktail().then(response => resolve(response));
       });
     };
 
     let promises = [];
-    for (let i = 0; i < 9; i += 1) {
+    for (let i = 0; i < this.getPageLimit(); i += 1) {
       promises.push(makePromise());
     }
 
@@ -201,36 +223,35 @@ export class CocktailsRender {
   // -------------подключаем кнопку learn more к отрендеренным карточкам коктейлей---------------
   onRenderComplete() {
     const learnMoreBtn = document.querySelectorAll('.btn-learn_more');
-    console.log(learnMoreBtn);
+    const favoritesBtn = document.querySelectorAll('.btn-add_and_remove');
 
     for (let btn of learnMoreBtn) {
-      btn.addEventListener('click', this.onLearnMoreBtn);
+      btn.addEventListener('click', e => onLearnMoreBtn(e));
+    }
+
+    for (let btn of favoritesBtn) {
+      btn.addEventListener('click', e => this.onFavoritesBtn(e));
     }
   }
 
-  onLearnMoreBtn(e) {
+  onFavoritesBtn(e) {
     e.preventDefault();
-    refs.modalCocktailWindow.classList.toggle('с-backdrop--is-hidden');
-    const cocktailsApi = new CocktailsApi();
-    cocktailsApi.getCocktailById(e.target.dataset.cocktailId).then(response => {
-      console.log(response);
-      console.log(refs.modalDetailCocktailContainer);
+    const cocktailId = e.currentTarget.dataset.cocktailId;
+    let isFavorite = this.#favoriteApi.isCoctailInFavorites(cocktailId);
 
-      if (window.screen.width < 768) {
-        refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(
-          response.drinks[0]
-        );
-      } else {
-        refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(response.drinks[0]);
-      }
-    });
+    if (isFavorite) {
+      this.#favoriteApi.removeCocktailById(cocktailId);
+    } else {
+      this.#favoriteApi.addCocktailById(cocktailId);
+    }
+
+    e.currentTarget.innerHTML = this.createFavoriteBtn(!isFavorite);
+
   }
 
   toggleModal() {
-    refs.modalCocktailWindow.classList.toggle('с-backdrop--is-hidden');
+    refs.modalCocktailWindow.classList.toggle('c-backdrop--is-hidden');
   }
 
-  // favorite.removeCocktailById(e.target.dataset.cocktailId);
-  // const removeCocktailCard = document.querySelector('#c_' + e.target.dataset.cocktailId);
-  // removeCocktailCard.remove();
+
 }

@@ -2,11 +2,17 @@
   <a class="header-logo" href="./index.html">
     <picture>
       <source
-        srcset="./images/header/Logo@mob.png 1x, ./images/header/Logo@mob2x.png 2x"
+        srcset="
+        ./images/header/Logo@mob.png   1x,
+        ./images/header/Logo@mob2x.png 2x
+        "
         media="(max-width: 767px)"
-      />
-      <source
-        srcset="./images/header/Logo@tab.png 1x, ./images/header/Logo@tab2x.png 2x"
+        />
+        <source
+        srcset="
+        ./images/header/Logo@tab.png   1x,
+        ./images/header/Logo@tab2x.png 2x
+        "
         media="(min-width: 768px)"
         />
         <source/>
@@ -47,7 +53,7 @@
       <form class="header__search js-search-cocktail js-search-favorite">
         <button class="header__search-btn" type="submit">
           <svg class="search__icon" width="20" height="20">
-            <use xlink:href="./images/sprite.svg#icon-search" />
+            <use xlink:href="./images/sprite.svg#icon-search"/>
           </svg>
         </button>
         <input class="header__input" type="text" name="query" placeholder="Search" />
@@ -83,14 +89,83 @@
             <use href="./images/sprite.svg#icon-close"></use>
           </svg>
         </button>
-        <div class="theme-switch"></div>
-        <div class="search"></div>
-        <ul class="mobile-menu">
-          <li class="mobile-menu__item"><a href="" class="link">Home</a></li>
-          <li class="mobile-menu__item"><a href="" class="link">Favorite</a></li>
-        </ul>
+
+    <div class="menu-container__wrap">
+      <a class="mob-logo" href="./index.html">
+        <picture>
+          <source
+          srcset="
+          ./images/header/Logo@mob.png   1x,
+          ./images/header/Logo@mob2x.png 2x
+          "
+          media="(max-width: 767px)"
+          />
+          <source
+          srcset="
+          ./images/header/Logo@tab.png   1x,
+          ./images/header/Logo@tab2x.png 2x
+          "
+          media="(min-width: 768px)"
+          />
+          <source/>
+          <img
+          class="logo-cocktails"
+          src="./images/header/Logo@mob.png"
+          alt="logo"
+          widt="156"
+          />
+        </picture>
+        </a>
+      <div class="theme-switch__mob">
+        <p class="theme-switch__light">Light</p>
+        <div class="theme-switch__control">
+          <input class="theme-switch__toggle" type="checkbox" name="theme" id="theme-switch-toggle"
+            aria-label="Переключить между тёмной и светлой темой" />
+          <label aria-hidden="true" class="theme-switch__track" for="theme-switch-toggle">
+          </label>
+          <div aria-hidden="true" class="theme-switch__marker"></div>
+        </div>
+        <p class="theme-switch__dark">Dark</p>
       </div>
-    
+      <!-- <div>
+        <form class="header__search mob-menu__search">
+          <button class="header__search-btn" type="submit">
+            <svg class="search__icon" width="20" height="20">
+              <use xlink:href="./images/sprite.svg#icon-search"/>
+            </svg>
+          </button>
+          <input class="header__input" type="text" name="query" placeholder="Search" />
+        </form>
+      </div> -->
+
+      <div>
+        <nav class="desc-nav desc-nav__link">
+         <ul class="desc-nav__menu">
+           <li class="nav-menu__li mob-nav__link">
+             <a class="mob-nav__link" href="./index.html">Home</a>
+           </li>
+           <li>
+             <div class="dropdown" style="float:left;">
+               <button class="dropbtn">
+                Favorite 
+                <svg class="icon-VectorMore" width="17" height="9">
+                <use xlink:href="./images/sprite.svg#icon-VectorMore"></use>
+                </svg>
+               </button>
+               <div class="dropdown-content">
+                 <a class="fav-a" href="./favorite-cocktails.html" 
+                target="_self">
+                Favorite cocktails</a>
+                 <a class="fav-a" href="./favorite-ingredients.html" 
+                target="_self">
+                Favorite ingredients</a>
+               </div>
+             </div>
+           </li>
+         </ul>
+       </nav>
+    </div>
+    </div>
       <script
            defer
            src="https://cdnjs.cloudflare.com/ajax/libs/body-scroll-lock/3.1.5/bodyScrollLock.min.js"
