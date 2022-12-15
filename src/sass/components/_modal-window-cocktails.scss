@@ -7,6 +7,7 @@
   background-color: $primary-text-color-LT;
   z-index: 100;
   opacity: 1;
+  overflow: auto;
   visibility: visible;
   transition: opacity 250ms $cubic, visibility 250ms $cubic;
 }
@@ -35,28 +36,28 @@
 
 .modal-cocktails {
   position: relative;
-  width: 320px;
+  max-width: 320px;
+  width: 100%;
   margin: 0 auto;
+  margin-top: 15px;
   padding: 40px 20px;
   background-color: $primary-white-color;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
   z-index: 101;
-  // overflow-y: auto;
-  // overflow-x: hidden;
-  // outline: 1px solid tomato;
   @media screen and (min-width: 768px) {
-    width: 768px;
+    max-width: 768px;
     padding: 40px 28px 28px;
   }
 
   @media screen and (min-width: 1280px) {
-    width: 822px;
+    max-width: 822px;
     padding: 40px 28px 28px;
   }
 }
 
 .modal-cocktails__img {
   margin: 32px 0 22px 0;
-  border-radius: 4px;
+  border-radius: 0;
   width: 280px;
   height: 280px;
 

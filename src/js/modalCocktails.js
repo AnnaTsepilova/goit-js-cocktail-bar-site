@@ -2,27 +2,16 @@ const refs = {
   closeModalCocktailsBtn: document.querySelector("[data-modalCocktails-close]"),
   closeModalCocktailsBtnTablet: document.querySelector("[data-modalCocktailsTablet-close]"),
   modalCocktails: document.querySelector("[data-modalCocktails]"),
-  body: document.querySelector('body'),
 };
 
 refs.closeModalCocktailsBtn.addEventListener("click", toggleModal);
 refs.closeModalCocktailsBtnTablet.addEventListener("click", toggleModal);
 
-// function toggleModal() {
-//   refs.modalCocktails.classList.toggle("с-backdrop--is-hidden");
-// };
+function toggleModal() {
+  refs.modalCocktails.classList.toggle("с-backdrop--is-hidden");
+};
 
-export function toggleModal() {
-  refs.modalCocktails.classList.toggle('с-backdrop--is-hidden');
 
-  if (!refs.modalCocktails.classList.contains('с-backdrop--is-hidden')) {
-    // Disable scroll
-    refs.body.style.overflow = 'hidden';
-  } else {
-    // Enable scroll
-    refs.body.style.overflow = 'auto';
-  }
-}
 
 refs.modalCocktails.addEventListener('click', onBackdropClick);
 
