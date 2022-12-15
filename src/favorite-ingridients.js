@@ -3,6 +3,7 @@ import { ApiFavorite } from './js/favoritesApi';
 import * as themeSwitch from './js/themeSwitch';
 import { CocktailsRender } from './js/cocktailsRender';
 import * as mobileMenu from './js/mobileMenu';
+import * as modalIngredients from './js/modalIngredients';
 
 const favorite = new ApiFavorite();
 const cocktailUI = new CocktailsRender();
@@ -52,7 +53,7 @@ localStorage.setItem(ApiFavorite.favoriteIngridientsKey, JSON.stringify(arrIngr)
 
 renderFavoriteIngridients();
 
-refs.searchFavorite.addEventListener('sibmit', function (event) {
+refs.searchFavorite.addEventListener('submit', function (event) {
   favorite.searchByIngredientsName(event);
 });
 
