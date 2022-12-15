@@ -1,4 +1,4 @@
-.с-backdrop {
+.c-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,7 +12,7 @@
   transition: opacity 250ms $cubic;
 }
 
-.с-backdrop--is-hidden {
+.c-backdrop--is-hidden {
   opacity: 0;
   pointer-events: none;
   visibility: hidden;

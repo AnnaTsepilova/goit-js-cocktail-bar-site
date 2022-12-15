@@ -1,24 +1,58 @@
-const refs = {
+import { refs } from './refs';
+import { CocktailsApi } from './cocktailsApi';
+import { ApiFavorite } from './favoritesApi';
+import { onCocktailModalOpen } from './modalIngredients';
+
+const refsByModal = {
   closeModalCocktailsBtn: document.querySelector("[data-modalCocktails-close]"),
   closeModalCocktailsBtnTablet: document.querySelector("[data-modalCocktailsTablet-close]"),
   modalCocktails: document.querySelector("[data-modalCocktails]"),
 };
 
-refs.closeModalCocktailsBtn.addEventListener("click", toggleModal);
-refs.closeModalCocktailsBtnTablet.addEventListener("click", toggleModal);
+refsByModal.closeModalCocktailsBtn.addEventListener("click", toggleModal);
+refsByModal.closeModalCocktailsBtnTablet.addEventListener("click", toggleModal);
 
 function toggleModal() {
-  refs.modalCocktails.classList.toggle("с-backdrop--is-hidden");
+  refsByModal.modalCocktails.classList.toggle("c-backdrop--is-hidden");
 };
 
 
 
-refs.modalCocktails.addEventListener('click', onBackdropClick);
+refsByModal.modalCocktails.addEventListener('click', onBackdropClick);
 
 function onBackdropClick(event) {
   if (event.currentTarget === event.target) {
     toggleModal();
   }
+}
+
+export const onLearnMoreBtn = (e) => {
+  e.preventDefault();
+
+  const cocktailsApi = new CocktailsApi();
+  const favoriteApi = new ApiFavorite();
+
+  refs.modalCocktailWindow.classList.toggle('c-backdrop--is-hidden');
+  refs.modalDetailCocktailContainer.innerHTML = '';
+  refs.modalDetailCocktailContainerMobile.innerHTML = '';
+
+  cocktailsApi.getCocktailById(e.target.dataset.cocktailId).then(response => {
+    let drink = response.drinks[0];
+    let isFavorite = favoriteApi.isCoctailInFavorites(drink.idDrink);
+
+    if (window.screen.width < 768) {
+      refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(
+        drink,
+        isFavorite
+      );
+      
+    } else {
+      refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(drink, isFavorite);
+      onCocktailModalOpen();
+    }
+
+    favoriteApi.favoritesBtnLister(drink, isFavorite);
+  });
 }
 
 // function toggleModal() {
@@ -34,7 +68,7 @@ function onBackdropClick(event) {
 // }
 
 
-// ----------------рендерим модальное окно Cocktail Details Tablet----------
+// ----------------возвращает список ингрудиентов из объекта коктейля----------
 function parseIngredients(drink) {
   let ingredients = [];
   for (let props in drink) {
@@ -47,6 +81,7 @@ function parseIngredients(drink) {
 
   return ingredients;
 }
+
 
 // ----------------рендерим модальное окно Cocktail Details Tablet----------
 export const createCocktailDetails = (drink, inFavorites) => {
