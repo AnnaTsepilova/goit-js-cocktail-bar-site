@@ -52,7 +52,7 @@ localStorage.setItem(ApiFavorite.favoriteIngridientsKey, JSON.stringify(arrIngr)
 
 renderFavoriteIngridients();
 
-refs.searchFavorite.addEventListener('sibmit', function (event) {
+refs.searchFavorite.addEventListener('submit', function (event) {
   favorite.searchByIngredientsName(event);
 });
 
