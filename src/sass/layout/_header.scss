@@ -7,18 +7,29 @@
 }
 
 .logo-cocktails {
-  display: block;
+  min-width: 156px;
+  margin-top: -2px;
+  @media screen and (max-width: 767px) {
+    min-width: 124px; 
+  }
 }
 
 .header-container {
   display: flex;
   padding-top: 20px;
   position: relative;
+  
 }
 
 .header-logo {
   @media screen and (max-width: 1280px) {
    z-index: 10;
+  }  
+}
+
+.mob-logo {
+  @media screen and (max-width: 767px) {
+   display: none;
   }  
 }
 
@@ -34,7 +45,6 @@
       justify-content: flex-end;
       margin-right: 40px;
       margin-left: 0;
-      
     }
 }   
 
@@ -205,6 +215,12 @@ transition: all .5s;
       display: none;
     }
 }
+
+// .mob-menu__search {
+//   @media screen and (min-width: 767px) {
+//     display: none;
+//   }
+// }
 
 .header__search:before {
   background-color: #fd5103;
