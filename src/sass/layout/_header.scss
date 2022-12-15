@@ -6,7 +6,11 @@
 }
 
 .logo-cocktails {
-  display: block;
+  min-width: 156px;
+  margin-top: -2px;
+  @media screen and (max-width: 767px) {
+    min-width: 124px;
+  }
 }
 
 .header-container {
@@ -200,6 +204,12 @@
     display: none;
   }
 }
+
+// .mob-menu__search {
+//   @media screen and (min-width: 767px) {
+//     display: none;
+//   }
+// }
 
 .header__search:before {
   background-color: #fd5103;

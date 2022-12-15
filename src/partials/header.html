@@ -91,33 +91,7 @@
         </button>
 
     <div class="menu-container__wrap">
-      <div class="menu-container__wrap-logo">
-       <a class="header-logo" href="./index.html">
-    <picture>
-      <source
-        srcset="
-        ./images/header/Logo@mob.png   1x,
-        ./images/header/Logo@mob2x.png 2x
-        "
-        media="(max-width: 767px)"
-        />
-        <source
-        srcset="
-        ./images/header/Logo@tab.png   1x,
-        ./images/header/Logo@tab2x.png 2x
-        "
-        media="(min-width: 768px)"
-        />
-        <source/>
-        <img
-        class="logo-cocktails"
-        src="./images/header/Logo@mob.png"
-        alt="logo"
-        widt="156"
-        />
-      </picture>
-      </a>
-</div>
+
       <div class="theme-switch__mob">
         <p class="theme-switch__light">Light</p>
         <div class="theme-switch__control">
@@ -130,16 +104,17 @@
         <p class="theme-switch__dark">Dark</p>
       </div>
 
+      <!-- <div>
+        <form class="header__search">
+          <button class="header__search-btn" type="submit">
+            <svg class="search__icon" width="20" height="20">
+              <use xlink:href="./images/sprite.svg#icon-search"/>
+            </svg>
+          </button>
+          <input class="header__input" type="text" name="query" placeholder="Search" />
+        </form>
+      </div> -->
 
-    <form class="header__search-m js-search-cocktail js-search-favorite">
-        <button class="header__search-btn" type="submit">
-          <svg class="search__icon" width="20" height="20">
-            <use xlink:href="./images/sprite.svg#icon-search"/>
-          </svg>
-        </button>
-        <input class="header__input" type="text" name="query" placeholder="Search" />
-      </form>
-</div>
       <div>
 
          <ul class="desc-nav-m__menu">
@@ -165,6 +140,7 @@
              </div>
            </li>
          </ul>
+    </div>
     </div>
       <script
            defer

@@ -31,8 +31,8 @@ export class CocktailsApi {
    * @return {Promise <IngridientsResponse> }
    */
 
-  async getIngredientByName(IngredientName) {
-    const response = await axios.get(`${CocktailsApi.BASE_URL}search.php?i=${IngredientName}`);
+  async getIngredientByName(ingredientName) {
+    const response = await axios.get(`${CocktailsApi.BASE_URL}search.php?i=${ingredientName}`);
     return response.data;
   }
 
