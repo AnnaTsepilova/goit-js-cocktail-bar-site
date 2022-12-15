@@ -131,7 +131,7 @@
     color: $pagination-number-color;
 
     cursor: pointer;
-    
+
     width: 32px;
     height: 32px;
     background-color: transparent;
@@ -165,4 +165,8 @@
 }
 .paginarion_btn-next{
     margin-left: 12px;
+}
+
+.is-hidden{
+    display:none;
 }
