@@ -120,7 +120,7 @@ height: 48px;
   transition: color 250ms $cubic, background 250ms $cubic;
 
   &:hover {
-    background: $white-color;
+    background: $btn-white-bg-color;
   }
 
   &:active {
