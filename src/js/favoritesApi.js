@@ -9,15 +9,45 @@ const getId = document.querySelector('.btn-add_and_remove');
 
 export class ApiFavorite {
   static favoriteCocktailsKey = 'favorite-cocktails';
-  static favoriteIngridientsKey = 'favorite-ingridient';
+  static favoriteIngredientsKey = 'favorite-ingridient';
 
   constructor() {}
 
   addCocktailById(cocktailID) {
     const thisObj = this;
     cocktailApi.getCocktailById(cocktailID).then(function (resposne) {
+      console.log(cocktailID);
       thisObj.addCocktail(resposne.drinks[0]);
+
     });
+  }
+
+  addIngredientById(ingredientID) {
+    const thisObj = this;
+    cocktailApi.getIngredientById(ingredientID).then(function (resposne) {
+      thisObj.addIngredient(resposne.ingredients[0]);
+    });
+  }
+
+  addIngredient(ingredientObject) {
+    // Check for cocktail ID
+    if (!ingredientObject.idIngredient) {
+      return;
+    }
+
+    let ingredients = this.getAllIngredients();
+    if (!ingredients) {
+      ingredients = [];
+    }
+
+    // Check for added cocktail
+    let result = ingredients.filter(ingredient => ingredient.idIngredient === ingredientObject.idIngredient);
+    if (result.length) {
+      return;
+    }
+
+    ingredients.push(ingredientObject);
+    localStorage.setItem(ApiFavorite.favoriteIngredientsKey, JSON.stringify(ingredients));
   }
 
   addCocktail(cocktailObject) {
@@ -89,7 +119,7 @@ export class ApiFavorite {
     this.arrCockt.splice(index, 1);
   }*/
 
-  removeIngredientByName(name) {
+  removeIngredientById(name) {
     const ingredients = this.getAllIngredients();
     const filteredIngridients = ingredients.filter(ingridient => ingridient.idIngredient !== name);
     this.saveIngridients(filteredIngridients);
@@ -113,7 +143,7 @@ export class ApiFavorite {
           <img class="list-favorite_img" src="${cocktail.strDrinkThumb}" alt="${cocktail.strDrink}" />
           <h3 class="list-favorite_coctail">${cocktail.strDrink}</h3>
           <div class="list-favorite_btn">
-            <button class="btn-learn_more" data-cocktail-id="${cocktail.idDrink}">Learn more</button>
+            <button class="btn-learn_more" data-learnMore-open data-cocktail-id="${cocktail.idDrink}">Learn more</button>
             <button class="btn-add_and_remove" data-cocktail-id="${cocktail.idDrink}">
               Remove
               <svg class="icon-heart__svg solid" width="22" height="19">
@@ -138,11 +168,11 @@ export class ApiFavorite {
    */
 
   getAllIngredients() {
-    return JSON.parse(localStorage.getItem(ApiFavorite.favoriteIngridientsKey)) ?? [];
+    return JSON.parse(localStorage.getItem(ApiFavorite.favoriteIngredientsKey)) ?? [];
   }
 
   saveIngridients(ingridients) {
-    localStorage.setItem(ApiFavorite.favoriteIngridientsKey, JSON.stringify(ingridients));
+    localStorage.setItem(ApiFavorite.favoriteIngredientsKey, JSON.stringify(ingridients));
   }
 
   renderAllIngredient(ingridients) {
@@ -154,9 +184,9 @@ export class ApiFavorite {
           <h3 class="list-ingredients__name">${ingridient.strIngredient}</h3>
           <p class="list-ingredients__descr">${ingridient.strType}</p>
           <div class="box-btn">
-            <button class="btn-learn_more">Learn more</button>
-            <button class="btn-add_and_remove solid">
-              Remove<svg class="icon-heart__svg" width="22" height="19">
+            <button class="btn-learn_more" data-modalIngred-open data-ingredient-name="${ingridient.strIngredient}">Learn more</button>
+            <button class="btn-add_and_remove solid" data-ingredient-remove>
+              Remove<svg class="icon-heart__svg solid" width="22" height="19">
                 <use href="${sprite}#icon-heart"></use>
               </svg>
             </button>
@@ -175,7 +205,7 @@ export class ApiFavorite {
       const cocByName = cocktail.strDrink.toLowerCase();
       return cocByName.includes(searchText.toLowerCase()) ? [...acc, cocktail] : [...acc];
     }, []);
-    refs.cocktailsList.insertAdjacentHTML('beforeend', this.renderAllCocktails(newCocktails));
+    refs.cocktailsList.innerHTML = this.renderAllCocktails(newCocktails);
   }
 
   searchByIngredientsName(event) {
@@ -195,6 +225,11 @@ export class ApiFavorite {
     return !!cocktails.find(cocktail => cocktail.idDrink === cocktailId);
   }
 
+  isIngredientInFavorites(ingredientId) {
+    const ingredients = this.getAllIngredients();
+    return !!ingredients.find(ingredient => ingredient.idIngredient === ingredientId);
+  }
+
   // -----------функция добавления/удаления коктейля в Favorites из Cocktails Details----------------
   favoritesBtnLister(drink) {
     const addToFavBtn = document.querySelector('.btn-favorite');
@@ -204,20 +239,22 @@ export class ApiFavorite {
 
       if (isFavorite) {
         this.removeCocktailById(drink.idDrink);
+        e.currentTarget.textContent = "Add to favorite";
       } else {
         this.addCocktailById(drink.idDrink);
+        e.currentTarget.textContent = "Remove from favorite";
       }
 
-      if (window.screen.width < 768) {
+      /*if (window.screen.width < 768) {
         refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(
           drink,
           !isFavorite
         );
       } else {
         refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(drink, !isFavorite);
-      }
+      }*/
 
-      this.favoritesBtnLister(drink);
+      // this.favoritesBtnLister(drink);
     });
   }
 }

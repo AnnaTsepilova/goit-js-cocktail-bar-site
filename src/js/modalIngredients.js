@@ -1,17 +1,13 @@
 import { CocktailsApi } from './cocktailsApi';
 import { refs } from './refs';
+import { ApiFavorite } from './favoritesApi';
 
 const refsByModal = {
-  
   closeModalIngredBtn: document.querySelector("[data-modalIngred-close]"),
   modalIngred: document.querySelector("[data-modalIngred]"),
-  openModalIngredLinkT: document.querySelector("[data-modalIngredLinkT-open]"),
-  openModalIngredLinkM: document.querySelector("[data-modalIngredLinkM-open]"),
 };
 
 refsByModal.closeModalIngredBtn.addEventListener("click", closeModalWindow);
-// refs.openModalIngredLinkT.addEventListener("click", toggleModalIngred);
-// refs.openModalIngredLinkM.addEventListener("click", toggleModalIngred);
 
 function closeModalWindow (e) {
   refsByModal.modalIngred.classList.toggle("i-backdrop--is-hidden");
@@ -22,13 +18,15 @@ function toggleModalIngred(e) {
   refsByModal.modalIngred.classList.toggle("i-backdrop--is-hidden");
   refs.modalDetailIngredientContainer.innerHTML = '';
   const cocktailsApi = new CocktailsApi();
+  const favoriteApi = new ApiFavorite();
   const ingredientName = e.currentTarget.dataset.ingredientName;
-  console.log(ingredientName);
-  cocktailsApi.getIngredientByName(ingredientName);
+  cocktailsApi.getIngredientByName(ingredientName);  
 
   cocktailsApi.getIngredientByName(e.target.dataset.ingredientName).then(response => {
-    console.log(response);
-    refs.modalDetailIngredientContainer.innerHTML = createIngrDetails(response.ingredients[0]);
+    const inFavorites = favoriteApi.isIngredientInFavorites(response.ingredients[0].idIngredient);
+    refs.modalDetailIngredientContainer.innerHTML = createIngrDetails(response.ingredients[0], inFavorites);
+    const ingrFavoriteBtn = document.querySelector(".modal-ingredients__btn");
+    ingrFavoriteBtn.addEventListener('click', onIngrFavClick);
   });
 };
 
@@ -40,13 +38,21 @@ function onBackdropClick(event) {
   }
 }
 
+function onIngrFavClick(e) {
+  const favoriteApi = new ApiFavorite();
+  const inFavorites = favoriteApi.isIngredientInFavorites(e.currentTarget.dataset.ingredientId);
+  if (inFavorites) {
+    e.currentTarget.textContent = "Add to favorite";
+    favoriteApi.removeIngredientById(e.currentTarget.dataset.ingredientId);
+  } else {
+    e.currentTarget.textContent = "Remove from favorite";
+    favoriteApi.addIngredientById(e.currentTarget.dataset.ingredientId);
+  }
+}
+
 export function onCocktailModalOpen() {
   const ingredientLinks = document.querySelectorAll("[data-modalIngred-open]");
-
   ingredientLinks.forEach(elm => elm.addEventListener("click", toggleModalIngred));
-
-  console.log('test');
-
 };
 
 export const createIngrDetails = (ingr, inFavorites) => {
@@ -70,6 +76,6 @@ export const createIngrDetails = (ingr, inFavorites) => {
       <li class="modal-ingredients__item">Type: ${ingr.strType}</li>
       <li class="modal-ingredients__item">Alcoholic: ${ingr.strAlcohol}</li>
     </ul>
-    <button type="button" class="modal-ingredients__btn btn-favorite">${btnStatusFav}</button>
+    <button type="button" class="modal-ingredients__btn btn-favorite" data-ingredient-id="${ingr.idIngredient}">${btnStatusFav}</button>
   `;
 }
