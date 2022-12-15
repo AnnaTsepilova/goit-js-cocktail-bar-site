@@ -19,7 +19,7 @@ refs.searchFavorite.addEventListener('submit', function (event) {
 // });
 
 function onRemoveBtn(e) {
-  favorite.removeIngredientByName(e.id);
+  favorite.removeIngredientById(e.id);
   e.remove();
 }
 

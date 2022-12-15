@@ -119,7 +119,7 @@ export class ApiFavorite {
     this.arrCockt.splice(index, 1);
   }*/
 
-  removeIngredientByName(name) {
+  removeIngredientById(name) {
     const ingredients = this.getAllIngredients();
     const filteredIngridients = ingredients.filter(ingridient => ingridient.idIngredient !== name);
     this.saveIngridients(filteredIngridients);
@@ -143,7 +143,7 @@ export class ApiFavorite {
           <img class="list-favorite_img" src="${cocktail.strDrinkThumb}" alt="${cocktail.strDrink}" />
           <h3 class="list-favorite_coctail">${cocktail.strDrink}</h3>
           <div class="list-favorite_btn">
-            <button class="btn-learn_more" data-cocktail-id="${cocktail.idDrink}">Learn more</button>
+            <button class="btn-learn_more" data-learnMore-open data-cocktail-id="${cocktail.idDrink}">Learn more</button>
             <button class="btn-add_and_remove" data-cocktail-id="${cocktail.idDrink}">
               Remove
               <svg class="icon-heart__svg solid" width="22" height="19">
@@ -239,20 +239,22 @@ export class ApiFavorite {
 
       if (isFavorite) {
         this.removeCocktailById(drink.idDrink);
+        e.currentTarget.textContent = "Add to favorite";
       } else {
         this.addCocktailById(drink.idDrink);
+        e.currentTarget.textContent = "Remove from favorite";
       }
 
-      if (window.screen.width < 768) {
+      /*if (window.screen.width < 768) {
         refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(
           drink,
           !isFavorite
         );
       } else {
         refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(drink, !isFavorite);
-      }
+      }*/
 
-      this.favoritesBtnLister(drink);
+      // this.favoritesBtnLister(drink);
     });
   }
 }

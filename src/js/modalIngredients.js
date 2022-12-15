@@ -20,8 +20,7 @@ function toggleModalIngred(e) {
   const cocktailsApi = new CocktailsApi();
   const favoriteApi = new ApiFavorite();
   const ingredientName = e.currentTarget.dataset.ingredientName;
-  cocktailsApi.getIngredientByName(ingredientName);
-  
+  cocktailsApi.getIngredientByName(ingredientName);  
 
   cocktailsApi.getIngredientByName(e.target.dataset.ingredientName).then(response => {
     const inFavorites = favoriteApi.isIngredientInFavorites(response.ingredients[0].idIngredient);
@@ -40,9 +39,15 @@ function onBackdropClick(event) {
 }
 
 function onIngrFavClick(e) {
-  console.log(e.currentTarget.dataset.ingredientId);
   const favoriteApi = new ApiFavorite();
-  favoriteApi.addIngredientById(e.currentTarget.dataset.ingredientId);
+  const inFavorites = favoriteApi.isIngredientInFavorites(e.currentTarget.dataset.ingredientId);
+  if (inFavorites) {
+    e.currentTarget.textContent = "Add to favorite";
+    favoriteApi.removeIngredientById(e.currentTarget.dataset.ingredientId);
+  } else {
+    e.currentTarget.textContent = "Remove from favorite";
+    favoriteApi.addIngredientById(e.currentTarget.dataset.ingredientId);
+  }
 }
 
 export function onCocktailModalOpen() {
