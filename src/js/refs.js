@@ -16,6 +16,7 @@ export const refs = {
   modalDetailCocktailContainerMobile: document.querySelector('.modal-cocktails__wrapper-mobile'),
   modalCocktails: document.querySelector('[data-modalCocktails]'),
   pageContainer: document.querySelector('.paginarion__container'),
+  modalDetailIngredientContainer: document.querySelector('.modal-ingredients__wrapper'),
 
   notifBox: document.querySelector('.add-box-cocktails'),
 };

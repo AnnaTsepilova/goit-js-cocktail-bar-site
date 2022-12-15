@@ -1,4 +1,7 @@
-const refs = {
+import { CocktailsApi } from './cocktailsApi';
+import { refs } from './refs';
+
+const refsByModal = {
   
   closeModalIngredBtn: document.querySelector("[data-modalIngred-close]"),
   modalIngred: document.querySelector("[data-modalIngred]"),
@@ -6,15 +9,30 @@ const refs = {
   openModalIngredLinkM: document.querySelector("[data-modalIngredLinkM-open]"),
 };
 
-refs.closeModalIngredBtn.addEventListener("click", toggleModalIngred);
+refsByModal.closeModalIngredBtn.addEventListener("click", closeModalWindow);
 // refs.openModalIngredLinkT.addEventListener("click", toggleModalIngred);
 // refs.openModalIngredLinkM.addEventListener("click", toggleModalIngred);
 
-function toggleModalIngred() {
-  refs.modalIngred.classList.toggle("i-backdrop--is-hidden");
+function closeModalWindow (e) {
+  refsByModal.modalIngred.classList.toggle("i-backdrop--is-hidden");
+  refs.modalDetailIngredientContainer.innerHTML = '';
+}
+
+function toggleModalIngred(e) {
+  refsByModal.modalIngred.classList.toggle("i-backdrop--is-hidden");
+  refs.modalDetailIngredientContainer.innerHTML = '';
+  const cocktailsApi = new CocktailsApi();
+  const ingredientName = e.currentTarget.dataset.ingredientName;
+  console.log(ingredientName);
+  cocktailsApi.getIngredientByName(ingredientName);
+
+  cocktailsApi.getIngredientByName(e.target.dataset.ingredientName).then(response => {
+    console.log(response);
+    refs.modalDetailIngredientContainer.innerHTML = createIngrDetails(response.ingredients[0]);
+  });
 };
 
-refs.modalIngred.addEventListener('click', onBackdropClick);
+refsByModal.modalIngred.addEventListener('click', onBackdropClick);
 
 function onBackdropClick(event) {
   if (event.currentTarget === event.target) {
@@ -50,8 +68,8 @@ export const createIngrDetails = (ingr, inFavorites) => {
     <p class="modal-ingredients__text">${ingr.strDescription}</p>
     <ul class="modal-ingredients__list">
       <li class="modal-ingredients__item">Type: ${ingr.strType}</li>
-      <li class="modal-ingredients__item">Alcoholic: ${ingr.strAlcohol}%</li>
+      <li class="modal-ingredients__item">Alcoholic: ${ingr.strAlcohol}</li>
     </ul>
     <button type="button" class="modal-ingredients__btn btn-favorite">${btnStatusFav}</button>
-      `;
+  `;
 }

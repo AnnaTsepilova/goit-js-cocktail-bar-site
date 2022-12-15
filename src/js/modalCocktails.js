@@ -114,7 +114,7 @@ export const createCocktailDetails = (drink, inFavorites) => {
     ingredients.map(ingredient => {
       return `
             <li class="modal-cocktails__item">
-              <a class="modal-cocktails__link" href="#" data-modalIngred-open>${ingredient}</a>
+              <a class="modal-cocktails__link" href="#" data-modalIngred-open data-ingredient-name="${ingredient}">${ingredient}</a>
             </li>`
     }).join('') +
     `</ul>
