@@ -91,7 +91,31 @@
         </button>
 
     <div class="menu-container__wrap">
-
+      <a class="mob-logo" href="./index.html">
+        <picture>
+          <source
+          srcset="
+          ./images/header/Logo@mob.png   1x,
+          ./images/header/Logo@mob2x.png 2x
+          "
+          media="(max-width: 767px)"
+          />
+          <source
+          srcset="
+          ./images/header/Logo@tab.png   1x,
+          ./images/header/Logo@tab2x.png 2x
+          "
+          media="(min-width: 768px)"
+          />
+          <source/>
+          <img
+          class="logo-cocktails"
+          src="./images/header/Logo@mob.png"
+          alt="logo"
+          widt="156"
+          />
+        </picture>
+        </a>
       <div class="theme-switch__mob">
         <p class="theme-switch__light">Light</p>
         <div class="theme-switch__control">
@@ -103,9 +127,8 @@
         </div>
         <p class="theme-switch__dark">Dark</p>
       </div>
-      
       <!-- <div>
-        <form class="header__search">
+        <form class="header__search mob-menu__search">
           <button class="header__search-btn" type="submit">
             <svg class="search__icon" width="20" height="20">
               <use xlink:href="./images/sprite.svg#icon-search"/>
@@ -141,6 +164,7 @@
            </li>
          </ul>
        </nav>
+    </div>
     </div>
       <script
            defer
