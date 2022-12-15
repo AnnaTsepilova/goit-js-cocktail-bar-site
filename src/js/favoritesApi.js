@@ -116,7 +116,7 @@ export class ApiFavorite {
             <button class="btn-learn_more" data-cocktail-id="${cocktail.idDrink}">Learn more</button>
             <button class="btn-add_and_remove" data-cocktail-id="${cocktail.idDrink}">
               Remove
-              <svg class="icon-heart__svg" width="22" height="19">
+              <svg class="icon-heart__svg solid" width="22" height="19">
                 <use href="${sprite}#icon-heart"/>
               </svg>
             </button>
@@ -155,7 +155,7 @@ export class ApiFavorite {
           <p class="list-ingredients__descr">${ingridient.strDescription}</p>
           <div class="box-btn">
             <button class="btn-learn_more">Learn more</button>
-            <button class="btn-add_and_remove">
+            <button class="btn-add_and_remove solid">
               Remove<svg class="icon-heart__svg" width="22" height="19">
                 <use href="${sprite}#icon-heart"></use>
               </svg>
