@@ -205,7 +205,7 @@ export class ApiFavorite {
       const cocByName = cocktail.strDrink.toLowerCase();
       return cocByName.includes(searchText.toLowerCase()) ? [...acc, cocktail] : [...acc];
     }, []);
-    refs.cocktailsList.insertAdjacentHTML('beforeend', this.renderAllCocktails(newCocktails));
+    refs.cocktailsList.innerHTML = this.renderAllCocktails(newCocktails);
   }
 
   searchByIngredientsName(event) {
