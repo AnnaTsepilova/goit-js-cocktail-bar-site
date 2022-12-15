@@ -120,7 +120,7 @@ export const createCocktailDetailsMobile = (drink, inFavorites) => {
         </li>`
     }).join('') +
     `</ul>
-    <button class="modal-cocktails__btn btn-favorite" data-cocktail-id="${drink.idDrink}>${btnStatusFav}</button>
+    <button class="modal-cocktails__btn btn-favorite" data-cocktail-id="${drink.idDrink}">${btnStatusFav}</button>
   `;
 }
 
