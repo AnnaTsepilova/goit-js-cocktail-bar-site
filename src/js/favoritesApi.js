@@ -9,15 +9,45 @@ const getId = document.querySelector('.btn-add_and_remove');
 
 export class ApiFavorite {
   static favoriteCocktailsKey = 'favorite-cocktails';
-  static favoriteIngridientsKey = 'favorite-ingridient';
+  static favoriteIngredientsKey = 'favorite-ingridient';
 
   constructor() {}
 
   addCocktailById(cocktailID) {
     const thisObj = this;
     cocktailApi.getCocktailById(cocktailID).then(function (resposne) {
+      console.log(cocktailID);
       thisObj.addCocktail(resposne.drinks[0]);
+
     });
+  }
+
+  addIngredientById(ingredientID) {
+    const thisObj = this;
+    cocktailApi.getIngredientById(ingredientID).then(function (resposne) {
+      thisObj.addIngredient(resposne.ingredients[0]);
+    });
+  }
+
+  addIngredient(ingredientObject) {
+    // Check for cocktail ID
+    if (!ingredientObject.idIngredient) {
+      return;
+    }
+
+    let ingredients = this.getAllIngredients();
+    if (!ingredients) {
+      ingredients = [];
+    }
+
+    // Check for added cocktail
+    let result = ingredients.filter(ingredient => ingredient.idIngredient === ingredientObject.idIngredient);
+    if (result.length) {
+      return;
+    }
+
+    ingredients.push(ingredientObject);
+    localStorage.setItem(ApiFavorite.favoriteIngredientsKey, JSON.stringify(ingredients));
   }
 
   addCocktail(cocktailObject) {
@@ -138,11 +168,11 @@ export class ApiFavorite {
    */
 
   getAllIngredients() {
-    return JSON.parse(localStorage.getItem(ApiFavorite.favoriteIngridientsKey)) ?? [];
+    return JSON.parse(localStorage.getItem(ApiFavorite.favoriteIngredientsKey)) ?? [];
   }
 
   saveIngridients(ingridients) {
-    localStorage.setItem(ApiFavorite.favoriteIngridientsKey, JSON.stringify(ingridients));
+    localStorage.setItem(ApiFavorite.favoriteIngredientsKey, JSON.stringify(ingridients));
   }
 
   renderAllIngredient(ingridients) {
@@ -154,8 +184,8 @@ export class ApiFavorite {
           <h3 class="list-ingredients__name">${ingridient.strIngredient}</h3>
           <p class="list-ingredients__descr">${ingridient.strType}</p>
           <div class="box-btn">
-            <button class="btn-learn_more1" data-modalIngred-open data-ingredient-name="${ingridient.strIngredient}">Learn more</button>
-            <button class="btn-add_and_remove solid">
+            <button class="btn-learn_more" data-modalIngred-open data-ingredient-name="${ingridient.strIngredient}">Learn more</button>
+            <button class="btn-add_and_remove solid" data-ingredient-remove>
               Remove<svg class="icon-heart__svg solid" width="22" height="19">
                 <use href="${sprite}#icon-heart"></use>
               </svg>
@@ -193,6 +223,11 @@ export class ApiFavorite {
   isCoctailInFavorites(cocktailId) {
     const cocktails = this.getAllCocktails();
     return !!cocktails.find(cocktail => cocktail.idDrink === cocktailId);
+  }
+
+  isIngredientInFavorites(ingredientId) {
+    const ingredients = this.getAllIngredients();
+    return !!ingredients.find(ingredient => ingredient.idIngredient === ingredientId);
   }
 
   // -----------функция добавления/удаления коктейля в Favorites из Cocktails Details----------------

@@ -55,19 +55,6 @@ export const onLearnMoreBtn = (e) => {
   });
 }
 
-// function toggleModal() {
-//   refs.modalCocktails.classList.toggle("с-backdrop--is-hidden");
-
-//   if (!refs.modalCocktails.classList.contains("с-backdrop--is-hidden")) {
-//     // Disable scroll
-//     refs.body.style.overflow = 'hidden';
-//   } else {
-//     // Enable scroll
-//     refs.body.style.overflow = 'auto';
-//   }
-// }
-
-
 // ----------------возвращает список ингрудиентов из объекта коктейля----------
 function parseIngredients(drink) {
   let ingredients = [];
