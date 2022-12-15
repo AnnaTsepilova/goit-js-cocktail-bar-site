@@ -3,6 +3,7 @@ import { CocktailsApi } from './cocktailsApi';
 import sprite from '../images/sprite.svg';
 import { createCocktailDetails, createCocktailDetailsMobile } from './modalCocktails';
 import { ApiFavorite } from './favoritesApi';
+import { Pagination } from './pagination';
 
 export class CocktailsRender {
   cocktailsApi;
@@ -83,8 +84,8 @@ export class CocktailsRender {
           // ----заинсталить красивую нотификашку ^^^^^
         }
         refs.searchSetCaption.textContent = 'Searching results';
-        refs.searchSet.innerHTML = thisObj.createCocktailCard(response.drinks);
-        thisObj.onRenderComplete();
+
+        thisObj.makePagination(response.drinks);
       })
       .catch(error => {
         console.log(error);
@@ -115,16 +116,14 @@ export class CocktailsRender {
   // ----------------рендерим карточки коктейлей по ABC----------
   searchByABC(e) {
     e.preventDefault();
-
-    const letter = e.target.innerText;
-    console.dir(e.target.innerText);
-    refs.searchSet.innerHTML = '';
     const thisObj = this;
+    const letter = e.target.innerText;
+
+    refs.searchSet.innerHTML = '';
 
     this.cocktailsApi
       .getCocktailsBySymbol(letter)
       .then(response => {
-        console.log(response);
         if (response.drinks === null) {
           // ----заинсталить красивую нотификашку
 
@@ -133,8 +132,8 @@ export class CocktailsRender {
           // ----заинсталить красивую нотификашку ^^^^^
         }
         refs.searchSetCaption.textContent = 'Searching results';
-        refs.searchSet.innerHTML = thisObj.createCocktailCard(response.drinks);
-        thisObj.onRenderComplete();
+
+        thisObj.makePagination(response.drinks);
       })
       .catch(error => {
         console.log(error);
@@ -146,7 +145,6 @@ export class CocktailsRender {
     e.preventDefault();
 
     const cocktailName = e.currentTarget.elements.query.value;
-    console.log(cocktailName);
     const thisObj = this;
 
     console.log(e.currentTarget.elements.query.value);
@@ -155,23 +153,46 @@ export class CocktailsRender {
     this.cocktailsApi
       .searchCocktailByName(cocktailName)
       .then(response => {
-        console.log(response);
         if (response.drinks === null) {
           // ----заинсталить красивую нотификашку
 
           window.alert('На жаль такий коктейль відсутній');
-          return;
+          //return;
           // ----заинсталить красивую нотификашку ^^^^^
         }
 
         refs.searchSetCaption.textContent = 'Searching results';
-        refs.searchSet.innerHTML = thisObj.createCocktailCard(response.drinks);
-        thisObj.onRenderComplete();
+
+        thisObj.makePagination(response.drinks);
       })
 
       .catch(error => {
         console.log(error);
       });
+  }
+
+  makePagination(drinksArray) {
+    const pagCock = new Pagination({
+      items: drinksArray,
+      paginationRoot: refs.pageContainer,
+      range: this.getPageLimit(),
+      callback: (array) => {
+        refs.searchSet.innerHTML = this.createCocktailCard(array);
+        this.onRenderComplete();
+      },
+    });
+  }
+
+  getPageLimit() {
+    // Mobile
+    if (window.screen.width < 768) {
+      return 3;
+    }
+    // Tablet
+    if (window.screen.width >= 768 & window.screen.width < 1280) {
+      return 6;
+    }
+    return 9;
   }
 
   // ----------------рендерим рандомные 9 коктейлей----------
@@ -185,7 +206,7 @@ export class CocktailsRender {
     };
 
     let promises = [];
-    for (let i = 0; i < 9; i += 1) {
+    for (let i = 0; i < this.getPageLimit(); i += 1) {
       promises.push(makePromise());
     }
 
@@ -215,7 +236,7 @@ export class CocktailsRender {
     const cocktailsApi = new CocktailsApi();
     refs.modalDetailCocktailContainer.innerHTML = '';
     refs.modalDetailCocktailContainerMobile.innerHTML = '';    
-      console.log(e.target.dataset.cocktailId);
+
     cocktailsApi.getCocktailById(e.target.dataset.cocktailId)
       .then(response => {
         const favorite = new ApiFavorite();
