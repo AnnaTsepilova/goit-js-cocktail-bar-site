@@ -91,7 +91,7 @@ export class ApiFavorite {
 
   removeIngredientByName(name) {
     const ingredients = this.getAllIngredients();
-    const filteredIngridients = ingredients.filter(ingridient => ingridient.strIngredient !== name);
+    const filteredIngridients = ingredients.filter(ingridient => ingridient.idIngredient !== name);
     this.saveIngridients(filteredIngridients);
   }
 
@@ -146,13 +146,13 @@ export class ApiFavorite {
   }
 
   renderAllIngredient(ingridients) {
-    // const ingridients = this.getAllIngredients();
+    // console.log(ingridients);
     return ingridients
       .map(ingridient => {
-        `
-        <li class="list-ingredients__item">
+        return `
+        <li class="list-ingredients__item" id="${ingridient.idIngredient}">
           <h3 class="list-ingredients__name">${ingridient.strIngredient}</h3>
-          <p class="list-ingredients__descr">${ingridient.strDescription}</p>
+          <p class="list-ingredients__descr">${ingridient.strType}</p>
           <div class="box-btn">
             <button class="btn-learn_more">Learn more</button>
             <button class="btn-add_and_remove solid">
@@ -195,7 +195,7 @@ export class ApiFavorite {
     return !!cocktails.find(cocktail => cocktail.idDrink === cocktailId);
   }
 
-// -----------функция добавления/удаления коктейля в Favorites из Cocktails Details----------------
+  // -----------функция добавления/удаления коктейля в Favorites из Cocktails Details----------------
   favoritesBtnLister(drink) {
     const addToFavBtn = document.querySelector('.btn-favorite');
 
@@ -208,8 +208,11 @@ export class ApiFavorite {
         this.addCocktailById(drink.idDrink);
       }
 
-      if (window.screen.width < 768){
-        refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(drink, !isFavorite);
+      if (window.screen.width < 768) {
+        refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(
+          drink,
+          !isFavorite
+        );
       } else {
         refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(drink, !isFavorite);
       }
