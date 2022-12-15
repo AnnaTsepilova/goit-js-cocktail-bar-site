@@ -1,7 +1,7 @@
 import { refs } from './refs';
 import { CocktailsApi } from './cocktailsApi';
 import sprite from '../images/sprite.svg';
-import { createCocktailDetails, createCocktailDetailsMobile } from './modalCocktails';
+import { onLearnMoreBtn } from './modalCocktails';
 import { ApiFavorite } from './favoritesApi';
 import { Pagination } from './pagination';
 
@@ -226,7 +226,7 @@ export class CocktailsRender {
     const favoritesBtn = document.querySelectorAll('.btn-add_and_remove');
 
     for (let btn of learnMoreBtn) {
-      btn.addEventListener('click', e => this.onLearnMoreBtn(e));
+      btn.addEventListener('click', e => onLearnMoreBtn(e));
     }
 
     for (let btn of favoritesBtn) {
@@ -249,32 +249,8 @@ export class CocktailsRender {
 
   }
 
-  onLearnMoreBtn(e) {
-    e.preventDefault();
-
-    refs.modalCocktailWindow.classList.toggle('с-backdrop--is-hidden');
-    refs.modalDetailCocktailContainer.innerHTML = '';
-    refs.modalDetailCocktailContainerMobile.innerHTML = '';
-
-    this.#cocktailsApi.getCocktailById(e.target.dataset.cocktailId).then(response => {
-      let drink = response.drinks[0];
-      let isFavorite = this.#favoriteApi.isCoctailInFavorites(drink.idDrink);
-
-      if (window.screen.width < 768) {
-        refs.modalDetailCocktailContainerMobile.innerHTML = createCocktailDetailsMobile(
-          drink,
-          isFavorite
-        );
-      } else {
-        refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(drink, isFavorite);
-      }
-
-      this.#favoriteApi.favoritesBtnLister(drink, isFavorite);
-    });
-  }
-
   toggleModal() {
-    refs.modalCocktailWindow.classList.toggle('с-backdrop--is-hidden');
+    refs.modalCocktailWindow.classList.toggle('c-backdrop--is-hidden');
   }
 
 
