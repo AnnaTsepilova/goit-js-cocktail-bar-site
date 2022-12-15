@@ -45,7 +45,7 @@ export const onLearnMoreBtn = (e) => {
         drink,
         isFavorite
       );
-      
+      onCocktailModalOpen();
     } else {
       refs.modalDetailCocktailContainer.innerHTML = createCocktailDetails(drink, isFavorite);
       onCocktailModalOpen();
@@ -54,19 +54,6 @@ export const onLearnMoreBtn = (e) => {
     favoriteApi.favoritesBtnLister(drink, isFavorite);
   });
 }
-
-// function toggleModal() {
-//   refs.modalCocktails.classList.toggle("с-backdrop--is-hidden");
-
-//   if (!refs.modalCocktails.classList.contains("с-backdrop--is-hidden")) {
-//     // Disable scroll
-//     refs.body.style.overflow = 'hidden';
-//   } else {
-//     // Enable scroll
-//     refs.body.style.overflow = 'auto';
-//   }
-// }
-
 
 // ----------------возвращает список ингрудиентов из объекта коктейля----------
 function parseIngredients(drink) {
@@ -151,7 +138,7 @@ export const createCocktailDetailsMobile = (drink, inFavorites) => {
     ingredients.map(ingredient => {
       return `
         <li class="modal-cocktails__item">
-          <a class="modal-cocktails__link" href="#" data-modalIngred-open>${ingredient}</a>
+          <a class="modal-cocktails__link" href="#" data-modalIngred-open data-ingredient-name="${ingredient}">${ingredient}</a>
         </li>`
     }).join('') +
     `</ul>

@@ -12,6 +12,7 @@ renderFavorites();
 
 refs.searchFavorite.addEventListener('submit', function (event) {
   favorite.searchByCocktailName(event);
+  onRenderFavorites();
 });
 
 refs.modalCocktails.addEventListener('click', function (event) {
@@ -29,6 +30,10 @@ function renderFavorites() {
   let cocktails = favorite.getAllCocktails();
   refs.cocktailsList.innerHTML = favorite.renderAllCocktails(cocktails);
 
+  onRenderFavorites();
+}
+
+function onRenderFavorites() {
   const removeBtn = document.querySelectorAll('.btn-add_and_remove');
   cocktailUI.onRenderComplete();
   // ------ listener на кнопку remove----------

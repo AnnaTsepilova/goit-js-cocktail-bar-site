@@ -97,7 +97,7 @@ export class CocktailsRender {
             <img class="coctail__pic" src="${strDrinkThumb}" alt="${strDrink}" />
             <p class="coctail__desc">${strDrink}</p>
             <div class="box__btn">
-              <button class="btn-learn_more" type="button" data-cocktail-id="${idDrink}">Learn more</button>
+              <button class="btn-learn_more" type="button" data-learnMore-open data-cocktail-id="${idDrink}">Learn more</button>
               <button class="btn-add_and_remove" type="button" data-cocktail-id="${idDrink}">` + this.createFavoriteBtn(isFavorite) +
               `</button>
             </div>
@@ -222,7 +222,7 @@ export class CocktailsRender {
 
   // -------------подключаем кнопку learn more к отрендеренным карточкам коктейлей---------------
   onRenderComplete() {
-    const learnMoreBtn = document.querySelectorAll('.btn-learn_more');
+    const learnMoreBtn = document.querySelectorAll('[data-learnMore-open]');
     const favoritesBtn = document.querySelectorAll('.btn-add_and_remove');
 
     for (let btn of learnMoreBtn) {

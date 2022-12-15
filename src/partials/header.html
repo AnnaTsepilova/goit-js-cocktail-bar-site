@@ -91,7 +91,32 @@
         </button>
 
     <div class="menu-container__wrap">
-
+      <div class="header-logo__wrapper">
+<a class="header-logo" href="./index.html">
+    <picture>
+      <source
+        srcset="
+        ./images/header/Logo@mob.png   1x,
+        ./images/header/Logo@mob2x.png 2x
+        "
+        media="(max-width: 767px)"
+        />
+        <source
+        srcset="
+        ./images/header/Logo@tab.png   1x,
+        ./images/header/Logo@tab2x.png 2x
+        "
+        media="(min-width: 768px)"
+        />
+        <source/>
+        <img
+        class="logo-cocktails"
+        src="./images/header/Logo@mob.png"
+        alt="logo"
+        widt="156"
+        />
+      </picture>
+      </a></div>
       <div class="theme-switch__mob">
         <p class="theme-switch__light">Light</p>
         <div class="theme-switch__control">
@@ -104,8 +129,8 @@
         <p class="theme-switch__dark">Dark</p>
       </div>
 
-      <!-- <div>
-        <form class="header__search">
+      <div>
+        <form class="header__search-m">
           <button class="header__search-btn" type="submit">
             <svg class="search__icon" width="20" height="20">
               <use xlink:href="./images/sprite.svg#icon-search"/>
@@ -113,9 +138,9 @@
           </button>
           <input class="header__input" type="text" name="query" placeholder="Search" />
         </form>
-      </div> -->
-
-      <div>
+      </div>
+</div>
+      <div class="menu-m__wrapper">
 
          <ul class="desc-nav-m__menu">
            <li class="nav-menu-m__li mob-nav-m__link">
@@ -141,7 +166,7 @@
            </li>
          </ul>
     </div>
-    </div>
+<div class="menu-mob__footer"></div>
       <script
            defer
            src="https://cdnjs.cloudflare.com/ajax/libs/body-scroll-lock/3.1.5/bodyScrollLock.min.js"
