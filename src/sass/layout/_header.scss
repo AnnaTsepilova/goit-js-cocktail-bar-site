@@ -1,5 +1,4 @@
 
-
 .is-hidden {
   display: none;
   visibility: hidden;
@@ -203,7 +202,7 @@ transition: all .5s;
     }
 
     @media screen and (max-width: 767px) {
-        display: none;
+      display: none;
     }
 }
 
@@ -361,18 +360,34 @@ transition: all .5s;
       fill: $primary-white-color;
       background-color: $primary-black-color;
     }
+
+    // & .theme-switch__track {
+    //   fill: $primary-white-color;
+    //   background-color: $accent-color;
+    // }
+   
+    // & .theme-switch__marker {
+    //   background-color: $primary-white-color;
+    //   }
   }
   
   /* THEME SWITCH */
 
   .theme-switch__mob {
     display: flex;
-    align-items: center;
     justify-content: flex-end;
     gap: 12px;
-    margin: 0 auto;
+    // margin: 0 auto;
+
+    @media screen and (min-width: 768px) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+      margin-left: 20px;
+    }
  
-    @media screen and (max-width: 1279px) {
+    @media screen and (min-width: 1279px) {
         display: none;
     }
   }
@@ -392,6 +407,8 @@ transition: all .5s;
         display: none;
     }
   }
+
+
   
 .theme-switch__control {
     display: flex;
@@ -588,5 +605,6 @@ transition: all .5s;
   color: #202025;
   margin-left: 8px;
 }
+
 
   
