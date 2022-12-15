@@ -38,8 +38,10 @@
   position: relative;
   width: 320px;
   margin: 0 auto;
+  margin-top: 20px;
   padding: 40px 20px;
   background-color: $primary-white-color;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
   z-index: 103;
   // outline: 1px solid tomato;
   @media screen and (min-width: 768px) {
