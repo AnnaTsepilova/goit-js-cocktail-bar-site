@@ -9,7 +9,7 @@
   opacity: 1;
   overflow: auto;
   visibility: visible;
-  transition: opacity 250ms $cubic, visibility 250ms $cubic;
+  transition: opacity 250ms $cubic;
 }
 
 .с-backdrop--is-hidden {
