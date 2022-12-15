@@ -71,6 +71,12 @@
   }
 }
 
+.header-logo__wrapper {
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+}
+
 .header__search-m {
   position: relative;
   margin-bottom: 40px;
@@ -87,6 +93,7 @@
     height: 40px;
     background-color: var(--accent-color);
     transform: translateX(40px);
+    background-color: #fd5103;
   }
 
   @media screen and (min-width: 768px) {
@@ -110,6 +117,13 @@
   }
 }
 
+.menu-m__wrapper {
+  @media screen and (min-width: 768px) {
+    min-width: 768px;
+    margin: 0 auto;
+  }
+}
+
 .desc-nav-m__menu {
   font-family: 'Poppins';
   font-style: normal;
@@ -121,7 +135,8 @@
   @extend%list;
   @media screen and (min-width: 768px) {
     margin-top: 63px;
-    margin-left: 326px;
+    margin-left: 320px;
+    // margin-right: auto;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
@@ -210,4 +225,13 @@
   position: absolute;
   top: 0;
   left: 120px;
+}
+
+.menu-mob__footer {
+  @media (min-width: 768px) {
+    margin-top: 628px;
+    width: 768px;
+    height: 110px;
+    background-color: $accent-color;
+  }
 }
