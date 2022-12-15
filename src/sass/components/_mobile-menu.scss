@@ -93,6 +93,7 @@
     height: 40px;
     background-color: var(--accent-color);
     transform: translateX(40px);
+    background-color: #fd5103;
   }
 
   @media screen and (min-width: 768px) {
@@ -224,4 +225,13 @@
   position: absolute;
   top: 0;
   left: 120px;
+}
+
+.menu-mob__footer {
+  @media (min-width: 768px) {
+    margin-top: 628px;
+    width: 768px;
+    height: 110px;
+    background-color: $accent-color;
+  }
 }

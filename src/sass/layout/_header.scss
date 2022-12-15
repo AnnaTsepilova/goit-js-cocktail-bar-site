@@ -365,6 +365,13 @@ body.dark-theme {
     background-color: $primary-black-color;
   }
 
+  & .desc-nav-m__menu {
+    color: $primary-white-color;
+  }
+
+  & .mob-nav-m__link {
+    color: $primary-white-color;
+  }
   // & .theme-switch__track {
   //   fill: $primary-white-color;
   //   background-color: $accent-color;
