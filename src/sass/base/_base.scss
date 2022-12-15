@@ -4,6 +4,11 @@ body {
 
     background-color: $primary-white-color;
     color: $primary-black-color;
+
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between;
 }
 
 h1,
