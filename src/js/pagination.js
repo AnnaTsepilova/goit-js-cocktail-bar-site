@@ -77,9 +77,14 @@ export class Pagination {
         </li>`);
     }
 
+    if (window.screen.width < 768) {
+      return 3;
+    }
+
     this.paginationRoot.innerHTML = '';
     this.paginationRoot.innerHTML = pagElements.join('');
   }
+
   eventHandler(event) {
     this.page = Number(event.currentTarget.dataset.index);
     if (isNaN( this.page ) || this.page < 1 || this.page > this.totalPages) {
