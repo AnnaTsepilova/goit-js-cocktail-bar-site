@@ -22,10 +22,10 @@
 
 .menu-toggle {
   &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    fill: $accent-color;
   }
   &:focus {
-    background-color: rgba(0, 0, 0, 0.1);
+    fill: $accent-color;
   }
 }
 
