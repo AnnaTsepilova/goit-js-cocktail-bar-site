@@ -81,6 +81,9 @@
 
 /* Випадающий вміст (скритий) */
 .dropdown-content {
+  @media screen and (max-width: 1279px) {
+    min-width: 320px;
+  }
   display: none;
   position: absolute;
   background-color: #f1f1f1;
@@ -422,14 +425,15 @@ body.dark-theme {
   //   background-color: $secondary-white-color;
   // }
 
-  // & .theme-switch__track {
-  //   fill: $primary-white-color;
-  //   background-color: $accent-color;
-  // }
+  & .theme-switch__track {
+    fill: $primary-white-color;
+    background-color: $accent-color;
+    border: 0.6px solid #fcfcfc;
+  }
 
-  // & .theme-switch__marker {
-  //   background-color: $primary-white-color;
-  //   }
+  & .theme-switch__marker {
+    background-color: $primary-white-color;
+    }
 }
 
 /* THEME SWITCH */
