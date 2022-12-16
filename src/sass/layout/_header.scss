@@ -406,8 +406,16 @@ body.dark-theme {
     background-color: $primary-black-color;
   }
 
-  & .c-backdrop {
-    background-color: $secondary-white-color;
+  // & .c-backdrop {
+  //   background-color: $search-input-color;
+  // }
+
+  & .modal-cocktails {
+    outline: 1px solid $accent-color;
+  }
+
+  & .modal-ingredients {
+    outline: 1px solid $accent-color;
   }
 
   // & .i-backdrop {

@@ -28,6 +28,9 @@
   background-color: $primary-white-color;
   border: 0;
   cursor: pointer;
+  &:hover {
+    fill: $accent-color;
+  }
   @media screen and (min-width: 768px) {
     top: 19px;
     right: 19px;
