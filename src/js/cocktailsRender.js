@@ -127,6 +127,7 @@ export class CocktailsRender {
     const letter = e.target.innerText;
 
     refs.searchSet.innerHTML = '';
+    refs.pageContainer.innerHTML = '';
     refs.spinnerRef.classList.remove('visually-hidden-spinner');
     this.#cocktailsApi
       .getCocktailsBySymbol(letter)
@@ -145,6 +146,7 @@ export class CocktailsRender {
     const cocktailName = e.currentTarget.elements.query.value;
 
     refs.searchSet.innerHTML = '';
+    refs.pageContainer.innerHTML = '';
     refs.spinnerRef.classList.remove('visually-hidden-spinner');
     this.#cocktailsApi
       .searchCocktailByName(cocktailName)
@@ -157,15 +159,16 @@ export class CocktailsRender {
   }
 
   renderResults(response) {
+    refs.spinnerRef.classList.add('visually-hidden-spinner');
     this.makePagination(response.drinks);
     if (response.drinks === null) {
       // ----заинсталить красивую нотификашку
       refs.searchSetCaption.textContent = '';
       refs.notifBox.classList.remove('is-hidden');
+      
       return;
       // ----заинсталить красивую нотификашку ^^^^^
     }
-    refs.spinnerRef.classList.add('visually-hidden-spinner');
     refs.notifBox.classList.add('is-hidden');
     refs.searchSetCaption.textContent = 'Searching results';
   }
