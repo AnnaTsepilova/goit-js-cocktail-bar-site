@@ -1,6 +1,6 @@
 .menu-toggle {
-  min-height: 40px;
-  min-width: 40px;
+  height: 40px;
+  width: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,8 +10,17 @@
   background-color: transparent;
   cursor: pointer;
   border: none;
-  border-radius: 50%;
   outline: none;
+}
+
+.menu-toggle.position-btn {
+  align-items: start;
+
+  @media (max-width: 767px) {
+    justify-content: end;
+    
+    }
+
 }
 
 @media (min-width: 1280px) {
