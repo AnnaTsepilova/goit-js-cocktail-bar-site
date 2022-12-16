@@ -76,7 +76,7 @@ export class CocktailsRender {
     const thisObj = this;
     const letter = refs.searchMobileInput.value;
     refs.searchSet.innerHTML = '';
-
+    refs.spinnerRef.classList.remove('visually-hidden-spinner');
     this.#cocktailsApi
       .getCocktailsBySymbol(letter)
       .then(response => {
@@ -93,32 +93,32 @@ export class CocktailsRender {
       .map(({ strDrinkThumb, strDrink, idDrink }) => {
         let isFavorite = this.#favoriteApi.isCoctailInFavorites(idDrink);
 
-        return `<li class="coctail__card">
+        return (
+          `<li class="coctail__card">
             <img class="coctail__pic" src="${strDrinkThumb}" alt="${strDrink}" />
             <p class="coctail__desc">${strDrink}</p>
             <div class="box__btn">
               <button class="btn-learn_more" type="button" data-learnMore-open data-cocktail-id="${idDrink}">Learn more</button>
-              <button class="btn-add_and_remove" type="button" data-cocktail-id="${idDrink}">` + this.createFavoriteBtn(isFavorite) +
-              `</button>
+              <button class="btn-add_and_remove" type="button" data-cocktail-id="${idDrink}">` +
+          this.createFavoriteBtn(isFavorite) +
+          `</button>
             </div>
-          </li>`;
+          </li>`
+        );
       })
       .join('');
   }
 
   createFavoriteBtn(isFavorite) {
-    return (
-      isFavorite ? 
-      `Remove
+    return isFavorite
+      ? `Remove
       <svg class="icon-heart__svg solid" width="22" height="19">
         <use href="${sprite}#icon-heart"/>
       </svg>`
-      :
-      `Add to
+      : `Add to
       <svg class="icon-heart__svg" width="22" height="19">
         <use href="${sprite}#icon-heart"/>
-      </svg>`
-    );    
+      </svg>`;
   }
   // ----------------рендерим карточки коктейлей по ABC----------
   searchByABC(e) {
@@ -127,7 +127,7 @@ export class CocktailsRender {
     const letter = e.target.innerText;
 
     refs.searchSet.innerHTML = '';
-
+    refs.spinnerRef.classList.remove('visually-hidden-spinner');
     this.#cocktailsApi
       .getCocktailsBySymbol(letter)
       .then(response => {
@@ -143,9 +143,9 @@ export class CocktailsRender {
     e.preventDefault();
     const thisObj = this;
     const cocktailName = e.currentTarget.elements.query.value;
-    
-    refs.searchSet.innerHTML = '';
 
+    refs.searchSet.innerHTML = '';
+    refs.spinnerRef.classList.remove('visually-hidden-spinner');
     this.#cocktailsApi
       .searchCocktailByName(cocktailName)
       .then(response => {
@@ -165,6 +165,7 @@ export class CocktailsRender {
       return;
       // ----заинсталить красивую нотификашку ^^^^^
     }
+    refs.spinnerRef.classList.add('visually-hidden-spinner');
     refs.notifBox.classList.add('is-hidden');
     refs.searchSetCaption.textContent = 'Searching results';
   }
@@ -214,6 +215,7 @@ export class CocktailsRender {
         let cocktailArray = [];
         response.map(elm => cocktailArray.push(elm.drinks[0]));
         refs.searchSet.innerHTML = thisObj.createCocktailCard(cocktailArray);
+        refs.spinnerRef.classList.add('visually-hidden-spinner');
         thisObj.onRenderComplete();
       })
       .catch(error => console.log(error));
@@ -245,12 +247,9 @@ export class CocktailsRender {
     }
 
     e.currentTarget.innerHTML = this.createFavoriteBtn(!isFavorite);
-
   }
 
   toggleModal() {
     refs.modalCocktailWindow.classList.toggle('c-backdrop--is-hidden');
   }
-
-
 }

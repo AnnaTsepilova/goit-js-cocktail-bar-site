@@ -186,3 +186,71 @@
 .is-hidden{
     display:none;
 }
+
+//  спиннер
+.spinner {
+    width: 50px;
+    height: 50px;
+
+    @media screen and (min-width: 768px) {
+        width: 70px;
+        height: 70px;
+
+        top: 90%;
+        left: 47%;
+    }
+
+    @media screen and (min-width: 1280px) {
+        width: 100px;
+        height: 100px;
+
+        top: 90%;
+        left: 46%;
+    }
+
+    border: 3px solid transparent;
+    border-left: 3px solid #d6d815;
+    border-right: 3px solid #d6d815;
+    border-bottom: 3px solid #d6d815;
+    border-radius: 50px;
+    animation: spin 1s linear infinite;
+    position: relative;
+    top: 90%;
+    left: 47%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner-bg {
+    border-width: 10px;
+}
+
+.spinner-alert {
+    border-color: $accent-color;
+    border-top-color: transparent;
+}
+
+.visually-hidden-spinner {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
