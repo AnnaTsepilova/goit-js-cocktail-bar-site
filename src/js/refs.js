@@ -20,4 +20,6 @@ export const refs = {
   modalDetailIngredientContainer: document.querySelector('.modal-ingredients__wrapper'),
 
   notifBox: document.querySelector('.add-box-cocktails'),
+
+  spinnerRef: document.querySelector('.spinner-alert'),
 };
