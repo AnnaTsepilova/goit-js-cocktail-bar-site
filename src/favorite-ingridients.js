@@ -25,8 +25,14 @@ function onRemoveBtn(e) {
 
 function renderFavoriteIngridients() {
   let ingredients = favorite.getAllIngredients();
-  refs.ingridientsList.innerHTML = favorite.renderAllIngredient(ingredients);
+  if (ingredients.length === 0) {
+    refs.ingridientsList.innerHTML = favorite.renderEmptyFavIngredientsPage();
+  } else {
+    refs.ingridientsList.innerHTML = favorite.renderAllIngredient(ingredients);
+  };
 }
+
+
 
 const ingredientsList = document.querySelectorAll('.list-ingredients__item');
 cocktailUI.onRenderComplete();

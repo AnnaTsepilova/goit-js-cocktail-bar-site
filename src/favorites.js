@@ -28,8 +28,11 @@ function onRemoveBtn(e) {
 
 function renderFavorites() {
   let cocktails = favorite.getAllCocktails();
-  refs.cocktailsList.innerHTML = favorite.renderAllCocktails(cocktails);
-
+  if (cocktails.length === 0) {
+    refs.cocktailsList.innerHTML = favorite.renderEmptyFavCocktailsPage();
+  } else {
+    refs.cocktailsList.innerHTML = favorite.renderAllCocktails(cocktails);
+  };
   onRenderFavorites();
 }
 

@@ -162,7 +162,6 @@ export class CocktailsRender {
       // ----заинсталить красивую нотификашку
       refs.searchSetCaption.textContent = '';
       refs.notifBox.classList.remove('is-hidden');
-      Notify.failure('На жаль такий коктейль відсутній');
       return;
       // ----заинсталить красивую нотификашку ^^^^^
     }

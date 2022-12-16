@@ -156,6 +156,35 @@ export class ApiFavorite {
       .join('');
   }
 
+  renderEmptyFavCocktailsPage() {
+    return `
+    <li class="add-box-cocktails">
+      <p class="add-box-cocktails__text">You haven't added any favorite cocktails yet</p>
+    </li>`;
+  }
+
+  renderEmptyFavIngredientsPage() {
+    return `
+    <li class="add-box-cocktails">
+      <p class="add-box-ingredients__text">You haven't added any favorite ingredients yet</p>
+    </li>`;
+  }
+
+  renderEmptySearchFavCocktailsPage() {
+    return `
+    <li class="add-box-cocktails">
+      <p class="add-box-ingredients__text">Sorry, we didn't find any cocktail in your favorite cocktails</p>
+    </li>`;
+  }
+
+  renderEmptySearchFavIngredientsPage() {
+    return `
+    <li class="add-box-cocktails">
+      <p class="add-box-ingredients__text">Sorry, we didn't find any ingredient in your favorite ingredients</p>
+    </li>`;
+  }
+
+
   /**
    * @typedef {object} Ingredient
    * @property {string} Ingredient.idIngredient
@@ -204,9 +233,16 @@ export class ApiFavorite {
     const newCocktails = cocktails.reduce((acc, cocktail) => {
       const cocByName = cocktail.strDrink.toLowerCase();
       return cocByName.includes(searchText.toLowerCase()) ? [...acc, cocktail] : [...acc];
-    }, []);
-    refs.cocktailsList.innerHTML = this.renderAllCocktails(newCocktails);
+    }, []); 
+
+    if (newCocktails.length === 0) {
+      refs.cocktailsList.innerHTML = this.renderEmptySearchFavCocktailsPage();
+    } else {
+      refs.cocktailsList.innerHTML = this.renderAllCocktails(newCocktails);
+    };
   }
+
+
 
   searchByIngredientsName(event) {
     event.preventDefault();
@@ -217,7 +253,12 @@ export class ApiFavorite {
       const ingrByName = ingridient.strIngredient.toLowerCase();
       return ingrByName.includes(searchText.toLowerCase()) ? [...acc, ingridient] : [...acc];
     }, []);
-    refs.ingridientsList.insertAdjacentHTML('beforeend', this.renderAllIngredient(newIngridients));
+
+    if (newIngridients.length === 0) {
+      refs.ingridientsList.innerHTML = this.renderEmptySearchFavIngredientsPage();
+    } else {
+      refs.ingridientsList.innerHTML = this.renderAllIngredient(newIngridients);
+    };
   }
 
   isCoctailInFavorites(cocktailId) {
