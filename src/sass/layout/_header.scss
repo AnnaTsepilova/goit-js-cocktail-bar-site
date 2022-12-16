@@ -405,6 +405,15 @@ body.dark-theme {
     fill: $primary-white-color;
     background-color: $primary-black-color;
   }
+
+  & .c-backdrop {
+    background-color: $secondary-white-color;
+  }
+
+  // & .i-backdrop {
+  //   background-color: $secondary-white-color;
+  // }
+
   // & .theme-switch__track {
   //   fill: $primary-white-color;
   //   background-color: $accent-color;
