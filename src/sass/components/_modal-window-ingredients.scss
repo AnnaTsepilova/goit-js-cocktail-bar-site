@@ -33,6 +33,13 @@
     top: 19px;
     right: 19px;
   }
+  &:hover {
+    fill: $accent-color;
+  }
+
+  &:focus {
+    fill: $accent-color;
+  }
 }
 
 .modal-ingredients {
