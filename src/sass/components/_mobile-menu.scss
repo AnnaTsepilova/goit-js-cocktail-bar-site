@@ -118,7 +118,7 @@
 
   @media screen and (min-width: 768px) {
     display: flex;
-    margin: 15px auto 0;
+    margin: 15px auto 0 150px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -144,7 +144,7 @@
   @extend%list;
   @media screen and (min-width: 768px) {
     margin-top: 63px;
-    margin-left: 320px;
+    margin-left: 305px;
     // margin-right: auto;
     font-family: 'Poppins';
     font-style: normal;
