@@ -18,7 +18,7 @@ export class Pagination {
     return [...this.items].splice(this.range * (this.page - 1), this.range);
   }
   makePagination() {
-    const pagElements = [];
+    let pagElements = [];
 
     if (this.totalPages > 1) {
       pagElements.push(`
@@ -66,6 +66,19 @@ export class Pagination {
     }
     pagElements.push(`</li>`);
 
+    
+    if (window.screen.width < 768) {
+      const limit = 4;
+      let c = 0;
+      pagElements = pagElements.filter(elm => {
+        if (c > limit) {
+          return;
+        }
+        c += 1;
+        return elm;
+      })
+    }
+
     if (this.totalPages > 1) {
       pagElements.push(`
         <li class="paginarion__item arrows">
@@ -80,6 +93,7 @@ export class Pagination {
     this.paginationRoot.innerHTML = '';
     this.paginationRoot.innerHTML = pagElements.join('');
   }
+
   eventHandler(event) {
     this.page = Number(event.currentTarget.dataset.index);
     if (isNaN( this.page ) || this.page < 1 || this.page > this.totalPages) {

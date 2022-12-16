@@ -1,6 +1,6 @@
 .menu-toggle {
-  min-height: 40px;
-  min-width: 40px;
+  height: 40px;
+  width: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,8 +10,17 @@
   background-color: transparent;
   cursor: pointer;
   border: none;
-  border-radius: 50%;
   outline: none;
+}
+
+.menu-toggle.position-btn {
+  align-items: start;
+
+  @media (max-width: 767px) {
+    justify-content: end;
+    
+    }
+
 }
 
 @media (min-width: 1280px) {
@@ -22,10 +31,10 @@
 
 .menu-toggle {
   &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    fill: $accent-color;
   }
   &:focus {
-    background-color: rgba(0, 0, 0, 0.1);
+    fill: $accent-color;
   }
 }
 
@@ -109,7 +118,7 @@
 
   @media screen and (min-width: 768px) {
     display: flex;
-    margin: 15px auto 0;
+    margin: 15px auto 0 150px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -135,7 +144,7 @@
   @extend%list;
   @media screen and (min-width: 768px) {
     margin-top: 63px;
-    margin-left: 320px;
+    margin-left: 305px;
     // margin-right: auto;
     font-family: 'Poppins';
     font-style: normal;
@@ -172,8 +181,8 @@
 .menu-container {
   & .menu-toggle {
     position: absolute;
-    top: 29px;
-    right: 27px;
+    top: 30px;
+    right: 25px;
     // color: #fff;
   }
 }
@@ -182,8 +191,8 @@
   .menu-container {
     & .menu-toggle {
       position: absolute;
-      top: 31px;
-      right: 23px;
+      top: 30px;
+      right: 25px;
       // color: #fff;
     }
   }
