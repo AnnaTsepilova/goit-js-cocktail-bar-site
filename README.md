@@ -35,7 +35,6 @@ recipes to a list.
 
 ```
 npm install
-
 ```
 
 3. **Run the application**:
@@ -48,7 +47,6 @@ npm start
 
 ```
 npm run build
-
 ```
 
 ## Contributions
