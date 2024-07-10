@@ -26,10 +26,10 @@ recipes to a list.
 
 1. **Clone the repository**:
 
-   ```
-   git clone https://github.com/yourusername/cocktail-bar-site.git
-   cd cocktail-bar-site
-   ```
+```
+git clone https://github.com/yourusername/cocktail-bar-site.git
+cd cocktail-bar-site
+```
 
 2. **Install dependencies**:
 
